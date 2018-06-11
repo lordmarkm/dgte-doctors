@@ -10,7 +10,7 @@ spring:
   application:
     name: doctor
   datasource:
-    url: jdbc:mysql://localhost/dgtedr_doctor
+    jdbc-url: jdbc:mysql://localhost/dgtedr_doctor
     username: root
     password: 123qwe
     driver-class-name: com.mysql.cj.jdbc.Driver
