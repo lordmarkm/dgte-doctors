@@ -1,11 +1,14 @@
-endpoints:
-  shutdown:
-    enabled: true
+management:
+  endpoint:
+    shutdown:
+      enabled: true
 
 server:
   port: 8081
 
 spring:
+  application:
+    name: doctor
   datasource:
     url: jdbc:mysql://localhost/dgtedr_doctor
     username: root
@@ -15,13 +18,12 @@ spring:
     hibernate.ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: false
+  flyway:
+    enabled: false
+    locations: classpath:/db/migration/mysql
 
 logging:
   level:
     ROOT: info
     com.dgtedr: debug
   file: log/dgtedr-doctor.log
-
-flyway:
-  enabled: false
-  locations: classpath:/db/migration/mysql
