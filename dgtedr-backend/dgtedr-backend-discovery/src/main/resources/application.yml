@@ -1,0 +1,17 @@
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+logging:
+  level:
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
