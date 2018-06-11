@@ -13,7 +13,7 @@ spring:
     url: jdbc:mysql://localhost/dgtedr_doctor
     username: root
     password: 123qwe
-    driverClassName: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate.ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
