@@ -22,6 +22,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <checkstyle.phase>validate</checkstyle.phase>
 
+    <efs-core.version>1.0</efs-core.version>
     <swagger.version>2.7.0</swagger.version>
     <hibernate.version>5.2.10.Final</hibernate.version>
     <spring-cloud.version>Camden.SR6</spring-cloud.version>
@@ -46,31 +47,36 @@
       <dependency>
         <groupId>efs</groupId>
         <artifactId>efs-core-web</artifactId>
-        <version>${project.version}</version>
+        <version>${efs-core.version}</version>
       </dependency>
       <dependency>
         <groupId>efs</groupId>
         <artifactId>efs-core-dto</artifactId>
-        <version>${project.version}</version>
+        <version>${efs-core.version}</version>
       </dependency>
       <dependency>
         <groupId>efs</groupId>
         <artifactId>efs-core-jpa</artifactId>
-        <version>${project.version}</version>
+        <version>${efs-core.version}</version>
       </dependency>
       <dependency>
         <groupId>efs</groupId>
         <artifactId>efs-core-mongo</artifactId>
-        <version>${project.version}</version>
+        <version>${efs-core.version}</version>
       </dependency>
       <dependency>
         <groupId>efs</groupId>
         <artifactId>efs-core-test</artifactId>
-        <version>${project.version}</version>
+        <version>${efs-core.version}</version>
         <scope>test</scope>
       </dependency>
 
       <!-- Dgtedr backend modules -->
+      <dependency>
+        <groupId>dgtedr</groupId>
+        <artifactId>dgtedr-backend-shared</artifactId>
+        <version>${project.version}</version>
+      </dependency>
 
       <!-- Swagger -->
       <dependency>
@@ -102,8 +108,9 @@
   </dependencyManagement>
 
   <modules>
-  <module>dgtedr-backend-gateway</module>
-  <module>dgtedr-backend-shared</module>
+    <module>dgtedr-backend-gateway</module>
+    <module>dgtedr-backend-shared</module>
+    <module>dgtedr-backend-doctor</module>
   </modules>
 
   <build>
