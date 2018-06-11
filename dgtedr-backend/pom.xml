@@ -11,7 +11,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.5.7.RELEASE</version>
+    <version>2.0.2.RELEASE</version>
     <relativePath />
   </parent>
 
@@ -41,8 +41,28 @@
     <docker.goal>help</docker.goal>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/libs-milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <dependencyManagement>
     <dependencies>
+      <!-- Spring Cloud -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>Finchley.RC1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
       <!-- EFS Core -->
       <dependency>
         <groupId>efs</groupId>
@@ -111,6 +131,7 @@
     <module>dgtedr-backend-gateway</module>
     <module>dgtedr-backend-shared</module>
     <module>dgtedr-backend-doctor</module>
+    <module>dgtedr-backend-discovery</module>
   </modules>
 
   <build>
