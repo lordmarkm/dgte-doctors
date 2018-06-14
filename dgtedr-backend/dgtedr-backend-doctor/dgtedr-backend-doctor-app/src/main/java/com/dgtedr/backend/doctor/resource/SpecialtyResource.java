@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dgtedr.backend.doctor.service.SpecialtyService;
+import com.dgtedr.backend.shared.client.SpecialtyClient;
 import com.dgtedr.backend.shared.dto.SpecialtyInfo;
 import com.mynt.core.web.BaseResource;
 import static org.springframework.http.HttpStatus.*;
@@ -18,7 +19,8 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/specialty")
-public class SpecialtyResource extends BaseResource<SpecialtyInfo, SpecialtyService> {
+public class SpecialtyResource extends BaseResource<SpecialtyInfo, SpecialtyService> 
+    implements SpecialtyClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(SpecialtyResource.class);
 
