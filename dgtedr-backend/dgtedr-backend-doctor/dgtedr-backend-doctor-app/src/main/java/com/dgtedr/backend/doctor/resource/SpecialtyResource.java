@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/specialty")
-public class SpecialtyResource extends BaseResource<SpecialtyInfo, SpecialtyService> 
+public class SpecialtyResource extends BaseResource<SpecialtyInfo, SpecialtyService>
     implements SpecialtyClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(SpecialtyResource.class);
