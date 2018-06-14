@@ -1,0 +1,22 @@
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: doctor
+
+logging:
+  level:
+    ROOT: info
+    com.dgtedr: debug
+  file: log/dgtedr-gateway.log
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8762/eureka

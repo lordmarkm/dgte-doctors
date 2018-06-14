@@ -1,5 +1,9 @@
 package com.dgtedr.backend.shared.dto;
 
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.core.style.ToStringCreator;
+
 import com.efs.core.dto.BaseInfo;
 
 /**
@@ -9,8 +13,16 @@ import com.efs.core.dto.BaseInfo;
  */
 public class SpecialtyInfo extends BaseInfo {
 
+    @NotBlank
     private String name;
     private String description;
+
+    @Override
+    public ToStringCreator toStringCreator() {
+        return super.toStringCreator()
+                .append("name", name)
+                .append("desc", description);
+    }
 
     public String getName() {
         return name;

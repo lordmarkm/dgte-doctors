@@ -17,13 +17,13 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.dgtedr.backend.doctor.service.SpecialtyService;
 import com.google.common.collect.ImmutableMap;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {
-        "com.mynt.core.jpa.service",
-        "com.mynt.payment.**.service",
-        "xyz.mynt.payment.**.service"},
+@EnableJpaRepositories(basePackageClasses = {
+        SpecialtyService.class
+    },
     repositoryImplementationPostfix = "CustomImpl")
 public class PersistenceConfig {
 
