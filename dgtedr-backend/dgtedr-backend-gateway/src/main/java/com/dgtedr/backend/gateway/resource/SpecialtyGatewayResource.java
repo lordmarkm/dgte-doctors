@@ -11,7 +11,7 @@ import com.dgtedr.backend.shared.client.SpecialtyClient;
 import com.dgtedr.backend.shared.dto.SpecialtyInfo;
 
 @RestController
-@RequestMapping("/specialty")
+@RequestMapping("/api/specialty")
 public class SpecialtyGatewayResource {
 
     @Autowired
