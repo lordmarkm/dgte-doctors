@@ -1,4 +1,4 @@
-package com.dgtedr.backend.gateway.app;
+package com.dgtedr.backend.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

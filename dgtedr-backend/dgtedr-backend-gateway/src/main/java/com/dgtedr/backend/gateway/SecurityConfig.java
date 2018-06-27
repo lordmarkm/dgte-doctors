@@ -1,4 +1,4 @@
-package com.dgtedr.backend.gateway.app;
+package com.dgtedr.backend.gateway;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
