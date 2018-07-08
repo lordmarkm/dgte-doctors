@@ -125,6 +125,7 @@
     <module>dgtedr-backend-shared</module>
     <module>dgtedr-backend-doctor</module>
     <module>dgtedr-backend-discovery</module>
+    <module>dgtedr-backend-project</module>
   </modules>
 
   <build>

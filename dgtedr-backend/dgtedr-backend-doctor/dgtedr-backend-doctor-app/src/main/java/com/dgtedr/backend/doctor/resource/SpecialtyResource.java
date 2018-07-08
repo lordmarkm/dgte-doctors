@@ -1,5 +1,7 @@
 package com.dgtedr.backend.doctor.resource;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +30,12 @@ public class SpecialtyResource extends BaseResource<SpecialtyInfo, SpecialtyServ
     public ResponseEntity<SpecialtyInfo> save(@RequestBody @Valid SpecialtyInfo specialty) {
         LOG.info("SpecialtyResource::save(...); specialty={}", specialty);
         return new ResponseEntity<>(service.saveInfo(specialty), OK);
+    }
+
+    @Override
+    public ResponseEntity<Page<SpecialtyInfo>> findAll(String term, Pageable page) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
