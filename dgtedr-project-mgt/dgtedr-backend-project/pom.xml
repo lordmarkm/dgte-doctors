@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>dgtedr</groupId>
-    <artifactId>dgtedr-backend</artifactId>
+    <artifactId>dgtedr-project-mgt</artifactId>
     <version>1.0</version>
   </parent>
   <artifactId>dgtedr-backend-project</artifactId>
