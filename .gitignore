@@ -32,14 +32,10 @@ data
 # Generated File Repositories
 temp
 terminal
-csr-app/csr-app/csr-repository/
-csr-app/csr-app/csr-repository-temp/
 
 # MAC ignores
 .DS_Store
 main-built.js
-csr-app/csr-app/csr-repository/
-csr-app/csr-app/csr-repository-temp/
 log/
 
 #android ignores
