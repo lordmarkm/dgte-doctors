@@ -24,7 +24,6 @@ spring:
 
 logging:
   level:
-    ROOT: info
     com.dgtedr: debug
   file: log/project.log
 

@@ -1,4 +1,4 @@
-package com.dgtedr.backend.project;
+package com.dgtedr.project.gateway;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(Predicates.or(
-                        RequestHandlerSelectors.basePackage("com.dgtedr.backend.project.resource")))
+                        RequestHandlerSelectors.basePackage("com.dgtedr.project.gateway.resource")))
                 .paths(PathSelectors.any())
                 .build();
     }

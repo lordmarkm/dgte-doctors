@@ -11,6 +11,12 @@
     <dependency>
       <groupId>dgtedr</groupId>
       <artifactId>dgtedr-project-shared-client</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>efs</groupId>
+          <artifactId>efs-core-jpa</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>

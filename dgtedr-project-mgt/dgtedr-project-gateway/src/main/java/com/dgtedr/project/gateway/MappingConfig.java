@@ -1,4 +1,4 @@
-package com.dgtedr.backend.project;
+package com.dgtedr.project.gateway;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,13 +10,8 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.dgtedr.project.shared.feign.MyJacksonModule;
-import com.efs.core.dto.BaseInfo;
-import com.efs.core.jpa.model.BaseEntity;
 import com.mynt.core.util.DateUtil;
 
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-import org.dozer.loader.api.BeanMappingBuilder;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.ISODateTimeFormat;
@@ -26,26 +21,8 @@ import org.springframework.context.annotation.Configuration;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 
-import static org.dozer.loader.api.FieldsMappingOptions.copyByReference;
-
 @Configuration
 public class MappingConfig {
-
-    @Bean
-    public Mapper mapper() {
-        DozerBeanMapper mapper = new DozerBeanMapper();
-
-        mapper.addMapping(new BeanMappingBuilder() {
-            @Override
-            protected void configure() {
-                mapping(BaseEntity.class, BaseInfo.class)
-                        .fields("createdDate", "createdDate", copyByReference())
-                        .fields("updatedDate", "updatedDate", copyByReference());
-            }
-        });
-
-        return mapper;
-    }
 
     @Bean
     public ObjectMapper objectMapper() {
