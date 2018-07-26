@@ -33,4 +33,12 @@ public class Project extends BaseEntity {
         this.name = name;
     }
 
+    public FundSource getFundSource() {
+        return fundSource;
+    }
+
+    public void setFundSource(FundSource fundSource) {
+        this.fundSource = fundSource;
+    }
+
 }

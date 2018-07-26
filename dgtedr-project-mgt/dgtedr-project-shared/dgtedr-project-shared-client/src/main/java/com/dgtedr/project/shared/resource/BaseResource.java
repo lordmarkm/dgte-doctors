@@ -62,6 +62,7 @@ public abstract class BaseResource<D extends BaseInfo, S extends ExistJpaService
     //http://stackoverflow.com/questions/27170298/spring-reponsebody-requestbody-with-abstract-class
     @PostMapping
     public ResponseEntity<D> save(@RequestBody D toSave) {
+        LOG.debug("{}::save({})", this.getClass().getSimpleName(), toSave);
         return new ResponseEntity<>(service.saveInfo(toSave), OK);
     }
 
