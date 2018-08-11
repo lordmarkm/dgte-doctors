@@ -11,5 +11,6 @@
 
   <modules>
     <module>dgtedr-project-shared-client</module>
+    <module>dgtedr-project-shared-dto</module>
   </modules>
 </project>

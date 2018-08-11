@@ -25,7 +25,7 @@ spring:
 logging:
   level:
     com.dgtedr: debug
-  file: log/project.log
+  file: log/dgtedr-project-project.log
 
 eureka:
   client:

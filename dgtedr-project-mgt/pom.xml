@@ -57,6 +57,11 @@
 
     <dependency>
       <groupId>dgtedr</groupId>
+      <artifactId>dgtedr-project-shared-dto</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>dgtedr</groupId>
       <artifactId>dgtedr-project-shared-client</artifactId>
       <version>${project.version}</version>
     </dependency>

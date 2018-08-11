@@ -9,6 +9,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>dgtedr</groupId>
+      <artifactId>dgtedr-project-shared-dto</artifactId>
+    </dependency>
+    <dependency>
       <groupId>efs</groupId>
       <artifactId>efs-core-jpa</artifactId>
     </dependency>
