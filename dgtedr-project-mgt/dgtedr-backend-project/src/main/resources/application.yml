@@ -10,14 +10,15 @@ spring:
   application:
     name: project
   datasource:
-    jdbc-url: jdbc:mysql://localhost/dgtedr_project
-    username: root
-    password: 123qwe
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:postgresql://localhost/dgtedr_project
+    username: postgres
+    password: 
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate.ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     show-sql: false
+    properties.hibernate.jdbc.lob.non_contextual_creation: true
   flyway:
     enabled: false
     locations: classpath:/db/migration/mysql
