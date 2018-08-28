@@ -13,14 +13,31 @@ import { environment } from '../../../environments/environment'
 export class ProjectComponent {
 
   settings = {
+    actions: {
+      columnTitle: 'Actions',
+      add: true,
+      edit: true,
+      delete: true,
+      custom: [],
+      position: 'right' // left|right
+    },
     columns: {
       id: {
         title: 'ID',
+        editable: false,
+        filter: false,
+        width: '60px',
+        type: 'html',
+        valuePrepareFunction: (value) => { return '<div class="text-center">' + value + '</div>'; }
       },
       name: {
         title: 'Name',
       }
     },
+    pager: {
+      display: true,
+      perPage: 5
+    }
   };
 
   source: CustomDataSource;
