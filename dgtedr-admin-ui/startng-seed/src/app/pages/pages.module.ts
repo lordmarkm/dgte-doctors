@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule } from '@angular/common/http';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
@@ -25,6 +26,7 @@ import { ProjectComponent } from './project/project.component';
   imports: [
     CommonModule,
     HttpClientModule,
+    Ng2SmartTableModule,
     PerfectScrollbarModule,
     routing
   ],
