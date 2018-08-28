@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -18,11 +19,12 @@ import { BackTopComponent } from '../theme/components/back-top/back-top.componen
 import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component';
 import { BlankComponent } from './blank/blank.component';
 import { SearchComponent } from './search/search.component';
-import { Project2Component } from './project2/project2.component';
+import { ProjectComponent } from './project/project.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     PerfectScrollbarModule,
     routing
   ],
@@ -38,7 +40,7 @@ import { Project2Component } from './project2/project2.component';
     UserMenuComponent,
     BlankComponent,
     SearchComponent,
-    Project2Component
+    ProjectComponent
   ],
   providers:[
     {
