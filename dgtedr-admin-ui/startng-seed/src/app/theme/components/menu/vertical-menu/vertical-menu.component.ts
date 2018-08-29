@@ -33,7 +33,11 @@ export class VerticalMenuComponent implements OnInit {
               }             
           }                
       });
-      this.projectService.events.subscribe(e => console.debug('Event received!'));
+      this.projectService.events.subscribe(e => {
+        console.debug('Event received!');
+      });
+      this.projectService.getProjects();
+      this.projectService.getProjects();
   }
  
   ngOnInit() {     

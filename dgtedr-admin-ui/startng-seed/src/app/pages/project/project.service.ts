@@ -10,12 +10,16 @@ export class ProjectService {
     private eventSubject = new Subject();
     public events = this.eventSubject.asObservable();
 
-    constructor(public http:HttpClient) { }
+    constructor(public http:HttpClient) {
+      this.events.subscribe(event => {
+        console.info('Event!');
+      });
+    }
 
     getProjects(term: string): Observable<Page> {
         console.debug('Getting projects!');
         let params = new HttpParams().set('term', term);
-        this.eventSubject.next({ msg: 'hello world' });
+        this.eventSubject.next('hello world');
         return this.http.get<Page>(this.url, { params: params });
     }
 

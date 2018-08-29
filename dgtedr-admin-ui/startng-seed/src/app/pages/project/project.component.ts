@@ -25,12 +25,14 @@ export class ProjectComponent {
     add: {     
       addButtonContent: '<h4 class="mb-1"><i class="fa fa-plus ml-3 text-success"></i> Add new</h4>',
       createButtonContent: '<i class="fa fa-check mr-3 text-success"></i>',
-      cancelButtonContent: '<i class="fa fa-times text-danger"></i>'
+      cancelButtonContent: '<i class="fa fa-times text-danger"></i>',
+      confirmCreate: true
     },
     edit: {
       editButtonContent: '<i class="fa fa-pencil mr-3 text-primary"></i>',
       saveButtonContent: '<i class="fa fa-check mr-3 text-success"></i>',
-      cancelButtonContent: '<i class="fa fa-times text-danger"></i>'
+      cancelButtonContent: '<i class="fa fa-times text-danger"></i>',
+      confirmSave: true
     },
     delete: {
       deleteButtonContent: '<i class="fa fa-trash-o text-danger"></i>',
@@ -71,6 +73,16 @@ export class ProjectComponent {
       dataKey: 'content',
     });
     this.projectService.getProjects();
+  }
+
+  public onCreateConfirm(event){
+    //console.log(event);
+    console.debug('Create confirm!');
+    event.confirm.resolve();
+  }
+  public onSaveConfirm(event) {
+    console.debug('Save confirm!');
+    event.confirm.resolve();
   }
 
 }
