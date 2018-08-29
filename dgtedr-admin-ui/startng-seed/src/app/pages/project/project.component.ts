@@ -62,7 +62,7 @@ export class ProjectComponent {
 
   source: CustomDataSource;
 
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, public projectService: ProjectService) {
     this.source = new CustomDataSource(http, {
       endPoint: environment.url + '/api/project',
       pagerPageKey: 'page',
@@ -70,6 +70,7 @@ export class ProjectComponent {
       pagerLimitKey: 'size',
       dataKey: 'content',
     });
+    this.projectService.getProjects();
   }
 
 }

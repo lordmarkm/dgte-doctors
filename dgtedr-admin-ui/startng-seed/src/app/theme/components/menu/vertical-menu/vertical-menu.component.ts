@@ -3,19 +3,21 @@ import { Router, NavigationEnd } from '@angular/router';
 import { MenuService } from '../menu.service';
 import { AppSettings } from '../../../../app.settings';
 import { Settings } from '../../../../app.settings.model';
+import { ProjectService } from '@app/pages/project/project.service';
 
 @Component({
   selector: 'app-vertical-menu',
   templateUrl: './vertical-menu.component.html',
   styleUrls: ['./vertical-menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [ MenuService ]
+  providers: [ MenuService, ProjectService ]
 })
 export class VerticalMenuComponent implements OnInit {
   @Input('menuItems') menuItems;
   public settings: Settings;
   constructor(public appSettings:AppSettings, 
               private menuService:MenuService, 
+              private projectService:ProjectService,
               private router: Router, 
               private elementRef:ElementRef) {
       
@@ -30,7 +32,8 @@ export class VerticalMenuComponent implements OnInit {
                 this.settings.theme.showMenu = false; 
               }             
           }                
-      }); 
+      });
+      this.projectService.events.subscribe(e => console.debug('Event received!'));
   }
  
   ngOnInit() {     
