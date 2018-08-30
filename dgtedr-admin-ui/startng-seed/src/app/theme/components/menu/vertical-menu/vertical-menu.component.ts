@@ -33,8 +33,14 @@ export class VerticalMenuComponent implements OnInit {
               }             
           }                
       });
-      this.projectService.events.subscribe(e => {
-        console.debug('Event received!');
+      this.projectService.events.subscribe(projectEvent => {
+        console.debug('Event received! type=' + projectEvent.type);
+        switch (projectEvent.type) {
+          case 'add':
+            break;
+          default:
+            //do nothing
+        }
       });
       this.projectService.getProjects();
       this.projectService.getProjects();

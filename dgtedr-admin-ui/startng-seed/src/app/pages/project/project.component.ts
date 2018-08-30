@@ -78,6 +78,7 @@ export class ProjectComponent {
   public onCreateConfirm(event){
     //console.log(event);
     console.debug('Create confirm!');
+    this.projectService.save(event.newData);
     event.confirm.resolve();
   }
   public onSaveConfirm(event) {

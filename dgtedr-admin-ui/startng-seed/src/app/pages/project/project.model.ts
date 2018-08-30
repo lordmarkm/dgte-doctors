@@ -8,6 +8,7 @@ export class Project {
   id: number;
   name: string;
   fundSource: FundSource;
+  static readonly type = 'project';
 }
 
 export class FundSource {
