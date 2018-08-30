@@ -33,6 +33,16 @@ export class VerticalMenuComponent implements OnInit {
               }             
           }                
       });
+  }
+ 
+  ngOnInit() {
+    let menu_wrapper = this.elementRef.nativeElement.children[0];
+    this.menuService.createMenu(this.menuItems, menu_wrapper, 'vertical');
+    
+    if(this.settings.theme.menuType == 'mini')
+      jQuery('.menu-item-link').tooltip();
+
+	console.debug('initializing vertical menu');
       this.projectService.events.subscribe(projectEvent => {
         console.debug('Event received! type=' + projectEvent.type);
         switch (projectEvent.type) {
@@ -42,16 +52,6 @@ export class VerticalMenuComponent implements OnInit {
             //do nothing
         }
       });
-      this.projectService.getProjects();
-      this.projectService.getProjects();
-  }
- 
-  ngOnInit() {     
-    let menu_wrapper = this.elementRef.nativeElement.children[0];
-    this.menuService.createMenu(this.menuItems, menu_wrapper, 'vertical');
-    
-    if(this.settings.theme.menuType == 'mini')
-      jQuery('.menu-item-link').tooltip();
   }
 
   ngAfterViewInit(){

@@ -4,13 +4,18 @@ import { Observable, Subject } from 'rxjs';
 import { Page, Project } from './project.model';
 import { environment } from '../../../environments/environment'
 
-@Injectable()
+@Injectable({
+  //this makes this service a singleton
+  providedIn: 'root'
+})
 export class ProjectService {
     public url = environment.url + "/api/project";
-    private eventSubject = new Subject();
-    public events = this.eventSubject.asObservable();
+	public static events;
 
     constructor(public http:HttpClient) {
+      console.debug('initializing project service');
+      this.eventSubject = new Subject();
+      this.events = this.eventSubject.asObservable();
       this.events.subscribe(event => {
         console.info('Event!');
       });
@@ -19,7 +24,6 @@ export class ProjectService {
     getProjects(term: string): Observable<Page> {
         console.debug('Getting projects!');
         let params = new HttpParams().set('term', term);
-        this.eventSubject.next('hello world');
         return this.http.get<Page>(this.url, { params: params });
     }
 
@@ -34,7 +38,7 @@ export class ProjectService {
           console.debug('Save return value:');
           console.debug(e);
           let type = isNew ? 'add' : 'edit';
-          eventSubject.next({type: type, project: project);
+          this.eventSubject.next({type: type, project: project);
         });
 
 

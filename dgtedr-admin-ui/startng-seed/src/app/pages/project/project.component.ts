@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ProjectService } from './project.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ServerDataSource } from 'ng2-smart-table';
 import { environment } from '../../../environments/environment'
@@ -9,7 +8,7 @@ import * as moment from 'moment';
   selector: 'app-project',
   templateUrl: './project.component.html',
   encapsulation: ViewEncapsulation.None,
-  providers:[ ProjectService ]
+  providers:[ ]
 })
 export class ProjectComponent {
 
@@ -66,7 +65,7 @@ export class ProjectComponent {
 
   source: CustomDataSource;
 
-  constructor(http: HttpClient, public projectService: ProjectService) {
+  constructor(http: HttpClient, projectService: ProjectService) {
     this.source = new CustomDataSource(http, {
       endPoint: environment.url + '/api/project',
       pagerPageKey: 'page',
