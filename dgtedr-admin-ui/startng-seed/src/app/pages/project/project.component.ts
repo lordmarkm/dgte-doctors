@@ -16,6 +16,7 @@ export class ProjectComponent {
   settings = {
     actions: {
       columnTitle: 'Actions',
+      view: true,
       add: true,
       edit: true,
       delete: true,
@@ -52,6 +53,7 @@ export class ProjectComponent {
       },
       createdDate: {
         title: 'Date Created',
+        editable: false,
         filter: false,
         valuePrepareFunction: (value) => {return moment(value).format("MMM-DD-YYYY");}
       }
@@ -83,7 +85,8 @@ export class ProjectComponent {
   }
   public onSaveConfirm(event) {
     console.debug('Save confirm!');
-    event.confirm.resolve();
+    this.projectService.save(event.newData);
+    event.confirm.resolve(event.newData);
   }
 
 }
@@ -121,5 +124,31 @@ export class CustomDataSource extends ServerDataSource {
   protected extractTotalFromResponse(res: any): number {
     return res.body.totalElements;
   }
+
+	public update(element: Trigger, values: Trigger): Promise<any> {
+	    return new Promise((resolve, reject) => {
+	        this.find(element).then(found => {
+	            //Copy the new values into element so we use the same instance
+	            //in the update call.
+	            element.name = values.name;
+	            element.enabled = values.enabled;
+	            element.condition = values.condition;
+	
+	            //Don't call super because that will cause problems - instead copy what DataSource.ts does.
+	            ///super.update(found, values).then(resolve).catch(reject);
+	            this.emitOnUpdated(element);
+	            this.emitOnChanged('update');
+	            resolve();
+	        }).catch(reject);
+	    });
+	}
+	public find(element: Trigger): Promise<Trigger> {
+	    //Match by the trigger id
+	    const found: Trigger = this.data.find(el => el.id === element.id);
+	     if (found) {
+	        return Promise.resolve(found);
+	    }
+	    return Promise.reject(new Error('Element was not found in the dataset'));
+	}
 
 }

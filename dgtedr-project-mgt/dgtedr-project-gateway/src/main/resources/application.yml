@@ -17,6 +17,10 @@ logging:
   file: log/dgtedr-project-gateway.log
 
 eureka:
+  instance:
+    registryFetchIntervalSeconds: 1
+    leaseRenewalIntervalInSeconds: 2
+    leaseExpirationDurationInSeconds: 5
   client:
     service-url:
       defaultZone: http://localhost:8762/eureka

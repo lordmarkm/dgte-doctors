@@ -45,7 +45,7 @@ public class PageableQueryEncoder implements Encoder {
             }
 
         }else{
-            LOG.info("Not pageable. Ignoring...");
+            LOG.info("Not pageable. Ignoring... object={}", object);
             delegate.encode(object, bodyType, template);
         }
     }

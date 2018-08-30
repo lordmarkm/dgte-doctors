@@ -52,7 +52,10 @@ public abstract class BaseGatewayResource<D extends BaseInfo, C extends BaseClie
     @PostMapping
     public ResponseEntity<D> save(@RequestBody D project) {
         LOG.info("{}::save({})", this.getClass().getSimpleName(), project);
-        return client.save(project);
+        ResponseEntity<D> retval = client.save(project);
+        D data = retval.getBody();
+        LOG.info("Save complete. data={}", data);
+        return retval;
     }
 
 }

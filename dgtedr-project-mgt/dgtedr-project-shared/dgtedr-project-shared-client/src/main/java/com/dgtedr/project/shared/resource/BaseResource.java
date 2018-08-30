@@ -63,7 +63,9 @@ public abstract class BaseResource<D extends BaseInfo, S extends ExistJpaService
     @PostMapping
     public ResponseEntity<D> save(@RequestBody D toSave) {
         LOG.debug("{}::save({})", this.getClass().getSimpleName(), toSave);
-        return new ResponseEntity<>(service.saveInfo(toSave), OK);
+        D data = service.saveInfo(toSave);
+        LOG.info("Save complete. data={}", data);
+        return new ResponseEntity<>(data, OK);
     }
 
     @ApiOperation(value = "Perform a soft delete on this entity")

@@ -29,9 +29,15 @@ export class ProjectService {
         //please see class annotations of com.dgtedr.project.shared.dto.BaseInfo
         project.type = 'project';
 
-        return this.http.post(this.url, project).subscribe(e => {
+        let isNew = null != project.id;
+        this.http.post(this.url, project).subscribe(e => {
+          console.debug('Save return value:');
           console.debug(e);
+          let type = isNew ? 'add' : 'edit';
+          eventSubject.next({type: type, project: project);
         });
+
+
     }
 
 } 
