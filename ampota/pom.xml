@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ampota</groupId>
+  <artifactId>ampota</artifactId>
+  <packaging>pom</packaging>
+  <parent>
+    <groupId>xpay</groupId>
+    <artifactId>xpay-parent</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>ampota</groupId>
+        <artifactId>ampota-shared-dto</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>ampota-cards</module>
+    <module>ampota-user</module>
+    <module>ampota-shared</module>
+  </modules>
+</project>
