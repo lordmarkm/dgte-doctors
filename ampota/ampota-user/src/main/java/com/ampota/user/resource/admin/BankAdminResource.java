@@ -1,4 +1,4 @@
-package com.ampota.user.admin.resource;
+package com.ampota.user.resource.admin;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

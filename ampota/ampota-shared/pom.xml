@@ -11,5 +11,6 @@
 
   <modules>
     <module>ampota-shared-dto</module>
+    <module>ampota-shared-client</module>
   </modules>
 </project>

@@ -1,4 +1,4 @@
-package com.ampota.user;
+package com.ampota.gateway;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,9 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf()
                 .disable()
             .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/user-authority").permitAll()
+                .antMatchers("/authorized/**").authenticated()
                 .antMatchers("/**").permitAll()
                 .and()
             // don't create session
@@ -87,8 +85,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
+        //builder.userDetailsService(userService).passwordEncoder(passwordEncoder());
+        //builder.inMemoryAuthentication().withUser("admin").password("123qwe").roles("ADMIN");
         builder.authenticationProvider(firebaseAuthenticationProvider);
     }
 
 }
-

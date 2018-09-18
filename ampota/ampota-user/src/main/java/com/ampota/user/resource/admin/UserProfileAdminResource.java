@@ -1,4 +1,4 @@
-package com.ampota.user.admin.resource;
+package com.ampota.user.resource.admin;
 
 import static org.springframework.http.HttpStatus.OK;
 
