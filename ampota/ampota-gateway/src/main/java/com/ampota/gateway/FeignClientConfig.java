@@ -11,6 +11,7 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import feign.codec.Encoder;
 import xyz.quadx.xpay.shared.encoder.PageableQueryEncoder;
+import xyz.quadx.xpay.shared.errordecoder.XpayErrorDecoder;
 import xyz.quadx.xpay.shared.firebase.FirebaseTokenHolder;
 
 @Configuration
@@ -34,4 +35,14 @@ public class FeignClientConfig {
             }
         };
     }
+
+    /**
+     * Stop feign from turning all non-2xx feign calls into 500 response
+     * @return
+     */
+    @Bean
+    public XpayErrorDecoder myErrorDecoder() {
+      return new XpayErrorDecoder();
+    }
+
 }

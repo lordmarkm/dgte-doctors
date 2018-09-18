@@ -2,6 +2,8 @@ package com.ampota.gateway.resource;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +27,9 @@ public class UserProfileResource {
         return client.getUserProfile();
     }
 
-    @PostMapping
-    public ResponseEntity<UserProfileInfo> save(@RequestBody UserProfileInfo userProfile) {
-        
+    @PostMapping("/register")
+    public ResponseEntity<UserProfileInfo> register(@Valid @RequestBody UserProfileInfo userProfile) {
+        return client.register(userProfile);
     }
 
 }

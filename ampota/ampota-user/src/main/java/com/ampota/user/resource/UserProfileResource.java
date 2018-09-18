@@ -29,7 +29,7 @@ public class UserProfileResource {
                 .orElse(ResponseEntity.status(NOT_FOUND).body(null));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<UserProfileInfo> register(Principal principal,
             @Valid @RequestBody UserProfileInfo userProfile) {
         String username = principal.getName();
