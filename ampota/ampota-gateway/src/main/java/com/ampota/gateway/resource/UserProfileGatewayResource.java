@@ -17,7 +17,7 @@ import com.ampota.shared.dto.UserProfileInfo;
 
 @RestController
 @RequestMapping("/api/user-profile")
-public class UserProfileResource {
+public class UserProfileGatewayResource {
 
     @Autowired
     private UserProfileClient client;

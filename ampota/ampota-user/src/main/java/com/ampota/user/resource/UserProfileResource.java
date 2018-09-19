@@ -1,6 +1,7 @@
 package com.ampota.user.resource;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -33,8 +34,9 @@ public class UserProfileResource {
     public ResponseEntity<UserProfileInfo> register(Principal principal,
             @Valid @RequestBody UserProfileInfo userProfile) {
         String username = principal.getName();
-        if (null != service.findByUsername(username)) {
-            return ResponseEntity.status(CONFLICT).body(null);
+        Optional<UserProfileInfo> existingUser = service.findByUsernameInfo(username);
+        if (existingUser.isPresent()) {
+            return ResponseEntity.status(CONFLICT).body(existingUser.get());
         } else {
             userProfile.setUsername(username);
             return ResponseEntity.status(ACCEPTED).body(service.saveInfo(userProfile));

@@ -17,7 +17,7 @@ import xyz.xpay.shared.jpa.model.BaseEntity;
 @Entity(name = "user_profile")
 public class UserProfile extends BaseEntity {
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     @Column(name = "contact_number")
