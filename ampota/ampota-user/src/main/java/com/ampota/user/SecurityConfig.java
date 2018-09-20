@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/user-authority").permitAll()
+                .antMatchers("/api/shipping-provider").permitAll()
                 .antMatchers("/**").permitAll()
                 .and()
             // don't create session
