@@ -42,6 +42,20 @@ spring:
               port: 5672
               username: rabbitmq
               password: rabbitmq
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: piton.rpa@gmail.com
+    password: piton123
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
 
 eureka:
   client:

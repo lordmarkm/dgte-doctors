@@ -30,6 +30,11 @@
       <groupId>xpay</groupId>
       <artifactId>xpay-shared-firebase</artifactId>
     </dependency>
+    <dependency>
+      <groupId>xpay</groupId>
+      <artifactId>xpay-shared-email</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.postgresql</groupId>

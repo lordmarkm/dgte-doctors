@@ -52,6 +52,10 @@ public class UserProfile extends BaseEntity {
     @CollectionTable(name = "bank_account")
     private List<BankAccount> bankAccounts;
 
+    @Column(name = "email_confirmed")
+    @Type(type = "yes_no")
+    private boolean emailConfirmed = false;
+
     public String getUsername() {
         return username;
     }
@@ -122,6 +126,14 @@ public class UserProfile extends BaseEntity {
 
     public void setBankAccounts(List<BankAccount> bankAccounts) {
         this.bankAccounts = bankAccounts;
+    }
+
+    public boolean isEmailConfirmed() {
+        return emailConfirmed;
+    }
+
+    public void setEmailConfirmed(boolean emailConfirmed) {
+        this.emailConfirmed = emailConfirmed;
     }
 
 }

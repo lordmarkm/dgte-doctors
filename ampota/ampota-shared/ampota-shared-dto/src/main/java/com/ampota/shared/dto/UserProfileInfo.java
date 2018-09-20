@@ -17,6 +17,7 @@ public class UserProfileInfo extends BaseInfo {
     private List<MeetupInfo> meetups;
     private boolean ampotaCoin;
     private List<BankAccountInfo> bankAccounts;
+    private boolean emailConfirmed;
 
     public String getUsername() {
         return username;
@@ -71,6 +72,12 @@ public class UserProfileInfo extends BaseInfo {
     }
     public void setBankAccounts(List<BankAccountInfo> bankAccounts) {
         this.bankAccounts = bankAccounts;
+    }
+    public boolean isEmailConfirmed() {
+        return emailConfirmed;
+    }
+    public void setEmailConfirmed(boolean emailConfirmed) {
+        this.emailConfirmed = emailConfirmed;
     }
 
 }

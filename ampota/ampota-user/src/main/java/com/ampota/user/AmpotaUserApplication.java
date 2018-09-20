@@ -8,13 +8,16 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import xyz.quadx.xpay.shared.audit.AuditLogConfig;
+import xyz.quadx.xpay.shared.email.MailSenderConfig;
 import xyz.quadx.xpay.shared.firebase.FirebaseConfig;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableJpaRepositories(repositoryImplementationPostfix = "CustomImpl")@Import({
+@EnableJpaRepositories(repositoryImplementationPostfix = "CustomImpl")
+@Import({
     AuditLogConfig.class,
-    FirebaseConfig.class
+    FirebaseConfig.class,
+    MailSenderConfig.class
 })
 public class AmpotaUserApplication {
 
