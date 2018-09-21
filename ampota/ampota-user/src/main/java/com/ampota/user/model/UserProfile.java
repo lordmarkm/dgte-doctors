@@ -44,6 +44,14 @@ public class UserProfile extends BaseEntity {
     @JoinTable(name = "user_x_meetup")
     private List<Meetup> meetups;
 
+    @Column(name = "cod")
+    @Type(type = "yes_no")
+    private boolean cod;
+
+    @Column(name = "bank_dep")
+    @Type(type = "yes_no")
+    private boolean bankDeposit;
+
     @Column(name = "amp_coin")
     @Type(type = "yes_no")
     private boolean ampotaCoin;
@@ -134,6 +142,22 @@ public class UserProfile extends BaseEntity {
 
     public void setEmailConfirmed(boolean emailConfirmed) {
         this.emailConfirmed = emailConfirmed;
+    }
+
+    public boolean isCod() {
+        return cod;
+    }
+
+    public void setCod(boolean cod) {
+        this.cod = cod;
+    }
+
+    public boolean isBankDeposit() {
+        return bankDeposit;
+    }
+
+    public void setBankDeposit(boolean bankDeposit) {
+        this.bankDeposit = bankDeposit;
     }
 
 }

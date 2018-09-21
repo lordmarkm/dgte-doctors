@@ -12,25 +12,25 @@ public class Address {
     @Type(type = "yes_no")
     private boolean primary;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "line_1", nullable = false)
+    @Column(name = "line_1")
     private String line1;
 
-    @Column(name = "line_2", nullable = false)
+    @Column(name = "line_2")
     private String line2;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city")
     private String city;
 
-    @Column(name = "country", nullable = false)
+    @Column(name = "country")
     private String country;
 
-    @Column(name = "postal_code", nullable = false)
+    @Column(name = "postal_code")
     private String postalCode;
 
     public boolean isPrimary() {

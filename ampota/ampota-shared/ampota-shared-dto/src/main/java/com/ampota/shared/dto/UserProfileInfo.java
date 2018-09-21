@@ -15,7 +15,10 @@ public class UserProfileInfo extends BaseInfo {
     private List<ShippingProviderInfo> shippingProviders;
     private boolean meetup;
     private List<MeetupInfo> meetups;
+    private String meetupNote;
+    private boolean cod;
     private boolean ampotaCoin;
+    private boolean bankDeposit;
     private List<BankAccountInfo> bankAccounts;
     private boolean emailConfirmed;
 
@@ -78,6 +81,24 @@ public class UserProfileInfo extends BaseInfo {
     }
     public void setEmailConfirmed(boolean emailConfirmed) {
         this.emailConfirmed = emailConfirmed;
+    }
+    public String getMeetupNote() {
+        return meetupNote;
+    }
+    public void setMeetupNote(String meetupNote) {
+        this.meetupNote = meetupNote;
+    }
+    public boolean isCod() {
+        return cod;
+    }
+    public void setCod(boolean cod) {
+        this.cod = cod;
+    }
+    public boolean isBankDeposit() {
+        return bankDeposit;
+    }
+    public void setBankDeposit(boolean bankDeposit) {
+        this.bankDeposit = bankDeposit;
     }
 
 }
