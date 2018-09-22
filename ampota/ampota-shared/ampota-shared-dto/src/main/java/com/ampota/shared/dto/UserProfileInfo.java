@@ -4,18 +4,21 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+
 import xyz.quadx.shared.dto.BaseInfo;
 
 public class UserProfileInfo extends BaseInfo {
 
-    private String username;
+    @Length(max = 50) private String username;
     @NotNull private String contactNumber;
     private List<AddressInfo> addresses;
     private boolean shipping;
     private List<ShippingProviderInfo> shippingProviders;
+    @Length(max = 200) private String shippingNote;
     private boolean meetup;
     private List<MeetupInfo> meetups;
-    private String meetupNote;
+    @Length(max = 200)private String meetupNote;
     private boolean cod;
     private boolean ampotaCoin;
     private boolean bankDeposit;
@@ -99,6 +102,12 @@ public class UserProfileInfo extends BaseInfo {
     }
     public void setBankDeposit(boolean bankDeposit) {
         this.bankDeposit = bankDeposit;
+    }
+    public String getShippingNote() {
+        return shippingNote;
+    }
+    public void setShippingNote(String shippingNote) {
+        this.shippingNote = shippingNote;
     }
 
 }

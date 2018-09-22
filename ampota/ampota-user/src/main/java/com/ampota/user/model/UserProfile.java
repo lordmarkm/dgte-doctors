@@ -36,6 +36,9 @@ public class UserProfile extends BaseEntity {
     @JoinTable(name = "user_x_shipping_provider")
     private List<ShippingProvider> shippingProviders;
 
+    @Column(name = "shipping_note")
+    private String shippingNote;
+
     @Column(name = "meetup")
     @Type(type = "yes_no")
     private boolean meetup;
@@ -43,6 +46,9 @@ public class UserProfile extends BaseEntity {
     @ManyToMany
     @JoinTable(name = "user_x_meetup")
     private List<Meetup> meetups;
+
+    @Column(name = "meetup_note")
+    private String meetupNote;
 
     @Column(name = "cod")
     @Type(type = "yes_no")
@@ -158,6 +164,22 @@ public class UserProfile extends BaseEntity {
 
     public void setBankDeposit(boolean bankDeposit) {
         this.bankDeposit = bankDeposit;
+    }
+
+    public String getShippingNote() {
+        return shippingNote;
+    }
+
+    public void setShippingNote(String shippingNote) {
+        this.shippingNote = shippingNote;
+    }
+
+    public String getMeetupNote() {
+        return meetupNote;
+    }
+
+    public void setMeetupNote(String meetupNote) {
+        this.meetupNote = meetupNote;
     }
 
 }

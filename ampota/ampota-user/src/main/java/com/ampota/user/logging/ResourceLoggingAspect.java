@@ -41,12 +41,20 @@ public class ResourceLoggingAspect {
     @Around("allResourceMethods()")
     public Object logNonMobileResourceMethods(ProceedingJoinPoint pjp) throws Throwable {
         long startMs = System.currentTimeMillis();
-        Object retval = pjp.proceed();
-        long endMs = System.currentTimeMillis();
-        long processingTimeMs = endMs - startMs;
-        String type = pjp.getSignature().getDeclaringTypeName();
-        String method = pjp.getSignature().getName();
-        LOG.info("{}::{}::{} ms, args={}, retval={}", type, method, processingTimeMs, pjp.getArgs(), retval);
+        Object retval = null;
+        String error = "none";
+        try {
+            retval = pjp.proceed();
+        } catch (Exception e) {
+            error = e.toString();
+            throw e;
+        } finally {
+            long endMs = System.currentTimeMillis();
+            long processingTimeMs = endMs - startMs;
+            String type = pjp.getSignature().getDeclaringTypeName();
+            String method = pjp.getSignature().getName();
+            LOG.info("{}::{}::{} ms, args={}, retval={}, error={}", type, method, processingTimeMs, pjp.getArgs(), retval, error);
+        }
         return retval;
     }
 

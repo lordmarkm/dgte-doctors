@@ -19,9 +19,11 @@ public class Address {
     private String lastName;
 
     @Column(name = "line_1")
+    @Type(type = "text")
     private String line1;
 
     @Column(name = "line_2")
+    @Type(type = "text")
     private String line2;
 
     @Column(name = "city")

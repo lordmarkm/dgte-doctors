@@ -1,10 +1,13 @@
 package com.ampota.shared.client;
 
+import javax.validation.Valid;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,5 +21,8 @@ public interface BankClient {
      */
     @GetMapping("/api/bank")
     ResponseEntity<Page<BankInfo>> rqlSearch(@RequestParam String term, @RequestBody Pageable page);
+
+    @PostMapping("/api/bank")
+    ResponseEntity<BankInfo> save(@Valid @RequestBody BankInfo bank);
 
 }

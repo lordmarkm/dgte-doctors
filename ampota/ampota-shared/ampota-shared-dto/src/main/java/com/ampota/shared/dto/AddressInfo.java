@@ -1,5 +1,7 @@
 package com.ampota.shared.dto;
 
+import com.google.common.base.Joiner;
+
 public class AddressInfo {
 
     private boolean primary;
@@ -11,6 +13,9 @@ public class AddressInfo {
     private String country;
     private String postalCode;
 
+    public String getLine() {
+        return Joiner.on(", ").skipNulls().join(firstName + " " + lastName, line1, line2, city, country, postalCode);
+    }
     public boolean isPrimary() {
         return primary;
     }
