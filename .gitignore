@@ -51,3 +51,6 @@ log/
 
 #git original files
 *.orig
+
+#large data files
+scryfall-all-cards.json

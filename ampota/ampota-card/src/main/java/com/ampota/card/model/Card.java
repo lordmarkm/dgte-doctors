@@ -30,6 +30,9 @@ public class Card extends BaseEntity {
     @Column(name = "lang")
     private String lang;
 
+    @Column(name = "set_code")
+    private String setCode;
+
     @Column(name = "usd")
     private BigDecimal usd;
 
@@ -145,6 +148,12 @@ public class Card extends BaseEntity {
     }
     public void setTypeLine(String typeLine) {
         this.typeLine = typeLine;
+    }
+    public String getSetCode() {
+        return setCode;
+    }
+    public void setSetCode(String setCode) {
+        this.setCode = setCode;
     }
 
 }
