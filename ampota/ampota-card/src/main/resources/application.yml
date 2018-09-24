@@ -14,7 +14,7 @@ logging:
 
 spring:
   application:
-    name: user
+    name: card
   datasource:
     url: jdbc:postgresql://localhost/ampota_card
     username: postgres

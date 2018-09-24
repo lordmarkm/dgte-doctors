@@ -92,6 +92,7 @@
               <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
               <includes>
                 <include>com.ampota.card.model</include>
+                <include>com.ampota.card.model.collection</include>
               </includes>
             </configuration>
           </execution>
