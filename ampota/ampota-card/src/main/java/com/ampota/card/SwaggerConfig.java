@@ -25,8 +25,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(Predicates.or(
-                        RequestHandlerSelectors.basePackage("com.ampota.user.resource"),
-                        RequestHandlerSelectors.basePackage("com.ampota.user.resource.admin")))
+                        RequestHandlerSelectors.basePackage("com.ampota.card.resource"),
+                        RequestHandlerSelectors.basePackage("com.ampota.card.resource.collection")))
                 .paths(PathSelectors.any())
                 .build();
     }

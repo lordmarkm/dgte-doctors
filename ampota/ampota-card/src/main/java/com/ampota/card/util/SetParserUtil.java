@@ -1,5 +1,6 @@
 package com.ampota.card.util;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +18,7 @@ public class SetParserUtil {
     private static final String JSON_KEY_ICON_URI = "icon_svg_uri";
     private static final String JSON_KEY_PARENT_SET_CODE = "parent_set_code";
     private static final String JSON_KEY_SET_TYPE = "set_type";
+    private static final String JSON_KEY_RELEASED_AT = "released_at";
 
     public static Set parseSet(LinkedTreeMap<String, Object> setJson) {
         LOG.info("Parsing set. set name={}, total={}",  (String) setJson.get(JSON_KEY_NAME), ++cardsParsed);
@@ -30,6 +32,7 @@ public class SetParserUtil {
         set.setParentSetCode((String) setJson.get(JSON_KEY_BLOCK_CODE));
         set.setSetType((String) setJson.get(JSON_KEY_SET_TYPE));
         set.setParentSetCode((String) setJson.get(JSON_KEY_PARENT_SET_CODE));
+        set.setReleaseDate(DateTime.parse((String) setJson.get(JSON_KEY_RELEASED_AT)));
 
         return set;
     }

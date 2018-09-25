@@ -13,9 +13,11 @@ public class BundleInfo extends BaseInfo {
     private CardInfo card;
     private int qty;
     private BigDecimal sellPrice;
+    private BigDecimal sellPriceSet;
     private BigDecimal boughtPrice;
     private CardCondition condition;
     private boolean forSale;
+    private SellMode sellMode;
 
     public String getOwner() {
         return owner;
@@ -64,6 +66,18 @@ public class BundleInfo extends BaseInfo {
     }
     public void setForSale(boolean forSale) {
         this.forSale = forSale;
+    }
+    public SellMode getSellMode() {
+        return sellMode;
+    }
+    public void setSellMode(SellMode sellMode) {
+        this.sellMode = sellMode;
+    }
+    public BigDecimal getSellPriceSet() {
+        return sellPriceSet;
+    }
+    public void setSellPriceSet(BigDecimal sellPriceSet) {
+        this.sellPriceSet = sellPriceSet;
     }
 
 }

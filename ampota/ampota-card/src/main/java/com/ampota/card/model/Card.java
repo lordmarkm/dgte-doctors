@@ -8,8 +8,12 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 import org.hibernate.annotations.Type;
+
+import com.ampota.shared.dto.card.Language;
 
 import xyz.xpay.shared.jpa.model.BaseEntity;
 
@@ -28,7 +32,8 @@ public class Card extends BaseEntity {
     private String name;
 
     @Column(name = "lang")
-    private String lang;
+    @Enumerated(EnumType.STRING)
+    private Language lang;
 
     @Column(name = "set_code")
     private String setCode;
@@ -82,12 +87,6 @@ public class Card extends BaseEntity {
     }
     public void setName(String name) {
         this.name = name;
-    }
-    public String getLang() {
-        return lang;
-    }
-    public void setLang(String lang) {
-        this.lang = lang;
     }
     public BigDecimal getUsd() {
         return usd;
@@ -154,6 +153,12 @@ public class Card extends BaseEntity {
     }
     public void setSetCode(String setCode) {
         this.setCode = setCode;
+    }
+    public Language getLang() {
+        return lang;
+    }
+    public void setLang(Language lang) {
+        this.lang = lang;
     }
 
 }

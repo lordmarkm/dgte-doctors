@@ -13,6 +13,7 @@ import org.hibernate.annotations.Type;
 
 import com.ampota.card.model.Card;
 import com.ampota.shared.dto.card.collection.CardCondition;
+import com.ampota.shared.dto.card.collection.SellMode;
 
 import xyz.xpay.shared.jpa.model.BaseEntity;
 
@@ -33,8 +34,18 @@ public class Bundle extends BaseEntity {
     @Column(name = "card_qty")
     private int qty;
 
+    /**
+     * Use this for both piece and all, treat set price separately
+     */
     @Column(name = "sell_price")
     private BigDecimal sellPrice;
+
+    @Column(name = "sell_price_set")
+    private BigDecimal sellPriceSet;
+
+    @Column(name = "sell_mode")
+    @Enumerated(EnumType.STRING)
+    private SellMode sellMode;
 
     @Column(name = "bought_price")
     private BigDecimal boughtPrice;
@@ -109,6 +120,22 @@ public class Bundle extends BaseEntity {
 
     public void setForSale(boolean forSale) {
         this.forSale = forSale;
+    }
+
+    public SellMode getSellMode() {
+        return sellMode;
+    }
+
+    public void setSellMode(SellMode sellMode) {
+        this.sellMode = sellMode;
+    }
+
+    public BigDecimal getSellPriceSet() {
+        return sellPriceSet;
+    }
+
+    public void setSellPriceSet(BigDecimal sellPriceSet) {
+        this.sellPriceSet = sellPriceSet;
     }
 
 }

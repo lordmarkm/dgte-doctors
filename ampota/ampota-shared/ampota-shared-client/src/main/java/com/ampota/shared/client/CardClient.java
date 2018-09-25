@@ -1,5 +1,7 @@
 package com.ampota.shared.client;
 
+import java.util.Set;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,5 +20,8 @@ public interface CardClient {
      */
     @GetMapping("/api/card")
     ResponseEntity<Page<CardInfo>> rqlSearch(@RequestParam String term, @RequestBody Pageable page);
+
+    @GetMapping("/api/card/unique-names")
+    ResponseEntity<Set<String>> uniqueNames(@RequestParam String term);
 
 }

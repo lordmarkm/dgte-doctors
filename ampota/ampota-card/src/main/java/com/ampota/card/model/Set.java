@@ -3,6 +3,8 @@ package com.ampota.card.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import org.joda.time.DateTime;
+
 import xyz.xpay.shared.jpa.model.BaseEntity;
 
 @Entity(name = "set")
@@ -23,6 +25,8 @@ public class Set extends BaseEntity {
     private String block;
     @Column(name = "block_code")
     private String blockCode;
+    @Column(name = "release_date")
+    private DateTime releaseDate;
 
     public String getCode() {
         return code;
@@ -65,6 +69,12 @@ public class Set extends BaseEntity {
     }
     public void setBlockCode(String blockCode) {
         this.blockCode = blockCode;
+    }
+    public DateTime getReleaseDate() {
+        return releaseDate;
+    }
+    public void setReleaseDate(DateTime releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
 }

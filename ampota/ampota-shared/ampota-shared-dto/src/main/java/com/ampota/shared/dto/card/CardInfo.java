@@ -10,7 +10,7 @@ public class CardInfo extends BaseInfo {
     private String scryfallId;
     private String oracleId;
     private String name;
-    private String lang;
+    private Language lang;
     private BigDecimal usd;
     private ImageUrisInfo imageUris;
     private String manaCost;
@@ -21,6 +21,7 @@ public class CardInfo extends BaseInfo {
     private LegalitiesInfo legalities;
     private String rarity;
     private String artist;
+    private String setCode;
 
     public String getScryfallId() {
         return scryfallId;
@@ -39,12 +40,6 @@ public class CardInfo extends BaseInfo {
     }
     public void setName(String name) {
         this.name = name;
-    }
-    public String getLang() {
-        return lang;
-    }
-    public void setLang(String lang) {
-        this.lang = lang;
     }
     public BigDecimal getUsd() {
         return usd;
@@ -105,6 +100,18 @@ public class CardInfo extends BaseInfo {
     }
     public void setArtist(String artist) {
         this.artist = artist;
+    }
+    public String getSetCode() {
+        return setCode;
+    }
+    public void setSetCode(String setCode) {
+        this.setCode = setCode;
+    }
+    public void setLang(Language lang) {
+        this.lang = lang;
+    }
+    public Language getLang() {
+        return lang;
     }
 
 }
