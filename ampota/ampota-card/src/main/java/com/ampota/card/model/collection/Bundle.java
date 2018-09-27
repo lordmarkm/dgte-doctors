@@ -1,8 +1,11 @@
 package com.ampota.card.model.collection;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -57,6 +60,10 @@ public class Bundle extends BaseEntity {
     @Column(name = "for_sale")
     @Type(type = "yes_no")
     private boolean forSale;
+
+    @ElementCollection
+    @CollectionTable(name = "bundle_pics")
+    private List<String> pictures;
 
     public String getOwner() {
         return owner;
@@ -136,6 +143,14 @@ public class Bundle extends BaseEntity {
 
     public void setSellPriceSet(BigDecimal sellPriceSet) {
         this.sellPriceSet = sellPriceSet;
+    }
+
+    public List<String> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<String> pictures) {
+        this.pictures = pictures;
     }
 
 }

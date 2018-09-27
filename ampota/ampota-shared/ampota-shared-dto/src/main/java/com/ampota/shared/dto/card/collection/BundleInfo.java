@@ -1,6 +1,7 @@
 package com.ampota.shared.dto.card.collection;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.ampota.shared.dto.card.CardInfo;
 
@@ -18,6 +19,7 @@ public class BundleInfo extends BaseInfo {
     private CardCondition condition;
     private boolean forSale;
     private SellMode sellMode;
+    private List<String> pictures;
 
     public String getOwner() {
         return owner;
@@ -78,6 +80,12 @@ public class BundleInfo extends BaseInfo {
     }
     public void setSellPriceSet(BigDecimal sellPriceSet) {
         this.sellPriceSet = sellPriceSet;
+    }
+    public List<String> getPictures() {
+        return pictures;
+    }
+    public void setPictures(List<String> pictures) {
+        this.pictures = pictures;
     }
 
 }
