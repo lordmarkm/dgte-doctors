@@ -21,6 +21,10 @@ public class BundleInfo extends BaseInfo {
     private SellMode sellMode;
     private List<String> pictures;
 
+    //alias to prevent css class collission with bootstrap 'card'
+    public CardInfo getCardDetails() {
+        return card;
+    }
     public String getOwner() {
         return owner;
     }
