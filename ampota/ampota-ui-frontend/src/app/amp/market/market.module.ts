@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { BinderComponent } from '@app/amp/binder/binder.component';
-import { BundleComponent } from '@app/amp/bundle/bundle.component';
+import { SearchComponent } from './search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
 import { AddBundleModalComponent } from '@app/amp/bundle/add-bundle.modal.component';
-import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
-import { BundleDetailsComponent } from '@app/amp/bundle/bundle-details.component';
-import { MultipleImageUploaderComponent } from '@app/amp/bundle/multiple-image-uploader.component';
 
 //ngx-modialog
 import { ModalModule } from 'ngx-modialog';
@@ -29,9 +25,7 @@ import { UiSwitchModule } from 'ngx-toggle-switch';
 import { CrystalGalleryModule } from 'ngx-crystal-gallery';
 
 export const routes = [
-  { path: '', component: BinderComponent, pathMatch: 'full', data: { breadcrumb: 'Binders' }  },
-  { path: 'bundle-list', component: BundleComponent, pathMatch: 'full', data: { breadcrumb: 'Cards' } },
-  { path: 'bundle/:id', component: BundleDetailsComponent, data: { breadcrumb: 'Card details' } }
+  { path: '', component: SearchComponent, pathMatch: 'full', data: { breadcrumb: 'Search' }  },
 ];
 
 @NgModule({
@@ -55,11 +49,7 @@ export const routes = [
     CrystalGalleryModule
   ],
   declarations: [
-    BinderComponent,
-    BundleComponent,
-    AddBundleModalComponent,
-    BundleDetailsComponent,
-    MultipleImageUploaderComponent
+    SearchComponent
   ],
   providers:[
     {
@@ -69,8 +59,7 @@ export const routes = [
     }
   ],
   entryComponents: [
-    AddBundleModalComponent
   ]
 })
 
-export class CollectionModule { }
+export class MarketModule { }

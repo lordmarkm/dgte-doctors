@@ -20,6 +20,7 @@ import { BackTopComponent } from '../theme/components/back-top/back-top.componen
 import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component';
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
 
 //ngx-modialog
 import { ModalModule } from 'ngx-modialog';
@@ -48,6 +49,7 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
     BackTopComponent,
     UserMenuComponent,
     UserProfileComponent,
+    CardDetailsRenderComponent
   ],
   providers:[
     {
@@ -59,6 +61,9 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
       useClass: AddFirebaseTokenInterceptor,
       multi: true,
     }
+  ],
+  entryComponents: [
+    CardDetailsRenderComponent
   ]
 })
 export class AmpModule { }

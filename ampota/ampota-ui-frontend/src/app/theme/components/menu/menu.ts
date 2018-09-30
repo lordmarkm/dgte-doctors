@@ -22,21 +22,8 @@ export const verticalMenuItems = [
     new Menu (45,'Collection', null, null, 'archive', null, true, 4),
     new Menu (451,'My Binders', '/amp/collection', null, 'address-book', null, false, 45),
     new Menu (452,'My Cards', '/amp/collection/bundle-list', null, 'id-card', null, false, 45),
-/*    new Menu (40, 'Pages', null, null, 'file-text-o', null, true, 0),
-    new Menu (43, 'Login', '/login', null, 'sign-in', null, false, 40),    
-    new Menu (44, 'Register', '/register', null, 'registered', null, false, 40),
-    new Menu (45, 'Blank', '/pages/blank', null, 'file-o', null, false, 40),
-    new Menu (46, 'Error', '/pagenotfound', null, 'exclamation-circle', null, false, 40),   
-    new Menu (47, 'Projects', '/pages/proj', null, 'file-o', null, false, 40),
-    new Menu (140, 'Level 1', null, null, 'folder-open-o', null, true, 0),
-    new Menu (141, 'Level 2', null, null, 'folder-open-o', null, true, 140),
-    new Menu (142, 'Level 3', null, null, 'folder-open-o', null, true, 141),
-    new Menu (143, 'Level 4', null, null, 'folder-open-o', null, true, 142),
-    new Menu (144, 'Level 5', null, null, 'folder-o', null, false, 143),
-    new Menu (200, 'External Link', null, 'http://themeseason.com', 'external-link', '_blank', false, 0),
-    new Menu (1000, 'Projects', null, null, 'external-link', null, true, 0),
-    new Menu (2000, 'Audit Logs', null, null, 'external-link', null, true, 0)
-*/
+    new Menu (46, 'Market', null, null, 'shopping-cart', null, true, 4),
+    new Menu (461, 'Search', '/amp/market', null, 'shipping-cart', null, false, 46)
 ]
 
 export const horizontalMenuItems = [ 

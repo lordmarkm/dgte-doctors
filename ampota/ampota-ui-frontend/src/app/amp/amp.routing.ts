@@ -13,7 +13,8 @@ export const routes: Routes = [
             { path: 'dashboard', loadChildren: 'app/amp/dashboard/dashboard.module#DashboardModule', data: { breadcrumb: 'Dashboard' } },
             { path: 'user-profile', component: UserProfileComponent, data: { breadcrumb: 'User Profile' } },
             { path: 'admin', loadChildren: 'app/amp/admin/admin.module#AdminModule', data : { breadcrumb: 'Admin' } },
-            { path: 'collection', loadChildren: 'app/amp/collection/collection.module#CollectionModule', data : { breadcrumb: 'Collection' } }
+            { path: 'collection', loadChildren: 'app/amp/collection/collection.module#CollectionModule', data : { breadcrumb: 'Collection' } },
+            { path: 'market', loadChildren: 'app/amp/market/market.module#MarketModule', data: { breadcrumb: 'Market' } }
         ]
     }
 ];
