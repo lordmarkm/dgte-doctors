@@ -121,7 +121,6 @@ export class BundleComponent implements OnInit{
   ngOnInit() {
     bootstrap4Mode();
     this.afAuth.authState.subscribe(auth => {
-      console.log(auth);
       this.source = new CustomDataSource(this.http, {
         endPoint: environment.ampUrl + '/api/bundle',
         pagerPageKey: 'page',

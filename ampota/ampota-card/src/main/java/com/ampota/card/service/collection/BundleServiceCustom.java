@@ -12,8 +12,10 @@ public interface BundleServiceCustom extends XpayJpaServiceCustom<Bundle, Bundle
 
     default ImmutableMap<String, Path<?>> getFieldMapping() {
         return ImmutableMap.of("id", bundle.id,
+                "forSale", bundle.forSale,
                 "deleted", bundle.deleted,
-                "cardDetails", bundle.card.name);
+                "cardDetails", bundle.card.name,
+                "cardName", bundle.card.name);
     }
 
 }

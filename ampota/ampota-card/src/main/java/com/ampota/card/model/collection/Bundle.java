@@ -26,6 +26,9 @@ public class Bundle extends BaseEntity {
     @Column(name = "owner_username", nullable = false)
     private String owner;
 
+    @Column(name = "owner_name")
+    private String ownerName;
+
     @ManyToOne(optional = true)
     @JoinColumn(name = "binder_id")
     private Binder binder;
@@ -151,6 +154,14 @@ public class Bundle extends BaseEntity {
 
     public void setPictures(List<String> pictures) {
         this.pictures = pictures;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
 }

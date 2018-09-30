@@ -2,10 +2,32 @@
     <div class="card-header transparent border-0 text-muted">
         <h5 class="mb-0">Card Search</h5>
     </div>
-    <div class="card-body pt-0 widget-body">
-        <p class="text-left fs-13 text-gray">Card Search</p>
-        <div class="table-responsive">
-          Card search
-        </div>          
+
+  <div class="card-body pt-0 widget-body">
+    <p class="text-left fs-13 text-gray">Card Search</p>
+    <div class="col-lg-8 col-md-8 col-sm-12">
+      <div class="form-group">
+        <label class="control-label" for="en-card">Card</label>
+        <ng-select [items]="cardNames$ | async"
+                 [loading]="cardNamesLoading"
+                 [typeahead]="cardNamesInput$"
+                 [(ngModel)]="cardName"
+                 (change)="cardNameSelected($event)"
+                 id="card-name"
+                 name="card-name">
+        </ng-select>
+      </div>
     </div>
+  </div>
+
+  <div class="card-body pt-0 widget-body">
+          <div class="table-responsive">
+            <ng2-smart-table  class="table table-hover"
+                              [settings]="settings" 
+                              [source]="source"
+                              (custom)="onCustom($event)"
+                              ></ng2-smart-table>
+        </div>
+  </div>
+
 </div>

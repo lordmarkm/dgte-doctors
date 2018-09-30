@@ -10,6 +10,7 @@ import xyz.quadx.shared.dto.BaseInfo;
 public class BundleInfo extends BaseInfo {
 
     private String owner;
+    private String ownerName;
     private BinderInfo binder;
     private CardInfo card;
     private int qty;
@@ -90,6 +91,12 @@ public class BundleInfo extends BaseInfo {
     }
     public void setPictures(List<String> pictures) {
         this.pictures = pictures;
+    }
+    public String getOwnerName() {
+        return ownerName;
+    }
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
 }

@@ -23,7 +23,7 @@ export const verticalMenuItems = [
     new Menu (451,'My Binders', '/amp/collection', null, 'address-book', null, false, 45),
     new Menu (452,'My Cards', '/amp/collection/bundle-list', null, 'id-card', null, false, 45),
     new Menu (46, 'Market', null, null, 'shopping-cart', null, true, 4),
-    new Menu (461, 'Search', '/amp/market', null, 'shipping-cart', null, false, 46)
+    new Menu (461, 'Search', '/amp/market', null, 'search', null, false, 46)
 ]
 
 export const horizontalMenuItems = [ 

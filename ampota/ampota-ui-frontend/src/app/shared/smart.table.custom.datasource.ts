@@ -5,6 +5,12 @@ import { ServerDataSource } from 'ng2-smart-table';
 //TODO put in own file for reusability
 export class CustomDataSource extends ServerDataSource {
 
+  forSale: boolean;
+
+  public setForSale(forSale: boolean) {
+    this.forSale = forSale;
+  }
+
   protected addSortRequestParams(httpParams: HttpParams): HttpParams {
     if (this.sortConf) {
       //default sort by created date desc
@@ -20,7 +26,11 @@ export class CustomDataSource extends ServerDataSource {
   }
 
   protected addFilterRequestParams(httpParams: HttpParams): HttpParams {
-    let term = 'deleted==n';
+    console.log('forSale? ' + this.forSale);
+    let term = 'deleted==false';
+    if (this.forSale) {
+      term += ';forSale==true';    
+    }
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
         if (fieldConf['search']) {
