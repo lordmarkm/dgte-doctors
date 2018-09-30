@@ -1,0 +1,96 @@
+<div class="container-fluid custom-modal-container modal-lg">
+    <div class="modal-header">
+      <h4>Add Cards</h4>
+    </div>
+    <form #cardForm="ngForm" (submit)="saveBundle(cardForm)" class="mt-2">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 text-center card-img">
+        <img [src]="cardImg || 'https://i.imgur.com/wJaJQIi.png'" />
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12">
+          <div class="form-group">
+            <label class="control-label" for="en-card">Card</label>
+            <ng-select [items]="cardNames$ | async"
+                       [loading]="cardNamesLoading"
+                       [typeahead]="cardNamesInput$"
+                       [(ngModel)]="cardName"
+                       (change)="cardNameSelected($event)"
+                       id="card-name"
+                       name="card-name">
+            </ng-select>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="en-card">Edition</label>
+            <ng-select [disabled]="!cardName"
+                       [items]="cards$ | async"
+                       bindLabel="lang"
+                       [loading]="cardsLoading"
+                       [(ngModel)]="bundle.card"
+                       (change)="cardSelected($event)"
+                       id="card"
+                       name="card">
+              <ng-template ng-label-tmp let-item="item">
+                  {{(item.setCode | uppercase) || 'No set'}}  | {{item.lang || 'No lang'}}
+              </ng-template>
+              <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+                  {{(item.setCode | uppercase) || 'No set'}} | {{item.lang || 'No lang'}}
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <label class="control-label" for="en-card">Quantity</label>
+              <ng-number-picker [(value)]="bundle.qty" [min]="1" [size]="sm"></ng-number-picker>
+            </div>
+            <div class="col-lg-6">
+              <label class="control-label" for="en-card">Condition</label>
+              <select [(ngModel)]="bundle.condition" name="condition" id="condition" class="form-control">
+                <option value="MINT_NEAR_MINT">Mint / Near mint (M/NM)</option>
+                <option value="SLIGHTLY_PLAYED">Slightly played (SP)</option>
+                <option value="HEAVILY_PLAYED">Heavily played (HP)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+              <div class="col-lg-3">
+                <label class="control-label" for="piece-price" title="How much did you pay for these cards? (Optional)">Price (pc)</label>
+                <div>
+                  <input type="number" [(ngModel)]="bundle.sellPrice" name="piece-price" id="piece-price" step="0.01" min="0.01" title="Price per piece" placeholder="Piece price" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <label class="control-label" for="set-price" title="How much did you pay for these cards? (Optional)">Price (set)</label>
+                <div>
+                  <input [(ngModel)]="bundle.sellPriceSet" [disabled]="bundle.sellMode != 'PIECE_SET'" name="set-price" id="set-price" type="number" step="0.01"  min="0.01" title="Price per set (4 pc)" placeholder="Set price" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <label class="control-label" for="sell-mode">Sell mode</label>
+                <select [(ngModel)]="bundle.sellMode" name="sell-mode" class="form-control">
+                  <option value="PIECE_SET">Piece/Set</option>
+                  <option value="ALL">All</option>
+                </select>
+              </div>
+              <div class="col-lg-3">
+                <label class="control-label" for="for-sale">For sale</label>
+                <div>
+                  <ui-switch name="for-sale" id="for-sale" [(ngModel)]="bundle.forSale"></ui-switch>
+                </div>
+              </div>
+            </div>
+          <div class="form-group row">
+            <div class="col-lg-6">
+              <label class="control-label" for="buy-price" title="How much did you pay for these cards? (Optional)">Buy Price</label>
+              <div>
+                <input type="number" step="0.01" [(ngModel)]="bundle.boughtPrice" name="buy-price" id="buy-price" min="0.01" title="How much did you pay for these cards? (Optional)" placeholder="How much did you pay for these cards? (Optional)" class="form-control" />
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" (click)="cancel(cardForm)" class="btn">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    </form>
+</div>

@@ -1,0 +1,82 @@
+<h2>Seller Information - Accepted Transaction Types</h2>
+<p class="text-muted">As a seller, how are you willing to send cards to your buyers?</p>
+
+<form class="form" (submit)="next()">
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Meetup</h5>
+            </div>
+            <div class="card-body widget-body">
+                    <div class="form-group d-flex justify-content-between">
+                        <div class="custom-control custom-checkbox">
+                            <input [(ngModel)]="userProfile.meetup" name="checkbox-meetup" id="checkbox-meetup" type="checkbox" class="custom-control-input checkbox-success">
+                            <label class="custom-control-label" for="checkbox-meetup">I am willing to meet with buyers and sell cards in person</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <tag-input [disable]="!userProfile.meetup" [(ngModel)]="includedMeetups" [ngModelOptions]="{standalone: true}"
+                        [placeholder]="'Add more meetups'"
+                        [separatorKeyCodes]="[13, 9]"
+                        [secondaryPlaceholder]="'Add at least 1 meetup'"
+                        [maxItems]="10"
+                        [identifyBy]="'id'" [displayBy]="'name'">
+
+                        <tag-input-dropdown [showDropdownIfEmpty]="false" [autocompleteItems]="meetups" [identifyBy]="'id'" [displayBy]="'name'" [minimumTextLength]="2">
+                        </tag-input-dropdown>
+
+                      </tag-input>
+                      <p class="help-text">Start typing a meetup name to see if it already exists. Select one from the list or press Enter to add the meetup. Maximum of 10.</p>
+                    </div>
+                    <div class="form-group">
+                      <textarea [disabled]="!userProfile.meetup"
+                        [(ngModel)]="userProfile.meetupNote"
+                        name="meetup-note" id="meetup-note"
+                        placeholder="A brief note about your meetups. For example Regran: office hours, Cubao on Sundays" class="form-control"></textarea>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Shipping</h5>
+            </div>
+            <div class="card-body widget-body">
+                <div>
+                  <div class="custom-control custom-checkbox col-lg-12">
+                    <input [(ngModel)]="userProfile.shipping" name="checkbox-ship" type="checkbox" id="checkbox-ship" class="custom-control-input checkbox-success">
+                    <label class="custom-control-label" for="checkbox-ship">I am willing to ship cards to buyers via the following shipment providers (Select 1 or more)</label>
+                  </div>
+                  <div *ngFor="let sp of shippingProviders" class="custom-control custom-checkbox col-lg-12 align-middle" style="padding-left: 10%;">
+                    <input [(disabled)]="!userProfile.shipping" [(ngModel)]="shippingProvidersMap[sp.id]"
+                      type="checkbox" id="checkbox-{{sp.name}}" name="checkbox-{{sp.name}}" class="custom-control-input checkbox-success">
+                    <label class="custom-control-label" for="checkbox-{{sp.name}}"><img [src]="sp.imageUrl" />{{sp.name}}</label>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Proceed</h5>
+            </div>
+            <div class="card-body widget-body">
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit">Proceed</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<div class="row">
+  <div class="col-lg-12">
+    <pre>{{userProfile|json}}</pre>
+  </div>
+</div>

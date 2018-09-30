@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>xpay</groupId>
+    <artifactId>xpay-parent</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>xpay-admin-frontend</artifactId>
+
+  <build>
+    <plugins>
+      <!-- Docker -->
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>${dockerfile-maven-version}</version>
+        <executions>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>help</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <repository>existquadx/xpay-admin-frontend</repository>
+          <tag>${project.version}</tag>
+          <username>existquadx</username>
+          <password>ex1stgl0bal</password>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,13 @@
+<input type="file" [(ngModel)]="imagesPlaceHolder" multiple (change)="fileChange(input)" [disabled]="loading" #input class="m-img-upload-btn" style="width: 150px; cursor: pointer;"/>
+<button class="btn btn-success mr-2" [disabled]="loading" type="button">
+    <i class="fa fa-upload"></i> Choose images...
+</button>
+<button (click)="save()" [disabled]="loading" class="btn btn-success mr-2"><i *ngIf="loading" class="fa fa-gear fa-spin"></i> Save</button>
+<button (click)="cancel()" [disabled]="loading" class="btn btn-default ml-2">Cancel</button>
+
+<div class="card images-container">
+    <div *ngFor="let image of images; let i=index;" class="m-image-wrapper">
+        <i class="fa fa-times m-delete-img" (click)="removeImage(i)"></i>
+        <img [attr.src]="image"> 
+    </div> 
+</div>

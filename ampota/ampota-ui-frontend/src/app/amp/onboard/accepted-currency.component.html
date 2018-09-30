@@ -1,0 +1,77 @@
+<h2>Seller Information - Accepted Currencies</h2>
+<p class="text-muted">As a seller, how will you be paid for your cards? Please choose a primary payment method now.</p>
+<p class="text-muted">You can change your primary payment method and/or add other payment methods from your user profile page later.</p>
+
+<form (submit)="next()">
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Ampota Coin</h5>
+            </div>
+            <div class="card-body widget-body">
+              <div class="form-group d-flex justify-content-between">
+                  <div class="custom-control custom-checkbox">
+                      <input [(ngModel)]="userProfile.ampotaCoin" type="checkbox" class="custom-control-input checkbox-success" id="ampota-coin" name="ampota-coin">
+                      <label class="custom-control-label" for="ampota-coin">I am willing to receive payment in the form of Ampota Coin</label>
+                      <p class="help-text"><a [href]="'javascript:;'">Learn about Ampota Coin here</a></p>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Bank Deposit</h5>
+            </div>
+            <div class="card-body widget-body">
+              <div class="form-group d-flex justify-content-between">
+                  <div class="custom-control custom-checkbox">
+                      <input [(ngModel)]="userProfile.bankDeposit" type="checkbox" class="custom-control-input checkbox-success" id="bank-deposit" name="bank-deposit" checked>
+                      <label class="custom-control-label" for="bank-deposit">I am willing to receive payments via Bank Deposit</label>
+                  </div>
+              </div>
+              <p [ngClass]="{'text-muted': !userProfile.bankDeposit}">Please create a primary bank account by filling up this form. You may add additional accounts or change your primary bank account through the User Profile page later.
+              <p [ngClass]="{'text-muted': !userProfile.bankDeposit}">This will not be visible to anyone except for buyers to whom you have explicitly given permission to make payments to this account.</p>
+              <div class="form-group">
+                  <label for="bank">Bank</label>
+                  <select [(ngModel)]="bankAccount.bank" [disabled]="!userProfile.bankDeposit" id="bankAccount" name="bankAccount" class="form-control"
+                    [required]="userProfile.bankDeposit" [compareWith]="compareById">
+                    <option></option>
+                    <option *ngFor="let bank of banks" [ngValue]="bank">{{bank.name}}</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="accountName">Account name</label>
+                  <input [(ngModel)]="bankAccount.accountName" [disabled]="!userProfile.bankDeposit" type="text" name="accountName" class="form-control" [required]="userProfile.bankDeposit" />
+              </div>
+              <div class="form-group">
+                  <label for="accountNumber">Account number</label>
+                  <input [(ngModel)]="bankAccount.accountNumber" [disabled]="!userProfile.bankDeposit" type="text" name="accountNumber" class="form-control" [required]="userProfile.bankDeposit" />
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Proceed</h5>
+            </div>
+            <div class="card-body widget-body">
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit">Proceed</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<div class="row">
+  <div class="col-lg-12">
+    <pre>{{userProfile|json}}</pre>
+  </div>
+</div>

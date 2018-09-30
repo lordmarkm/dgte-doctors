@@ -1,0 +1,15 @@
+<div *ngIf="!accountCreated" class="row">
+  <div class="col-lg-12">
+    Thank you!<br>
+    That's all the information that we need for now. Click the button below to create your account.
+  </div>
+  <div class="col-lg-12 text-center">
+    <button (click)="next()" [disabled]="loading" class="btn btn-primary"><i *ngIf="loading" class="fa fa-cog fa-spin"></i> Create my account</button>
+  </div>
+</div>
+
+<div *ngIf="accountCreated" class="row">
+  <p>Your account has been created and we have sent you a confirmation email</p>
+  <p>You may proceed to your user profile now but in order to perform any transactions you will need to confirm your email address</p>
+  <a routerLink="/amp/user-profile" class="btn btn-success">Take me to my User profile page</a>
+</div>

@@ -1,0 +1,43 @@
+<div *ngIf="bundle" widget class="card border-0 box-shadow">
+  <div class="card-header transparent border-0">
+      <h5 class="mb-0 col-lg-12">
+        <span *ngIf="bundle?.binder">{{bundle.binder.name}} - </span>{{bundle?.card.name}}
+        <br><small class="text-muted">{{bundle?.card.setCode || 'No set'}} | {{bundle?.card.lang}}</small>
+      </h5>
+  </div>
+  <div class="card-body pt-0 widget-body">
+    <div class="col-lg-8 col-md-8 col-sm-12 mb-4">
+      <p class="text-left fs-13 text-gray">Details</p>
+      <div class="slideshow-parent mb-4" *ngIf="!editingPictures && bundle.pictures?.length">
+        <crystal-gallery [images]="slideshowPics" [config]="slideshowConfig"></crystal-gallery>
+      </div>
+      <button (click)="editingPictures = true" *ngIf="!editingPictures" class="btn btn-primary">
+        <span *ngIf="bundle.pictures?.length">Edit pictures</span>
+        <span *ngIf="!bundle.pictures?.length">Add pictures</span>
+      </button>
+      <app-multiple-image-uploader *ngIf="editingPictures" [existingUrls]="bundle.pictures" (save)="picturesUpdated($event)" (cancel)="editingPictures = false;" class="mb-4"></app-multiple-image-uploader>
+    </div>
+  </div>
+  <div class="card-body pt-0 widget-body">
+    <div class="col-lg-4 col-md-4 col-sm-12">
+      <dl class="row">
+        <dt class="col-lg-4">Qty
+        <dd class="col-lg-8">{{bundle.qty}}
+        <dt class="col-lg-4">Condition
+        <dd class="col-lg-8">{{bundle.condition}}
+        <dt class="col-lg-4">Price<span *ngIf="bundle.sellMode == 'PIECE_SET'">/pc</span>
+        <dd class="col-lg-8">{{bundle.sellPrice}}
+        <dt *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-4">Price/set
+        <dd *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-8">{{bundle.sellPriceSet}}
+      </dl>
+      <button routerLink="/amp/collection/bundle-list" class="btn btn-default">Back to collection</button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="!bundle" widget class="card border-0 box-shadow">
+  <div class="card-header transparent border-0 text-muted">
+      <h5 class="mb-0"><i class="fa fa-gear fa-spin"></i> Loading...</h5>
+  </div>
+</div>

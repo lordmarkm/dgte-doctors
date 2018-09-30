@@ -1,0 +1,57 @@
+<h2>Buyer Information - Primary Shipping Address</h2>
+<p class="text-muted">As a buyer, where would you like your orders to be shipped?<br>
+You must have at least one shipping address. You can change your primary shipping address and add more shipping addresses later through your user profile page later.
+</p>
+
+<form (submit)="next()" ngNativeValidate>
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Primary shipping address</h5>
+            </div>
+            <div class="card-body widget-body">
+                <form (submit)="next()" class="form">
+                    <div class="form-group">
+                        <label for="first-name">First name</label>
+                        <input [(ngModel)]="address.firstName" id="first-name" name="first-name" class="form-control" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last name</label>
+                        <input [(ngModel)]="address.lastName" id="last-name" name="last-name" class="form-control" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="line-1">Address Line 1</label>
+                        <input [(ngModel)]="address.line1" id="line-1" name="line-1" class="form-control" maxlength="200">
+                    </div>
+                    <div class="form-group">
+                        <label for="line-2">Address Line 2</label>
+                        <input [(ngModel)]="address.line2" id="line-2" name="line-2" class="form-control" maxlength="200">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input [(ngModel)]="address.city" id="city" name="city" class="form-control" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input [(ngModel)]="address.country" id="country" name="country" class="form-control" readonly maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="postal-code">Postal code</label>
+                        <input [(ngModel)]="address.postalCode" id="postal-code" name="postal-code" class="form-control" maxlength="10">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit">Proceed</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+<div class="row">
+  <div class="col-lg-12">
+    <pre>{{userProfile|json}}</pre>
+  </div>
+</div>

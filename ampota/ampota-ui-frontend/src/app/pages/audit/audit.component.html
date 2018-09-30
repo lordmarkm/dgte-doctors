@@ -1,0 +1,14 @@
+<div widget class="card border-0 box-shadow">
+    <div class="card-header transparent border-0 text-muted">
+        <h5 class="mb-0">Audit Logs</h5>
+    </div>
+    <div class="card-body pt-0 widget-body">
+        <p class="text-left fs-13 text-gray">Audit Logs</p>
+        <div class="table-responsive">
+            <ng2-smart-table  class="table table-hover"
+                              [settings]="settings" 
+                              [source]="source"
+                              (userRowSelect)="onUserRowSelect($event)"></ng2-smart-table>
+        </div>          
+    </div>
+</div>
