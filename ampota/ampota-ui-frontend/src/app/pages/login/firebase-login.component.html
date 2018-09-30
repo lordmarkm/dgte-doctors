@@ -7,10 +7,10 @@
             <div class="card-body text-center pb-1">
                 <h2 class="mb-4">Welcome to the Aspiring Magic Players of the Ateneo</h2>
                 <div class="form-group">
-                    <button (click)="login()" class="btn btn-block" type="submit">Sign-in or sign-up with Facebook</button>
+                    <button (click)="login()" [disabled]="loading" class="btn btn-block" type="submit"><i *ngIf="loading" class="fa fa-gear fa-spin"></i> Sign-in or sign-up with Facebook</button>
                 </div>
                 <div class="form-group">
-                    <button routerLink="/marketplace" class="btn btn-block" type="submit">Continue anonymously for now</button>
+                    <button routerLink="/marketplace" [disabled]="loading" class="btn btn-block" type="submit">Continue anonymously for now</button>
                 </div>
             </div>
             <div class="card-footer text-center bg-transparent mb-4">

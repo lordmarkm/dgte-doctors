@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
@@ -8,9 +10,16 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class UserMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    console.debug('logging out');
+    this.afAuth.auth.signOut().then(() => {
+      console.log('signed out');
+      this.router.navigate(['/login']);
+    });
+  }
 }
