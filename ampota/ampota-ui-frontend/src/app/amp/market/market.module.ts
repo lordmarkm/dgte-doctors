@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
+import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { AddBundleModalComponent } from '@app/amp/bundle/add-bundle.modal.component';
 
 //ngx-modialog
@@ -56,7 +57,12 @@ export const routes = [
       provide: HTTP_INTERCEPTORS,
       useClass: AddFirebaseTokenInterceptor,
       multi: true,
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpErrorHandler,
+      multi: true,
+    },
   ],
   entryComponents: [
   ]

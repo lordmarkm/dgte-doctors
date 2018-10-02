@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -19,12 +19,16 @@ import { BreadcrumbComponent } from '../theme/components/breadcrumb/breadcrumb.c
 import { BackTopComponent } from '../theme/components/back-top/back-top.component';
 import { UserMenuComponent } from '../theme/components/user-menu/user-menu.component';
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
+import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
 
 //ngx-modialog
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+
+//global error handler
+import { GlobalErrorHandler } from '@app/shared/global.error.handler';
 
 @NgModule({
   imports: [
@@ -60,6 +64,16 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
       provide: HTTP_INTERCEPTORS,
       useClass: AddFirebaseTokenInterceptor,
       multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpErrorHandler,
+      multi: true,
+    },
+    //global error handler
+    {
+      provide: ErrorHandler, 
+      useClass: GlobalErrorHandler
     }
   ],
   entryComponents: [
