@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import { environment } from '../../../environments/environment';
@@ -96,7 +97,8 @@ export class SearchComponent implements OnInit{
     }
   };
 
-  constructor(private http: HttpClient, private cardService: CardService, private bundleService: BundleService, private afAuth: AngularFireAuth) { }
+  constructor(private http: HttpClient, private cardService: CardService, private bundleService: BundleService, private afAuth: AngularFireAuth,
+    private router: Router) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(auth => {
@@ -116,6 +118,8 @@ export class SearchComponent implements OnInit{
   //card selection here
   cardNameSelected(name: string) {
     console.info('card name selected! ' + name);
+    this.source.setUniqueCardnameFilter(name);
+    this.source.refresh();
   }
 
   private loadCardNames() {
@@ -141,4 +145,15 @@ export class SearchComponent implements OnInit{
   momento(m) {
     return moment(m);
   }
+
+  onCustom(event) {
+    switch (event.action) {
+      case 'view-bundle-details':
+        this.router.navigate(['/amp/market/bundle/' + event.data.id]);
+        break;
+      default:
+        console.error('Unhandled event: ' + event.name);
+    }
+  }
+
 }

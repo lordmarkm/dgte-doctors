@@ -8,9 +8,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
 import { AddBundleModalComponent } from '@app/amp/bundle/add-bundle.modal.component';
-import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
 import { BundleDetailsComponent } from '@app/amp/bundle/bundle-details.component';
-import { MultipleImageUploaderComponent } from '@app/amp/bundle/multiple-image-uploader.component';
+import { SharedModule } from '@app/amp/shared/shared.module';
 
 //ngx-modialog
 import { ModalModule } from 'ngx-modialog';
@@ -25,9 +24,6 @@ import {NumberPickerModule} from 'ng-number-picker';
 //ngx-toggle-switch
 import { UiSwitchModule } from 'ngx-toggle-switch';
 
-//ngx-crystal-gallery
-import { CrystalGalleryModule } from 'ngx-crystal-gallery';
-
 export const routes = [
   { path: '', component: BinderComponent, pathMatch: 'full', data: { breadcrumb: 'Binders' }  },
   { path: 'bundle-list', component: BundleComponent, pathMatch: 'full', data: { breadcrumb: 'Cards' } },
@@ -40,6 +36,7 @@ export const routes = [
     FormsModule,
     ReactiveFormsModule,
     Ng2SmartTableModule,
+    SharedModule,
     RouterModule.forChild(routes),
 
     //ngx-modialog
@@ -50,24 +47,14 @@ export const routes = [
     //ng-number-picker
     NumberPickerModule,
     //ngx-toggle-switch
-    UiSwitchModule,
-    //ngx-crystal-gallery
-    CrystalGalleryModule
+    UiSwitchModule
   ],
   declarations: [
     BinderComponent,
     BundleComponent,
     AddBundleModalComponent,
-    BundleDetailsComponent,
-    MultipleImageUploaderComponent
   ],
-  providers:[
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AddFirebaseTokenInterceptor,
-      multi: true,
-    }
-  ],
+  providers:[],
   entryComponents: [
     AddBundleModalComponent
   ]

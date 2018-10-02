@@ -6,9 +6,14 @@ import { ServerDataSource } from 'ng2-smart-table';
 export class CustomDataSource extends ServerDataSource {
 
   forSale: boolean;
+  uniqueCardnameFilter: string;
 
   public setForSale(forSale: boolean) {
     this.forSale = forSale;
+  }
+
+  public setUniqueCardnameFilter(name: string) {
+    this.uniqueCardnameFilter = name;
   }
 
   protected addSortRequestParams(httpParams: HttpParams): HttpParams {
@@ -30,6 +35,9 @@ export class CustomDataSource extends ServerDataSource {
     let term = 'deleted==false';
     if (this.forSale) {
       term += ';forSale==true';    
+    }
+    if (this.uniqueCardnameFilter) {
+      term += ';cardName=="' + this.uniqueCardnameFilter + '"';
     }
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {

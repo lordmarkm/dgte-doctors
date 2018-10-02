@@ -21,7 +21,6 @@ import { UserMenuComponent } from '../theme/components/user-menu/user-menu.compo
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
 import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
 
 //ngx-modialog
 import { ModalModule } from 'ngx-modialog';
@@ -53,7 +52,6 @@ import { GlobalErrorHandler } from '@app/shared/global.error.handler';
     BackTopComponent,
     UserMenuComponent,
     UserProfileComponent,
-    CardDetailsRenderComponent
   ],
   providers:[
     {
@@ -77,7 +75,6 @@ import { GlobalErrorHandler } from '@app/shared/global.error.handler';
     }
   ],
   entryComponents: [
-    CardDetailsRenderComponent
   ]
 })
 export class AmpModule { }
