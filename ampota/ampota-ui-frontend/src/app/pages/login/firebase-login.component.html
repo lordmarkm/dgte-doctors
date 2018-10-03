@@ -6,6 +6,9 @@
             </div>
             <div class="card-body text-center pb-1">
                 <h2 class="mb-4">Welcome to the Aspiring Magic Players of the Ateneo</h2>
+                <div *ngIf="error" class="alert alert-danger">
+                  {{error}}
+                </div>
                 <div class="form-group">
                     <button (click)="login()" [disabled]="loading" class="btn btn-block" type="submit"><i *ngIf="loading" class="fa fa-gear fa-spin"></i> Sign-in or sign-up with Facebook</button>
                 </div>

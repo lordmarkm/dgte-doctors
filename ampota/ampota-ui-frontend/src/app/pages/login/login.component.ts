@@ -1,73 +1,75 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
+import { UserProfile } from '@app/amp/user-profile/user-profile.model';
 import { UserProfileService } from '@app/amp/user-profile/user-profile.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './firebase-login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers:[ HttpClient, HttpClient, UserProfileService ],
+  providers:[ UserProfileService ],
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
 
-  loading: boolean = false;
-  error: string;
+  public error: string;
+  public loading: boolean = false;
 
-  constructor(private router:Router, fb:FormBuilder, private afAuth: AngularFireAuth, private http: HttpClient,
-              private userProfileService: UserProfileService) {
-  }
+  constructor(private router:Router, private afAuth: AngularFireAuth, private userProfileService: UserProfileService) { }
 
   ngOnInit() {
     this.loading = true;
     this.afAuth.authState.subscribe(auth => {
-      this.http.get<any>(environment.ampUrl + '/api/user-profile').subscribe(r => {
-        this.router.navigate(['/amp/dashboard']);
-      }, err => {
+      if (auth) {
+        this.xpayAuthorize();
+      } else {
+        this.error = 'Please sign in with Firebase';
         this.loading = false;
-        if (err.status == 404) {
-          //New users have no registered user-profile so we will get a 404 response
-          console.log('404! new user!');
-          this.router.navigate(['/amp/onboard']);
-        } else {
-          //Other errors let the global exception handler handle it
-          console.log('non 404 error: ' + err.status);
-          throw err;
-        }
-      }, () => {
-        this.loading = false;
-      });
-    }, firebaseError=> {
-      console.log('firebase error');
+      }
+    },
+    err => {
+      this.error = 'Unable to authenticate with firebase: ' + err;
+      this.loading = false;
     });
   }
   ngAfterViewInit(){
       document.getElementById('preloader').classList.add('hide');
   }
   login() {
+    this.loading = true;
     this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider())
-      .then((credential) => {
-        //console.debug(JSON.stringify(credential));
-        console.log('Attempting to get user profile for: ' + credential.user.email);
+      .then((auth) => {
+        //No need for this line because this.afAuth.authState.subscribe already listens for changes in user auth status
+        //this.xpayAuthorize();
+        this.loading = false;
       },
-      e => {
-        this.error = e;
+      err => {
+        this.error = 'Login failed: ' + err;
+        this.loading = false;
       });
-    //this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
-  logout() {
-    this.afAuth.auth.signOut();
-  }
-}
 
-export function emailValidator(control: FormControl): {[key: string]: any} {
-    var emailRegexp = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;    
-    if (control.value && !emailRegexp.test(control.value)) {
-        return {invalidEmail: true};
-    }
+  private xpayAuthorize() {
+    this.loading = true;
+    this.userProfileService.get().subscribe(user => {
+      let userProfile: UserProfile = new UserProfile(user);
+      if (userProfile.hasRole('ROLE_ADMIN')) {
+        //admin user authenticated
+        this.router.navigate(['/amp/admin-dashboard']);
+      } else {
+        //non-admin user authenticated
+        this.router.navigate(['/amp/dashboard']);
+      }
+      this.loading = false;
+    },
+    err => {
+      //User menu component could not get xpay user from Firebase authentication
+      this.error = 'Authentication error. err=' + err;
+      this.loading = false;
+    });
+  }
+
 }
