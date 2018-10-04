@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Lists;
 
-import xyz.quadx.xpay.shared.firebase.client.UserAuthorityClient;
+import xyz.quadx.xpay.shared.firebase.user.client.UserAuthorityClient;
 
 @RestController
 @RequestMapping("/api/user-authority")
