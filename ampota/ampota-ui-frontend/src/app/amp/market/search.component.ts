@@ -20,11 +20,16 @@ import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.compon
 })
 export class SearchComponent implements OnInit{
 
+  //card name filter
   cardNames$: Observable<string[]>;
   cardNamesLoading: boolean = false;
   cardNamesInput$ = new Subject<string>();
   cardName: string;
 
+  //legality filter
+  legality: string = '';
+
+  //table
   source: CustomDataSource;
   settings = {
     mode: 'external',

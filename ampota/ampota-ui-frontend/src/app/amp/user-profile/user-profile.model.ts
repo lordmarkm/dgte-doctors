@@ -16,7 +16,7 @@ export class UserProfile {
   bankDeposit: boolean;
   bankAccounts: BankAccount[];
   permissions: string[];
-  constructor(json: any) {
+  constructor(json?: any) {
     if (json) {
       this.username = json.username;
       this.permissions = json.permissions;
