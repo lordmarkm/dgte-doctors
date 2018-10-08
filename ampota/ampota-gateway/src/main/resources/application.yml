@@ -35,3 +35,4 @@ hystrix.command.default.execution.isoaltion.threadtimeout.InMilliseconds: 300000
 ribbon.ReadTimeout: 360000
 ribbon.ConnectTimeout: 360000
 
+firebase.config-file: xpay-test-firebase-key.json

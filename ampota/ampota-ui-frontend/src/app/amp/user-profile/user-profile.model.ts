@@ -15,6 +15,18 @@ export class UserProfile {
   cod: boolean;
   bankDeposit: boolean;
   bankAccounts: BankAccount[];
+  permissions: string[];
+  constructor(json: any) {
+    if (json) {
+      this.username = json.username;
+      this.permissions = json.permissions;
+    } else {
+      console.warn('Could not parse user properties from json');
+    }
+  }
+  hasRole(role: string) {
+    return true;
+  }
 }
 
 export class Address {
