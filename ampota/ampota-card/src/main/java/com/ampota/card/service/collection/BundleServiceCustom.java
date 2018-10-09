@@ -16,6 +16,7 @@ public interface BundleServiceCustom extends XpayJpaServiceCustom<Bundle, Bundle
                 .put("deleted", bundle.deleted)
                 .put("cardDetails", bundle.card.name)
                 .put("cardName", bundle.card.name)
+                .put("colors", bundle.card.colors)
                 .put("standard", bundle.card.legalities.standard)
                 .put("modern", bundle.card.legalities.modern)
                 .put("legacy", bundle.card.legalities.legacy)

@@ -8,6 +8,8 @@ server:
 
 logging:
   level:
+    com.ampota: DEBUG
+    xyz.xpay: DEBUG
     com.netflix.eureka: INFO
     com.netflix.discovery: INFO
   file: log/ampota-card.log

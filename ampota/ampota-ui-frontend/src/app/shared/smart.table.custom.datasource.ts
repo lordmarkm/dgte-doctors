@@ -8,11 +8,13 @@ export class CustomDataSource extends ServerDataSource {
   forSale: boolean;
   uniqueCardnameFilter: string;
   legality: string;
+  colors: string[];
 
   public refreshFilters(filters: any) {
     this.forSale = filters.forSale;
     this.uniqueCardnameFilter = filters.cardName;
     this.legality = filters.legality;
+    this.colors = filters.colors;
     this.refresh();
   }
   public setForSale(forSale: boolean) {
@@ -44,6 +46,9 @@ export class CustomDataSource extends ServerDataSource {
     }
     if (this.uniqueCardnameFilter) {
       term += ';cardName=="' + this.uniqueCardnameFilter + '"';
+    }
+    if (this.colors && this.colors.length) {
+      term += ';colors=any=(' + this.colors + ')';
     }
     if (this.legality) {
       term += ';' + this.legality + '=in=(legal,restricted)';

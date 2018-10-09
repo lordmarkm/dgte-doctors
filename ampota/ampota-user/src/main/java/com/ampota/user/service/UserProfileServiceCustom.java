@@ -10,5 +10,6 @@ import xyz.xpay.shared.jpa.service.XpayJpaServiceCustom;
 public interface UserProfileServiceCustom extends XpayJpaServiceCustom<UserProfile, UserProfileInfo> {
 
     Optional<UserProfileInfo> findByUsernameInfo(String username);
+    Optional<UserProfileInfo> findByUsernameInfo(String username, String fbLink);
 
 }

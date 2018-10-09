@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.ampota.shared.dto.UserProfileInfo;
 import com.ampota.user.service.UserProfileService;
@@ -38,8 +39,8 @@ public class UserProfileResource {
     private MailSender mailSender;
 
     @GetMapping
-    public ResponseEntity<UserProfileInfo> getUserProfile(Principal principal) {
-        return service.findByUsernameInfo(principal.getName())
+    public ResponseEntity<UserProfileInfo> getUserProfile(Principal principal, @RequestParam String fbLink) {
+        return service.findByUsernameInfo(principal.getName(), fbLink)
                 .map(u -> ResponseEntity.status(OK).body(u))
                 .orElse(ResponseEntity.status(NOT_FOUND).body(null));
     }

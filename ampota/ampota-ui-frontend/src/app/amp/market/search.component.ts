@@ -10,6 +10,7 @@ import { CardService } from '@app/amp/card/card.service';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError, map } from 'rxjs/operators'
 import { Subject, Observable, of, concat } from 'rxjs';
 import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
+import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-search',
@@ -23,13 +24,31 @@ export class SearchComponent implements OnInit{
   //filters
   filters:any = {
     cardName: '',
-    legality: ''
+    legality: '',
+    colors: []
   }
 
   //card name filter autocomplete tools
   cardNames$: Observable<string[]>;
   cardNamesLoading: boolean = false;
   cardNamesInput$ = new Subject<string>();
+
+  //card color filter tools
+  colorSelectOptions: IMultiSelectOption[] = [
+    { id: 'W', name: 'White' },
+    { id: 'U', name: 'Blue' },
+    { id: 'B', name: 'Black' },
+    { id: 'R', name: 'Red' },
+    { id: 'G', name: 'Green'}
+  ];
+  colorSelectSettings: IMultiSelectSettings = {
+    displayAllSelectedText: true,
+    showUncheckAll: true
+  };
+  colorSelectTexts: IMultiSelectTexts = {
+    uncheckAll: 'Any',
+    defaultTitle: 'Select'
+  };
 
   //table
   source: CustomDataSource;

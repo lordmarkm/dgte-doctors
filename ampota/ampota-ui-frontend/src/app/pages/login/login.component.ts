@@ -5,6 +5,7 @@ import { auth } from 'firebase';
 import { environment } from '../../../environments/environment';
 import { UserProfile } from '@app/amp/user-profile/user-profile.model';
 import { UserProfileService } from '@app/amp/user-profile/user-profile.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,16 @@ export class LoginComponent implements OnInit {
 
   public error: string;
   public loading: boolean = false;
+  public fbLink: string;
 
-  constructor(private router:Router, private afAuth: AngularFireAuth, private userProfileService: UserProfileService) { }
+  constructor(private http: HttpClient, private router:Router, private afAuth: AngularFireAuth, private userProfileService: UserProfileService) { }
 
   ngOnInit() {
     this.loading = true;
     this.afAuth.authState.subscribe(auth => {
+      console.log(auth);
       if (auth) {
-        this.xpayAuthorize();
+        this.ampAuthorize();
       } else {
         this.error = 'Please sign in with Firebase';
         this.loading = false;
@@ -40,10 +43,15 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.loading = true;
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider())
-      .then((auth) => {
-        //No need for this line because this.afAuth.authState.subscribe already listens for changes in user auth status
-        //this.xpayAuthorize();
+    let fb = new auth.FacebookAuthProvider();
+    fb.addScope('user_link');
+    this.afAuth.auth.signInWithPopup(fb)
+      .then((auth: any) => {
+        let fbToken = auth.credential.accessToken;
+        this.http.get<any>('https://graph.facebook.com/me?access_token=' + fbToken + '&fields=link').subscribe(fbDetails => {
+          console.log('sending fb_link request');
+          this.http.put<any>(environment.ampUrl + '/api/fb-link?fbLink=' + fbDetails.link).subscribe(r => r);
+        });
         this.loading = false;
       },
       err => {
@@ -52,13 +60,14 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  private xpayAuthorize() {
+  private ampAuthorize() {
     this.loading = true;
-    this.userProfileService.get().subscribe(user => {
+    this.userProfileService.get(this.fbLink).subscribe(user => {
       let userProfile: UserProfile = new UserProfile(user);
       if (userProfile.hasRole('ROLE_ADMIN')) {
         //admin user authenticated
-        this.router.navigate(['/amp/admin-dashboard']);
+        //this.router.navigate(['/amp/admin-dashboard']);
+        this.router.navigate(['/amp/dashboard']);
       } else {
         //non-admin user authenticated
         this.router.navigate(['/amp/dashboard']);

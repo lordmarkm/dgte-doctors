@@ -10,9 +10,9 @@ export class UserProfileService {
 
     constructor(public http:HttpClient) { }
 
-    public get(): Observable<UserProfile> {
+    public get(fbLink?: string): Observable<UserProfile> {
         console.debug('Getting user profile!');
-        return this.http.get<UserProfile>(this.url);
+        return this.http.get<UserProfile>(this.url, { params: { fbLink: fbLink } });
     }
 
     public save(userProfile: UserProfile) {

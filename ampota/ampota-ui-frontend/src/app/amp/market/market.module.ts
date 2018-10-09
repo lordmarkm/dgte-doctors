@@ -11,19 +11,17 @@ import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { AddBundleModalComponent } from '@app/amp/bundle/add-bundle.modal.component';
 import { SharedModule } from '@app/amp/shared/shared.module';
 
+//multiselect dropdown
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 //ngx-modialog
 import { ModalModule } from 'ngx-modialog';
 import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
-
 //ng-select, the autocomplete for cards search
 import { NgSelectModule } from '@ng-select/ng-select';
-
 //ng-number-picker
 import {NumberPickerModule} from 'ng-number-picker';
-
 //ngx-toggle-switch
 import { UiSwitchModule } from 'ngx-toggle-switch';
-
 //ngx-crystal-gallery
 import { CrystalGalleryModule } from 'ngx-crystal-gallery';
 
@@ -51,7 +49,9 @@ export const routes = [
     //ngx-toggle-switch
     UiSwitchModule,
     //ngx-crystal-gallery
-    CrystalGalleryModule
+    CrystalGalleryModule,
+    //multiselect dropdown
+    MultiselectDropdownModule,
   ],
   declarations: [
     SearchComponent
