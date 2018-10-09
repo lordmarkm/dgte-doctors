@@ -20,14 +20,16 @@ import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.compon
 })
 export class SearchComponent implements OnInit{
 
-  //card name filter
+  //filters
+  filters:any = {
+    cardName: '',
+    legality: ''
+  }
+
+  //card name filter autocomplete tools
   cardNames$: Observable<string[]>;
   cardNamesLoading: boolean = false;
   cardNamesInput$ = new Subject<string>();
-  cardName: string;
-
-  //legality filter
-  legality: string = '';
 
   //table
   source: CustomDataSource;
@@ -121,10 +123,8 @@ export class SearchComponent implements OnInit{
   }
 
   //card selection here
-  cardNameSelected(name: string) {
-    console.info('card name selected! ' + name);
-    this.source.setUniqueCardnameFilter(name);
-    this.source.refresh();
+  refreshFilters() {
+    this.source.refreshFilters(this.filters);
   }
 
   private loadCardNames() {

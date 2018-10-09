@@ -7,7 +7,14 @@ export class CustomDataSource extends ServerDataSource {
 
   forSale: boolean;
   uniqueCardnameFilter: string;
+  legality: string;
 
+  public refreshFilters(filters: any) {
+    this.forSale = filters.forSale;
+    this.uniqueCardnameFilter = filters.cardName;
+    this.legality = filters.legality;
+    this.refresh();
+  }
   public setForSale(forSale: boolean) {
     this.forSale = forSale;
   }
@@ -31,13 +38,15 @@ export class CustomDataSource extends ServerDataSource {
   }
 
   protected addFilterRequestParams(httpParams: HttpParams): HttpParams {
-    console.log('forSale? ' + this.forSale);
     let term = 'deleted==false';
     if (this.forSale) {
       term += ';forSale==true';    
     }
     if (this.uniqueCardnameFilter) {
       term += ';cardName=="' + this.uniqueCardnameFilter + '"';
+    }
+    if (this.legality) {
+      term += ';' + this.legality + '=in=(legal,restricted)';
     }
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {

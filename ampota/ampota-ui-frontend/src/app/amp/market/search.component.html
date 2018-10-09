@@ -11,22 +11,24 @@
         <ng-select [items]="cardNames$ | async"
                  [loading]="cardNamesLoading"
                  [typeahead]="cardNamesInput$"
-                 [(ngModel)]="cardName"
-                 (change)="cardNameSelected($event)"
+                 [(ngModel)]="filters.cardName"
+                 (change)="refreshFilters()"
                  id="card-name"
                  name="card-name">
         </ng-select>
       </div>
       <div class="form-group">
         <label class="control-label" for="en-card">Legality</label>
-        <select [(ngModel)]="legality" (change)="legalitySelected($event)" id="legality"
+        <select [(ngModel)]="filters.legality" (change)="refreshFilters()" id="legality"
                  class="form-control" name="legality">
           <option value="">Any</option>
           <option value="standard">Standard</option>
           <option value="modern">Modern</option>
           <option value="legacy">Legacy</option>
-          <option value="edh">EDH</option>
           <option value="vintage">Vintage (legal/restricted)</option>
+          <option value="edh">EDH / Commander</option>
+          <option value="duel">Duel Commander</option>
+          <option value="pauper">Pauper</option>
         </select>
       </div>
     </div>
