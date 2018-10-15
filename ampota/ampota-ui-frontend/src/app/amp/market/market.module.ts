@@ -9,7 +9,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
 import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
-import { AddBundleModalComponent } from '@app/amp/bundle/add-bundle.modal.component';
+import { AddToCartModalComponent } from './add-to-cart.modal.component';
 import { SharedModule } from '@app/amp/shared/shared.module';
 
 //multiselect dropdown
@@ -57,10 +57,13 @@ export const routes = [
   declarations: [
     SearchComponent,
     BundleDetailsComponent,
-    BundleOwnerDetailsComponent
+    BundleOwnerDetailsComponent,
+    AddToCartModalComponent
   ],
   providers:[],
-  entryComponents: []
+  entryComponents: [
+    AddToCartModalComponent
+  ]
 })
 
 export class MarketModule { }

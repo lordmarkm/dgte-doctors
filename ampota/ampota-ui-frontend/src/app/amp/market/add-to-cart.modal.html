@@ -1,0 +1,18 @@
+<div class="container-fluid custom-modal-container modal-lg">
+    <div class="modal-header">
+      <h4>Waste Money</h4>
+    </div>
+    <form #cartForm="ngForm" (submit)="saveBundle(cartForm)" class="mt-2">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-12 text-center card-img">
+        <img [src]="cardImg || 'https://i.imgur.com/wJaJQIi.png'" />
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-12">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" (click)="cancel(cartForm)" class="btn">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+    </form>
+</div>

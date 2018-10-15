@@ -12,6 +12,9 @@ import { map, switchMap } from 'rxjs/operators';
 import { Modal, bootstrap4Mode, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
 import { overlayConfigFactory } from "ngx-modialog";
 
+//add-to-cart
+import { AddToCartModalComponent } from './add-to-cart.modal.component';
+
 @Component({
   selector: 'app-bundle',
   templateUrl: './bundle-details.component.html',
@@ -21,6 +24,7 @@ import { overlayConfigFactory } from "ngx-modialog";
 })
 export class BundleDetailsComponent implements OnInit{
 
+  loading: boolean = false;
   bundle: Bundle;
   slideshowPics: any[] = [];
   slideshowConfig = {
@@ -76,6 +80,15 @@ export class BundleDetailsComponent implements OnInit{
     let s = pic.split('').reverse().join('').replace('.', '.s').split('').reverse().join('');
     console.info('returning ' + s);
     return s;
+  }
+
+  addToCart() {
+    this.loading = true;
+    const dialogRef = this.modal.open(AddToCartModalComponent, overlayConfigFactory({ }, BSModalContext));
+    //add the dialog's created bundle to the table
+    dialogRef.result.then(savedBundle => {
+      this.loading = false;
+    });
   }
 
 }
