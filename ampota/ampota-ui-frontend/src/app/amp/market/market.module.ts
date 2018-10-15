@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search.component';
-import { BundleDetailsComponent } from '@app/amp/bundle/bundle-details.component';
+import { BundleDetailsComponent } from './bundle-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -54,7 +54,8 @@ export const routes = [
     MultiselectDropdownModule,
   ],
   declarations: [
-    SearchComponent
+    SearchComponent,
+    BundleDetailsComponent
   ],
   providers:[],
   entryComponents: []
