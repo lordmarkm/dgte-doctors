@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ampota.shared.client.FbLinkClient;
 
+import xyz.quadx.shared.dto.OperationResult;
+
 @RestController
 @RequestMapping("/api/fb-link")
 public class FbLinkGatewayResource {
@@ -17,7 +19,7 @@ public class FbLinkGatewayResource {
     private FbLinkClient client;
 
     @PutMapping
-    public ResponseEntity<String> putFbLink(@RequestParam String fbLink) {
+    public ResponseEntity<OperationResult<String>> putFbLink(@RequestParam String fbLink) {
         return client.putFbLink(fbLink);
     }
 

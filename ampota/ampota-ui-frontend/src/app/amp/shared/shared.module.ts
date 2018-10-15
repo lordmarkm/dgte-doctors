@@ -4,6 +4,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interceptor';
 import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
+import { OwnerRenderComponent } from '@app/amp/bundle/owner-name.renderer.component';
 import { BundleDetailsComponent } from '@app/amp/bundle/bundle-details.component';
 import { MultipleImageUploaderComponent } from '@app/amp/bundle/multiple-image-uploader.component';
 import { CrystalGalleryModule } from 'ngx-crystal-gallery';
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
   declarations: [
     BundleDetailsComponent,
     CardDetailsRenderComponent,
+    OwnerRenderComponent,
     MultipleImageUploaderComponent
   ],
   providers:[
@@ -37,6 +39,7 @@ import { RouterModule } from '@angular/router';
   ],
   entryComponents: [
     CardDetailsRenderComponent,
+    OwnerRenderComponent,
     MultipleImageUploaderComponent
   ]
 })

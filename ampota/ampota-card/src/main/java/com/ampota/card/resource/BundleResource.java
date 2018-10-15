@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ampota.card.service.collection.BundleService;
 import com.ampota.shared.dto.card.collection.BundleInfo;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import xyz.quadx.xpay.shared.firebase.FirebaseUserDetails;
+
 import xyz.xpay.shared.web.BaseResource;
 
 @RestController
@@ -18,9 +17,7 @@ import xyz.xpay.shared.web.BaseResource;
 public class BundleResource extends BaseResource<BundleInfo, BundleService> {
 
     @PostMapping
-    public ResponseEntity<BundleInfo> save(@AuthenticationPrincipal FirebaseUserDetails principal, @RequestBody BundleInfo bundle) {
-        bundle.setOwner(principal.getUsername());
-        bundle.setOwnerName(principal.getDisplayName());
+    public ResponseEntity<BundleInfo> save(@RequestBody BundleInfo bundle) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(service.saveInfo(bundle));
     }
 

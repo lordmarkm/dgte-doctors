@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.ampota.shared.client.BundleClient;
 import com.ampota.shared.dto.card.collection.BundleInfo;
 
 import io.swagger.annotations.ApiParam;
+import xyz.quadx.xpay.shared.firebase.FirebaseUserDetails;
 
 @RestController
 @RequestMapping("/api/bundle")
@@ -40,7 +42,10 @@ public class BundleGatewayResource {
     }
 
     @PostMapping
-    public ResponseEntity<BundleInfo> save(@Valid @RequestBody BundleInfo bundle) {
+    public ResponseEntity<BundleInfo> save(@AuthenticationPrincipal FirebaseUserDetails principal, @Valid @RequestBody BundleInfo bundle) {
+        bundle.setOwner(principal.getUsername());
+        bundle.setOwnerName(principal.getDisplayName());
+        bundle.setOwnerLink(principal.getFbLink());
         return client.save(bundle);
     }
 

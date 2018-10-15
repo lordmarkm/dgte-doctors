@@ -11,6 +11,7 @@ public class BundleInfo extends BaseInfo {
 
     private String owner;
     private String ownerName;
+    private String ownerLink;
     private BinderInfo binder;
     private CardInfo card;
     private int qty;
@@ -97,6 +98,12 @@ public class BundleInfo extends BaseInfo {
     }
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
+    }
+    public String getOwnerLink() {
+        return ownerLink;
+    }
+    public void setOwnerLink(String ownerLink) {
+        this.ownerLink = ownerLink;
     }
 
 }

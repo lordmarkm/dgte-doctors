@@ -29,6 +29,10 @@ public class Bundle extends BaseEntity {
     @Column(name = "owner_name")
     private String ownerName;
 
+    @Column(name = "owner_link")
+    @Type(type = "text")
+    private String ownerLink;
+
     @ManyToOne(optional = true)
     @JoinColumn(name = "binder_id")
     private Binder binder;
@@ -162,6 +166,14 @@ public class Bundle extends BaseEntity {
 
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
+    }
+
+    public String getOwnerLink() {
+        return ownerLink;
+    }
+
+    public void setOwnerLink(String ownerLink) {
+        this.ownerLink = ownerLink;
     }
 
 }

@@ -10,6 +10,7 @@ import { CardService } from '@app/amp/card/card.service';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError, map } from 'rxjs/operators'
 import { Subject, Observable, of, concat } from 'rxjs';
 import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
+import { OwnerRenderComponent } from '@app/amp/bundle/owner-name.renderer.component';
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 
 @Component({
@@ -83,6 +84,8 @@ export class SearchComponent implements OnInit{
       },
       ownerName: {
         title: 'Owner',
+        type: 'custom',
+        renderComponent: OwnerRenderComponent
       },
       condition: {
         title: 'Condition',

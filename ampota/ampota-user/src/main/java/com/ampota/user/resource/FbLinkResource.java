@@ -5,6 +5,7 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,13 @@ public class FbLinkResource {
 
     @Autowired
     private FacebookLinkService service;
+
+    @GetMapping
+    public ResponseEntity<OperationResult<String>> getFbLink(Principal principal) {
+        return service.findByUsername(principal.getName())
+                .map(fbLink -> ResponseEntity.ok(OperationResult.of(fbLink.getFbLink())))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     @PutMapping
     public ResponseEntity<OperationResult<String>> saveFbLink(Principal principal, @RequestParam String fbLink) {

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.afAuth.authState.subscribe(auth => {
-      console.log(auth);
+      console.log('auth complete');
       if (auth) {
         this.ampAuthorize();
       } else {
@@ -47,10 +47,11 @@ export class LoginComponent implements OnInit {
     fb.addScope('user_link');
     this.afAuth.auth.signInWithPopup(fb)
       .then((auth: any) => {
+        delete this.error;
         let fbToken = auth.credential.accessToken;
         this.http.get<any>('https://graph.facebook.com/me?access_token=' + fbToken + '&fields=link').subscribe(fbDetails => {
           console.log('sending fb_link request');
-          this.http.put<any>(environment.ampUrl + '/api/fb-link?fbLink=' + fbDetails.link).subscribe(r => r);
+          this.http.put<any>(environment.ampUrl + '/api/fb-link?fbLink=' + fbDetails.link, {}).subscribe(r => r);
         });
         this.loading = false;
       },
