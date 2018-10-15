@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './search.component';
 import { BundleDetailsComponent } from './bundle-details.component';
+import { BundleOwnerDetailsComponent } from './bundle-owner-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -55,7 +56,8 @@ export const routes = [
   ],
   declarations: [
     SearchComponent,
-    BundleDetailsComponent
+    BundleDetailsComponent,
+    BundleOwnerDetailsComponent
   ],
   providers:[],
   entryComponents: []

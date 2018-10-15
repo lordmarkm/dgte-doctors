@@ -28,6 +28,11 @@ public class UserProfileGatewayResource {
         return client.getUserProfile(fbLink);
     }
 
+    @GetMapping("/find-by-username")
+    public ResponseEntity<UserProfileInfo> findByUsername(@RequestParam String username) {
+        return client.findByUsername(username);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<UserProfileInfo> register(@Valid @RequestBody UserProfileInfo userProfile) {
         return client.register(userProfile);

@@ -21,4 +21,7 @@ public interface UserProfileClient {
     @PostMapping("/api/user-profile/register")
     ResponseEntity<UserProfileInfo> register(@RequestBody UserProfileInfo userProfile);
 
+    @GetMapping("/api/user-profile/find-by-username")
+    ResponseEntity<UserProfileInfo> findByUsername(@RequestParam String username);
+
 }

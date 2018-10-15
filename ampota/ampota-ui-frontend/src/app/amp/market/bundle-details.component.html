@@ -1,3 +1,5 @@
+<div class="row">
+<div class="col-lg-8 col-md-8 col-sm-12">
 <div *ngIf="bundle" widget class="card border-0 box-shadow">
   <div class="card-header transparent border-0">
       <h5 class="mb-0 col-lg-12">
@@ -14,18 +16,19 @@
     </div>
   </div>
   <div class="card-body pt-0 widget-body">
-    <div class="col-lg-4 col-md-4 col-sm-12">
+    <div class="col-lg-8 col-md-8 col-sm-12">
       <dl class="row">
-        <dt class="col-lg-4">Qty
-        <dd class="col-lg-8">{{bundle.qty}}
-        <dt class="col-lg-4">Condition
-        <dd class="col-lg-8">{{bundle.condition}}
-        <dt class="col-lg-4">Price<span *ngIf="bundle.sellMode == 'PIECE_SET'">/pc</span>
-        <dd class="col-lg-8">{{bundle.sellPrice}}
-        <dt *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-4">Price/set
-        <dd *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-8">{{bundle.sellPriceSet}}
+        <dt class="col-lg-5">Qty
+        <dd class="col-lg-7">{{bundle.qty}}
+        <dt class="col-lg-5">Condition
+        <dd class="col-lg-7">{{bundle.condition}}
+        <dt class="col-lg-5">Price<span *ngIf="bundle.sellMode == 'PIECE_SET'">/pc</span>
+        <dd class="col-lg-7">{{bundle.sellPrice}}
+        <dt *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-5">Price/set
+        <dd *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-7">{{bundle.sellPriceSet}}
       </dl>
-      <button routerLink="/amp/market" class="btn btn-default">Back to Market</button>
+      <button (click)="addToCart()" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+      <button routerLink="/amp/market" class="btn btn-default ml-1">Back to Market</button>
     </div>
   </div>
 </div>
@@ -35,4 +38,10 @@
   <div class="card-header transparent border-0 text-muted">
       <h5 class="mb-0"><i class="fa fa-gear fa-spin"></i> Loading...</h5>
   </div>
+</div>
+</div>
+
+<div class="col-lg-4 col-md-4 col-sm-12">
+  <bundle-owner-details [ownerUsername]="bundle.owner"></bundle-owner-details>
+</div>
 </div>

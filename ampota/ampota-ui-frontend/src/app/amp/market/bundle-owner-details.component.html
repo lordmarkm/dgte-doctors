@@ -1,0 +1,70 @@
+<div widget class="card border-0 box-shadow mt-lg-0 mt-md-0 mt-3">
+  <div class="card-header transparent border-0">Owner details</div>
+  <div *ngIf="owner" class="card-body pt-0 widget-body">
+    <div class="row">
+      <div class="col-lg-3"><img [src]="owner.photoUrl" /></div>
+      <div class="col-lg-9">
+        <div>{{owner.displayName}}</div>
+        <div>{{owner.contactNumber}}</div>
+        <div>
+          <i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i>
+          <a href="javascript:;" class="ml-1"><small class="text-muted">View reviews</small></a>
+        </div>
+        <div><small class="text-muted">Member since {{owner.createdDate | date}}</small></div>
+      </div>
+    </div>
+
+    <!-- Meetup details -->
+    <hr>
+    <div *ngIf="!owner.meetup || !owner.meetups.length" title="No meetups" class="mt-1">
+      <i class="fa fa-close text-error"></i> Meetup
+    </div>
+    <div *ngIf="owner.meetup" class="mt-1">
+      Meetups:
+      <div *ngFor="let meetup of owner.meetups">
+        <span [title]="meetup.adderess?.line || 'No address defined'">{{meetup.name}}</span>
+      </div>
+    </div>
+
+    <!-- Shipping details -->
+    <hr>
+    <div *ngIf="!owner.shipping || !owner.shippingProviders.length" title="No shipping" class="mt-1">
+      <i class="fa fa-close text-danger"></i> Shipping
+    </div>
+    <div *ngIf="owner.shipping" class="mt-1">
+      Shipping:
+      <div *ngFor="let shippingProvider of owner.shippingProviders">
+        <span>{{shippingProvider.name}}</span>
+      </div>
+    </div>
+
+    <!-- Payment details -->
+    <hr>
+    <div class="mt-1">
+      Payment:<br>
+      <div *ngIf="owner.cod"><i class="fa fa-check text-success"></i> Cash on Delivery</div>
+      <div *ngIf="owner.bankDeposit"><i class="fa fa-check text-success"></i> Bank Deposit</div>
+      <div *ngIf="owner.ampotaCoin"><i class="fa fa-check text-success"></i> Ampota Coin</div>
+    </div>
+
+    <!-- Link to fb if available -->
+    <div *ngIf="owner.fbLink">
+      <hr>
+      <div><a [href]="owner.fbLink" target="_blank"><i class="fa fa-fw fa-facebook"></i> Message in Facebook</a></div>
+      <div><a href="javascript:;"><i class="fa fa-fw fa-address-book"></i> View binders & cards</a></div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div *ngIf="!owner" class="card-body pt-0 widget-body">
+    <h5 class="mb-0"><i class="fa fa-gear fa-spin"></i> Loading...</h5>
+  </div>
+</div>

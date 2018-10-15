@@ -77,7 +77,13 @@ export class LoginComponent implements OnInit {
     },
     err => {
       //User menu component could not get xpay user from Firebase authentication
-      this.error = 'Authentication error. err=' + err;
+      switch(err.status) {
+      case 404:
+        this.router.navigate(['/amp/onboard']);
+        break;
+      default:
+        this.error = 'Authentication error. err=' + err.message;
+      }
       this.loading = false;
     });
   }

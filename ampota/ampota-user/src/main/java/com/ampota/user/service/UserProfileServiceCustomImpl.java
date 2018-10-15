@@ -29,7 +29,16 @@ public class UserProfileServiceCustomImpl extends XpayJpaServiceCustomImpl<UserP
     @Override
     public Optional<UserProfileInfo> findByUsernameInfo(String username, String fbLink) {
 
-        FacebookLink link = fbLinkService.findByUsername(username).map(fbl -> fbl)
+        UserProfileInfo upi = toDto(repo.findByUsername(username).orElse(null));
+
+        //Set FB link to dto if it already exists
+        //Create new facebook link if it doesn't
+        FacebookLink link = fbLinkService.findByUsername(username).map(fbl -> {
+                    if (null != upi) {
+                        upi.setFbLink(fbl.getFbLink());
+                    }
+                    return fbl;
+                })
                 .orElseGet(() -> {
                     if (!Strings.isNullOrEmpty(fbLink)) {
                         FacebookLink fbl = new FacebookLink();
@@ -41,9 +50,9 @@ public class UserProfileServiceCustomImpl extends XpayJpaServiceCustomImpl<UserP
                         return null;
                     }
                 });
-        LOG.info("New facebook linked. fbl={}", link);
 
-        return Optional.ofNullable(toDto(repo.findByUsername(username).orElseGet(null)));
+        LOG.info("New facebook linked. fbl={}", link);
+        return Optional.ofNullable(upi);
     }
 
 }

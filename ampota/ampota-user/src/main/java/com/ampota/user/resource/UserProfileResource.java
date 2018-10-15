@@ -11,6 +11,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +25,7 @@ import com.google.common.collect.Maps;
 import freemarker.template.TemplateException;
 import xyz.quadx.xpay.shared.email.sender.Mail;
 import xyz.quadx.xpay.shared.email.sender.MailSender;
+import xyz.quadx.xpay.shared.firebase.FirebaseUserDetails;
 
 import static org.springframework.http.HttpStatus.*;
 
@@ -45,15 +47,24 @@ public class UserProfileResource {
                 .orElse(ResponseEntity.status(NOT_FOUND).body(null));
     }
 
+    @GetMapping("/find-by-username")
+    public ResponseEntity<UserProfileInfo> findByUsername(Principal principal, @RequestParam String username) {
+        return service.findByUsernameInfo(username)
+                .map(u -> ResponseEntity.status(OK).body(u))
+                .orElse(ResponseEntity.status(NOT_FOUND).body(null));
+    }
+
     @PostMapping("/register")
-    public ResponseEntity<UserProfileInfo> register(Principal principal,
+    public ResponseEntity<UserProfileInfo> register(@AuthenticationPrincipal FirebaseUserDetails principal,
             @Valid @RequestBody UserProfileInfo userProfile) {
-        String username = principal.getName();
+        String username = principal.getUsername();
         Optional<UserProfileInfo> existingUser = service.findByUsernameInfo(username);
         if (existingUser.isPresent()) {
             return ResponseEntity.status(CONFLICT).body(existingUser.get());
         } else {
             userProfile.setUsername(username);
+            userProfile.setDisplayName(principal.getDisplayName());
+            userProfile.setPhotoUrl(principal.getPhotoUrl());
             UserProfileInfo savedUser = service.saveInfo(userProfile);
             sendConfirmationEmail(savedUser);
             return ResponseEntity.status(ACCEPTED).body(savedUser);

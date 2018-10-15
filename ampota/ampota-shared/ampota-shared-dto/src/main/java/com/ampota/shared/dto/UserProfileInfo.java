@@ -24,6 +24,9 @@ public class UserProfileInfo extends BaseInfo {
     private boolean bankDeposit;
     private List<BankAccountInfo> bankAccounts;
     private boolean emailConfirmed;
+    private String fbLink;
+    private String displayName;
+    private String photoUrl;
 
     public String getUsername() {
         return username;
@@ -108,6 +111,24 @@ public class UserProfileInfo extends BaseInfo {
     }
     public void setShippingNote(String shippingNote) {
         this.shippingNote = shippingNote;
+    }
+    public String getFbLink() {
+        return fbLink;
+    }
+    public void setFbLink(String fbLink) {
+        this.fbLink = fbLink;
+    }
+    public String getDisplayName() {
+        return displayName;
+    }
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
 }

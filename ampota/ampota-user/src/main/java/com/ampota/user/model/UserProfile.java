@@ -20,6 +20,9 @@ public class UserProfile extends BaseEntity {
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
+    @Column(name = "display_name")
+    private String displayName;
+
     @Column(name = "contact_number")
     private String contactNumber;
 
@@ -69,6 +72,10 @@ public class UserProfile extends BaseEntity {
     @Column(name = "email_confirmed")
     @Type(type = "yes_no")
     private boolean emailConfirmed = false;
+
+    @Column(name = "photo_url")
+    @Type(type = "text")
+    private String photoUrl;
 
     public String getUsername() {
         return username;
@@ -180,6 +187,22 @@ public class UserProfile extends BaseEntity {
 
     public void setMeetupNote(String meetupNote) {
         this.meetupNote = meetupNote;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
 }

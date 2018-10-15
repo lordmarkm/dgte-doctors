@@ -20,4 +20,9 @@ export class UserProfileService {
         return this.http.post(this.url, userProfile);
     }
 
+    public findByUsername(username: string) {
+      console.info('Find by username: ' + username);
+      return this.http.get<UserProfile>(this.url + '/find-by-username', { params: { username: username } });
+    }
+
 } 
