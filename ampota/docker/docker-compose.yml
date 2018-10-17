@@ -72,6 +72,8 @@ services:
     - xpay-discovery
     - rabbitmq
     container_name: ampota-card
+    volumes:
+    - "/home/markbbmartinez/ampota/scryfall_bulk_json:/scryfall_bulk_json"
     environment:
     - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
 

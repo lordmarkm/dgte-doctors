@@ -2,9 +2,12 @@ package com.ampota.card.service;
 
 import static com.ampota.card.model.QCard.card;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +44,8 @@ public class CardServiceCustomImpl extends XpayJpaServiceCustomImpl<Card, CardIn
             return;
         }
         Gson gson = new Gson();
-        JsonReader reader = new JsonReader(new InputStreamReader(new ClassPathResource("scryfall-all-cards.json").getInputStream(), "UTF-8"));
+        FileInputStream fis = new FileInputStream(new File(Paths.get("scryfall_bulk_json", "scryfall-all-cards.json").toString()));
+        JsonReader reader = new JsonReader(new InputStreamReader(fis, "UTF-8"));
         reader.beginArray();
         List<Card> cards = Lists.newArrayList();
         while (reader.hasNext()) {
