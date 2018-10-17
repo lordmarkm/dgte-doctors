@@ -10,6 +10,8 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
@@ -18,6 +20,9 @@ import com.ampota.shared.dto.card.Language;
 import xyz.xpay.shared.jpa.model.BaseEntity;
 
 @Entity(name = "card")
+@Table(indexes = {
+    @Index(columnList = "scryfall_id", name = "scryfall_id")
+})
 public class Card extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
