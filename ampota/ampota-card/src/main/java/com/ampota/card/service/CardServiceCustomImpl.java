@@ -16,7 +16,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.json.simple.parser.ParseException;
-import org.springframework.core.io.ClassPathResource;
 
 import com.ampota.card.model.Card;
 import com.ampota.card.util.CardParserUtil;

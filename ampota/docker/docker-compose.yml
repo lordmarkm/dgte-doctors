@@ -59,6 +59,7 @@ services:
     image: ampota/ampota-user:1.0
     network_mode: "host"
     depends_on:
+    - postgres
     - xpay-discovery
     - rabbitmq
     container_name: ampota-user
@@ -69,6 +70,7 @@ services:
     image: ampota/ampota-card:1.0
     network_mode: "host"
     depends_on:
+    - postgres
     - xpay-discovery
     - rabbitmq
     container_name: ampota-card
