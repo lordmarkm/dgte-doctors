@@ -58,15 +58,14 @@ public class CardReaderBatchConfig {
 
     @PostConstruct
     public void run() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
-        if (cardService.count() == 0) {
-            LOG.info("Parsing cards");
-            JobParameters param = new JobParametersBuilder()
-                .addString("JobId", String.valueOf(System.currentTimeMillis()))
-                .addString("JobName", "read-cards").toJobParameters();
-            jobLauncher.run(csvFileToDatabaseJob(), param);
-        } else {
-            LOG.info("No parse, cards already exist");
+        if (repo.count() > 0) {
+            return;
         }
+        LOG.info("Parsing cards");
+        JobParameters param = new JobParametersBuilder()
+            .addString("JobId", String.valueOf(System.currentTimeMillis()))
+            .addString("JobName", "read-cards").toJobParameters();
+        jobLauncher.run(csvFileToDatabaseJob(), param);
     }
 
     @Bean

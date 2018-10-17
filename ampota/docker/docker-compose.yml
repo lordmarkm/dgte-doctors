@@ -21,17 +21,17 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-    container_name: rabbitmq
+    container_name: ampota-rabbitmq
 
   ampota-ui-frontend:
     image: ampota/ampota-ui-frontend:1.0
     network_mode: "host"
-    container_name: xpay-admin-frontend
+    container_name: ampota-ui-frontend
 
   xpay-discovery:
     image: existquadx/xpay-discovery:1.0
     network_mode: "host"
-    container_name: xpay-discovery
+    container_name: ampota-discovery
 
   ampota-gateway:
     image: ampota/ampota-gateway:1.0
@@ -51,7 +51,7 @@ services:
     - xpay-discovery
     - postgres
     - rabbitmq
-    container_name: xpay-audit
+    container_name: ampota-audit
     environment:
     - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
 
