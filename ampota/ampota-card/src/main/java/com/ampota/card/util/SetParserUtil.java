@@ -32,8 +32,12 @@ public class SetParserUtil {
         set.setParentSetCode((String) setJson.get(JSON_KEY_BLOCK_CODE));
         set.setSetType((String) setJson.get(JSON_KEY_SET_TYPE));
         set.setParentSetCode((String) setJson.get(JSON_KEY_PARENT_SET_CODE));
-        set.setReleaseDate(DateTime.parse((String) setJson.get(JSON_KEY_RELEASED_AT)));
-
+        try {
+            set.setReleaseDate(DateTime.parse((String) setJson.get(JSON_KEY_RELEASED_AT)));
+        } catch (Exception e) {
+            LOG.error("Date parse failed! date={}", setJson.get(JSON_KEY_RELEASED_AT));
+            set.setReleaseDate(null);
+        }
         return set;
     }
 
