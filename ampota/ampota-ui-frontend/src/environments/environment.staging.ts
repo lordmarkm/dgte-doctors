@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   url: 'http://localhost:8080',
-  ampUrl: 'http://localhost:8090',
+  ampUrl: 'http://35.233.253.115:8090',
   firebase: {
     apiKey: "AIzaSyDyHfd479Iikb69iUgEiYSr-aD6KGyKIU0",
     authDomain: "xpay-test.firebaseapp.com",

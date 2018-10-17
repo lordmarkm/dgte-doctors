@@ -65,6 +65,9 @@
           "configurations": {
             "production": {
               "browserTarget": "start-ng:build:production"
+            },
+            "staging": {
+              "browserTarget": "start-ng:build:staging"
             }
           }
         },

@@ -1,0 +1,79 @@
+version: '2'
+services:
+  postgres:
+    image: existquadx/xpay-postgres:1.0
+    environment:
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=
+    ports:
+    - "5432:5432"
+    volumes:
+    - db_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbit1"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    container_name: rabbitmq
+
+  ampota-ui-frontend:
+    image: ampota/ampota-ui-frontend:1.0
+    network_mode: "host"
+    container_name: xpay-admin-frontend
+
+  xpay-discovery:
+    image: existquadx/xpay-discovery:1.0
+    network_mode: "host"
+    container_name: xpay-discovery
+
+  ampota-gateway:
+    image: ampota/ampota-gateway:1.0
+    network_mode: "host"
+    depends_on:
+    - xpay-discovery
+    container_name: ampota-gateway
+    volumes:
+    - "/home/markbbmartinez/ampota/uploads:/uploads"
+    environment:
+    - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
+
+  xpay-audit:
+    image: existquadx/xpay-audit:1.0
+    network_mode: "host"
+    depends_on:
+    - xpay-discovery
+    - postgres
+    - rabbitmq
+    container_name: xpay-audit
+    environment:
+    - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
+
+  ampota-user:
+    image: ampota/ampota-user:1.0
+    network_mode: "host"
+    depends_on:
+    - xpay-discovery
+    - rabbitmq
+    container_name: ampota-user
+    environment:
+    - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
+
+  ampota-card:
+    image: ampota/ampota-card:1.0
+    network_mode: "host"
+    depends_on:
+    - xpay-discovery
+    - rabbitmq
+    container_name: ampota-card
+    environment:
+    - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
+
+volumes:
+  db_data:

@@ -14,6 +14,7 @@ bower_components
 libs
 node_modules
 data
+dist
 
 # Eclipse Ignores
 .classpath
