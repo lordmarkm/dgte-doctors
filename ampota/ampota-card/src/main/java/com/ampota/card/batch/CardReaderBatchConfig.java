@@ -31,6 +31,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileUrlResource;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ampota.card.model.Card;
 import com.ampota.card.service.CardService;
@@ -114,10 +116,10 @@ public class CardReaderBatchConfig {
     public ItemWriter<Card> cardWriter() {
         ItemWriter<Card> cardWriter = new ItemWriter<Card>() {
             @Override
+            @Transactional(propagation = Propagation.REQUIRES_NEW)
             public void write(List<? extends Card> items) throws Exception {
-                items.stream().filter(i -> {
-                    return !cardService.findByScryfallId(i.getScryfallId()).isPresent();
-                }).forEach(cardService::saveAndFlush);
+                LOG.info("Writing cards. items={}", items.size());
+                cardService.saveAll(items);
             }
         };
         return cardWriter;
