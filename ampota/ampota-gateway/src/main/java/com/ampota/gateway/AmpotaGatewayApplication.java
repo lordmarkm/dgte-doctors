@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Import;
 
 import com.ampota.shared.client.UserProfileClient;
 
-import xyz.quadx.xpay.shared.audit.AuditLogConfig;
 import xyz.quadx.xpay.shared.firebase.FirebaseConfig;
 import xyz.xpay.shared.web.exceptionhandler.GlobalExceptionHandler;
 
