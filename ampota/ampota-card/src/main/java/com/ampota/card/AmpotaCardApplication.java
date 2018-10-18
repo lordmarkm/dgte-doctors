@@ -7,14 +7,13 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import xyz.quadx.xpay.shared.audit.AuditLogConfig;
 import xyz.quadx.xpay.shared.firebase.FirebaseConfig;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableJpaRepositories(repositoryImplementationPostfix = "CustomImpl")
 @Import({
-    AuditLogConfig.class,
+    //AuditLogConfig.class,
     FirebaseConfig.class,
 })
 public class AmpotaCardApplication {

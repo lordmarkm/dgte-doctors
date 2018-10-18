@@ -19,7 +19,7 @@ import xyz.xpay.shared.web.exceptionhandler.GlobalExceptionHandler;
     UserProfileClient.class
 })
 @Import({
-    AuditLogConfig.class,
+//    AuditLogConfig.class,
     FirebaseConfig.class
 })
 @ComponentScan(basePackageClasses = {

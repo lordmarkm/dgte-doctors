@@ -10,23 +10,10 @@ services:
     volumes:
     - db_data:/var/lib/postgresql/data
 
-  rabbitmq:
-    image: "rabbitmq:3-management"
-    hostname: "rabbit1"
-    environment:
-      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
-      RABBITMQ_DEFAULT_VHOST: "/"
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    container_name: ampota-rabbitmq
-
-  ampota-ui-frontend:
-    image: ampota/ampota-ui-frontend:1.0
-    network_mode: "host"
-    container_name: ampota-ui-frontend
+#  ampota-ui-frontend:
+#    image: ampota/ampota-ui-frontend:1.0
+#    network_mode: "host"
+#    container_name: ampota-ui-frontend
 
   xpay-discovery:
     image: existquadx/xpay-discovery:1.0
@@ -44,24 +31,12 @@ services:
     environment:
     - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
 
-  xpay-audit:
-    image: existquadx/xpay-audit:1.0
-    network_mode: "host"
-    depends_on:
-    - xpay-discovery
-    - postgres
-    - rabbitmq
-    container_name: ampota-audit
-    environment:
-    - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
-
   ampota-user:
     image: ampota/ampota-user:1.0
     network_mode: "host"
     depends_on:
     - postgres
     - xpay-discovery
-    - rabbitmq
     container_name: ampota-user
     environment:
     - "spring.cloud.stream.binders.local_rabbit.environment.spring.rabbitmq.host=localhost"
@@ -72,7 +47,6 @@ services:
     depends_on:
     - postgres
     - xpay-discovery
-    - rabbitmq
     container_name: ampota-card
     volumes:
     - "/home/markbbmartinez/ampota/scryfall_bulk_json:/scryfall_bulk_json"

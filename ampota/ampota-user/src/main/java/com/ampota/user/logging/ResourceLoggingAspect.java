@@ -10,27 +10,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
 
 import xyz.quadx.shared.dto.TxnRequest;
-import xyz.quadx.xpay.shared.audit.AuditLogPublisher;
 import xyz.quadx.xpay.shared.audit.TransactionReferenceHolder;
 import xyz.xpay.shared.util.DateUtil;
 
 @Aspect
 @Component
-@EnableBinding(AuditLogPublisher.class)
+//@EnableBinding(AuditLogPublisher.class)
 public class ResourceLoggingAspect {
 
     private static final Logger LOG = LoggerFactory.getLogger("User resource");
 
     @Autowired
     private Gson gson;
-    @Autowired
-    private AuditLogPublisher auditLogPublisher;
+//    @Autowired
+//    private AuditLogPublisher auditLogPublisher;
     @Value("${spring.application.name}")
     private String appName;
 
