@@ -51,7 +51,9 @@ export class LoginComponent implements OnInit {
         let fbToken = auth.credential.accessToken;
         this.http.get<any>('https://graph.facebook.com/me?access_token=' + fbToken + '&fields=link').subscribe(fbDetails => {
           console.log('sending fb_link request');
-          this.http.put<any>(environment.ampUrl + '/api/fb-link?fbLink=' + fbDetails.link, {}).subscribe(r => r);
+          if (fbDetails.link) {
+            this.http.put<any>(environment.ampUrl + '/api/fb-link?fbLink=' + fbDetails.link, {}).subscribe(r => r);
+          }
         });
         this.loading = false;
       },
