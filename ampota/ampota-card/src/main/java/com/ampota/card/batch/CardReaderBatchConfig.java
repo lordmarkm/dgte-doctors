@@ -59,6 +59,7 @@ public class CardReaderBatchConfig {
     @PostConstruct
     public void run() throws JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException {
         if (cardService.count() > 0) {
+            LOG.info("Nonzero card count! No batch job!");
             return;
         }
         LOG.info("Parsing cards");

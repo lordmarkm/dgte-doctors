@@ -27,7 +27,7 @@ public class Card extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "scryfall_id")
+    @Column(name = "scryfall_id", unique = true)
     private String scryfallId;
 
     @Column(name = "oracle_id")
