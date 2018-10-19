@@ -24,18 +24,32 @@ export class CustomModalContext extends BSModalContext {
 export class AddToCartModalComponent implements CloseGuard, ModalComponent<CustomModalContext>, OnInit {
   context: CustomModalContext;
   bundle: Bundle;
+  cardImg: string;
+
+  qty: number = 1;
+  price: number;
 
   constructor(public dialog: DialogRef<CustomModalContext>, private bundleService: BundleService, private modal: Modal) {
     this.context = dialog.context;
     if (dialog.context.bundle) {
       this.bundle = dialog.context.bundle;
+      this.cardImg = this.bundle.card.imageUris.small;
     }
-    this.context.dialogClass = 'modal-dialog modal-lg';
     bootstrap4Mode();
     dialog.setCloseGuard(this);
   }
 
   ngOnInit() {
+    this.computePrice();
+  }
+
+  computePrice() {
+    if (this.bundle.sellPrice && this.bundle.sellPriceSet) {
+      let setsPrice = Math.floor(this.qty / 4) * this.bundle.sellPriceSet;
+      this.price = setsPrice + ((this.qty % 4) * this.bundle.sellPrice);
+    } else if (this.bundle.sellPrice) {
+      this.price = this.bundle.sellPrice * this.qty;
+    }
   }
 
   beforeClose(): boolean {
@@ -44,20 +58,15 @@ export class AddToCartModalComponent implements CloseGuard, ModalComponent<Custo
   }
 
   cancel(cartForm) {
-    let confirmClose = Promise.resolve(true);
-    
-    if (cartForm.dirty) {
-      confirmClose = this.modal.confirm()
-        .title('Cancel')
-        .body('Are you sure? Item has not yet been added to cart')
-        .okBtn('Yes, cancel order')
-        .cancelBtn('No')
-        .open().result;
-    }
-
-    confirmClose.then(r => {
-      this.dialog.close();
-    }, () => { /*do nothing on negative*/ });
+    this.modal.confirm()
+      .title('Cancel')
+      .body('Are you sure? Item has not yet been added to cart')
+      .okBtn('Yes, cancel order')
+      .okBtnClass('btn btn-danger')
+      .cancelBtn('No')
+      .open().result.then(r => {
+        this.dialog.close();
+      }, () => { /*do nothing on negative*/ });
   }
 
   //Save bundle

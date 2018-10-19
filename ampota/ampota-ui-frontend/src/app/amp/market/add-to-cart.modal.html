@@ -8,11 +8,19 @@
         <img [src]="cardImg || 'https://i.imgur.com/wJaJQIi.png'" />
       </div>
       <div class="col-lg-8 col-md-8 col-sm-12">
+        <div class="form-group">
+          <label class="control-label" for="en-card">Qty <small class="text-muted">({{bundle.qty}} available)</small></label>
+          <input type="number" step="1" min="1" [max]="bundle.qty" name="qty" [(ngModel)]="qty" (change)="computePrice()" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="en-card">Price</label>
+          <p class="form-control-static">{{price | currency: 'Php '}}</p>
+        </div>
       </div>
     </div>
-    <div class="modal-footer">
-      <button type="button" (click)="cancel(cartForm)" class="btn">Cancel</button>
+    <div class="modal-footer mt-3">
       <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" (click)="cancel(cartForm)" class="btn">Cancel</button>
     </div>
     </form>
 </div>

@@ -25,7 +25,7 @@
         <dt class="col-lg-5">Price<span *ngIf="bundle.sellMode == 'PIECE_SET'">/pc</span>
         <dd class="col-lg-7">{{bundle.sellPrice}}
         <dt *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-5">Price/set
-        <dd *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-7">{{bundle.sellPriceSet}}
+        <dd *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-7">{{bundle.sellPriceSet || '-'}}
       </dl>
       <button (click)="addToCart()" [disabled]="loading" class="btn btn-primary">
         <i *ngIf="!loading" class="fa fa-shopping-cart"></i>

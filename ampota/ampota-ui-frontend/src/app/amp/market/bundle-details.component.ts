@@ -84,7 +84,7 @@ export class BundleDetailsComponent implements OnInit{
 
   addToCart() {
     this.loading = true;
-    const dialogRef = this.modal.open(AddToCartModalComponent, overlayConfigFactory({ }, BSModalContext));
+    const dialogRef = this.modal.open(AddToCartModalComponent, overlayConfigFactory({ bundle: this.bundle }, BSModalContext));
     //add the dialog's created bundle to the table
     dialogRef.result.then(savedBundle => {
       this.loading = false;
