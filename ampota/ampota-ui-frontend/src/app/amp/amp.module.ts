@@ -29,6 +29,9 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 //global error handler
 import { GlobalErrorHandler } from '@app/shared/global.error.handler';
 
+//ngx-webstorage
+import { StorageServiceModule } from 'ngx-webstorage-service';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -40,6 +43,9 @@ import { GlobalErrorHandler } from '@app/shared/global.error.handler';
     //ngx-modialog
     ModalModule.forRoot(),
     BootstrapModalModule,
+
+    //ngx-webstorage
+    StorageServiceModule,
   ],
   declarations: [
     AmpComponent,

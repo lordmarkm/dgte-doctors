@@ -11,6 +11,7 @@ import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interc
 import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { AddToCartModalComponent } from './add-to-cart.modal.component';
 import { SharedModule } from '@app/amp/shared/shared.module';
+import { ShoppingCartComponent } from '@app/amp/shopping-cart/shopping-cart.component';
 
 //multiselect dropdown
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
@@ -58,6 +59,7 @@ export const routes = [
     SearchComponent,
     BundleDetailsComponent,
     BundleOwnerDetailsComponent,
+    ShoppingCartComponent,
     AddToCartModalComponent
   ],
   providers:[],

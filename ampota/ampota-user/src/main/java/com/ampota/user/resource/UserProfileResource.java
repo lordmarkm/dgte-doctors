@@ -41,7 +41,7 @@ public class UserProfileResource {
     private MailSender mailSender;
 
     @GetMapping
-    public ResponseEntity<UserProfileInfo> getUserProfile(Principal principal, @RequestParam String fbLink) {
+    public ResponseEntity<UserProfileInfo> getUserProfile(Principal principal, @RequestParam(required = false) String fbLink) {
         return service.findByUsernameInfo(principal.getName(), fbLink)
                 .map(u -> ResponseEntity.status(OK).body(u))
                 .orElse(ResponseEntity.status(NOT_FOUND).body(null));

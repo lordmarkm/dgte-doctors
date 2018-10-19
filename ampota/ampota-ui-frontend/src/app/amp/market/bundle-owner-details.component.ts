@@ -2,7 +2,6 @@ import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { UserProfile } from '@app/amp/user-profile/user-profile.model';
 import { UserProfileService } from '@app/amp/user-profile/user-profile.service';
 
-
 @Component({
   selector: 'bundle-owner-details',
   templateUrl: './bundle-owner-details.component.html',

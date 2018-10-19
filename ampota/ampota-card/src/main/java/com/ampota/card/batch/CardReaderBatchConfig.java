@@ -5,7 +5,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.sql.DataSource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +27,6 @@ import org.springframework.batch.item.json.GsonJsonObjectReader;
 import org.springframework.batch.item.json.JsonItemReader;
 import org.springframework.batch.item.json.builder.JsonItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileUrlResource;
 import org.springframework.transaction.annotation.Propagation;
@@ -52,8 +50,6 @@ public class CardReaderBatchConfig {
     @Autowired
     public StepBuilderFactory stepBuilderFactory;
     @Autowired
-    private DataSource dataSource;
-    @Autowired
     private CardService cardService;
 
     @PostConstruct
@@ -69,8 +65,10 @@ public class CardReaderBatchConfig {
         jobLauncher.run(csvFileToDatabaseJob(), param);
     }
 
-    @Bean
     public Job csvFileToDatabaseJob() {
+        if (cardService.count() > 0) {
+            return null;
+        }
         return jobBuilderFactory.get("csvFileToDatabaseJob")
                 .incrementer(new RunIdIncrementer())
                 .flow(csvFileToDatabaseStep())
@@ -78,7 +76,6 @@ public class CardReaderBatchConfig {
                 .build();
     }
 
-    @Bean
     public Step csvFileToDatabaseStep() {
         return stepBuilderFactory.get("csvFileToDatabaseStep")
                 .<LinkedTreeMap, Card>chunk(1000)
@@ -88,7 +85,6 @@ public class CardReaderBatchConfig {
                 .build();
     }
 
-    @Bean
     public JsonItemReader<LinkedTreeMap> reader() {
         Gson gson = new Gson();
         GsonJsonObjectReader<LinkedTreeMap> jsonObjectReader = new GsonJsonObjectReader<>(LinkedTreeMap.class);
@@ -97,7 +93,8 @@ public class CardReaderBatchConfig {
         try {
             return new JsonItemReaderBuilder<LinkedTreeMap>()
                     .jsonObjectReader(jsonObjectReader)
-                    .resource(new FileUrlResource(Paths.get("scryfall_bulk_json", "scryfall-all-cards.json").toString()))
+                    //.resource(new FileUrlResource(Paths.get("scryfall_bulk_json", "scryfall-all-cards.json").toString()))
+                    .resource(new FileUrlResource(Paths.get("scryfall_bulk_json", "scryfall-oracle-cards.json").toString()))
                     .name("tradeJsonItemReader")
                     .build();
         } catch (MalformedURLException e) {
@@ -107,12 +104,10 @@ public class CardReaderBatchConfig {
         }
     }
 
-    @Bean
     ItemProcessor<LinkedTreeMap, Card> cardProcessor() {
         return new CardProcessor();
     }
 
-    @Bean
     public ItemWriter<Card> cardWriter() {
         ItemWriter<Card> cardWriter = new ItemWriter<Card>() {
             @Override

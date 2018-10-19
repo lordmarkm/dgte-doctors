@@ -28,7 +28,7 @@
         <dd *ngIf="bundle.sellMode == 'PIECE_SET'" class="col-lg-7">{{bundle.sellPriceSet || '-'}}
       </dl>
       <button (click)="addToCart()" [disabled]="loading" class="btn btn-primary">
-        <i *ngIf="!loading" class="fa fa-shopping-cart"></i>
+        <i *ngIf="!loading" class="fa fa-cart-plus"></i>
         <i *ngIf="loading" class="fa fa-gear fa-spin"></i> Add to Cart
       </button>
       <button routerLink="/amp/market" class="btn btn-default ml-1">Back to Market</button>
@@ -45,6 +45,7 @@
 </div>
 
 <div class="col-lg-4 col-md-4 col-sm-12">
+  <shopping-cart></shopping-cart>
   <bundle-owner-details *ngIf="bundle" [ownerUsername]="bundle.owner"></bundle-owner-details>
 </div>
 </div>

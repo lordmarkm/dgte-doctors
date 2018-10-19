@@ -2,7 +2,7 @@
     <div class="modal-header">
       <h4>Waste Money</h4>
     </div>
-    <form #cartForm="ngForm" (submit)="saveBundle(cartForm)" class="mt-2">
+    <form #cartForm="ngForm" (submit)="saveOrder()" class="mt-2">
     <div class="row">
       <div class="col-lg-4 col-md-4 col-sm-12 text-center card-img">
         <img [src]="cardImg || 'https://i.imgur.com/wJaJQIi.png'" />
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="modal-footer mt-3">
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary">Add</button>
       <button type="button" (click)="cancel(cartForm)" class="btn">Cancel</button>
     </div>
     </form>

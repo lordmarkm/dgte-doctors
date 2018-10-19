@@ -1,0 +1,15 @@
+<div *ngIf="cart" widget class="card border-0 box-shadow mt-lg-0 mt-md-0 mt-3 mb-2">
+  <div class="card-header transparent border-0">Shopping Cart</div>
+  <div *ngIf="!(cart | async).txns?.length" class="card-body pt-0 widget-body">
+    <span>🙌</span> Shopping cart is empty
+  </div>
+  <div *ngIf="(cart | async).txns?.length" class="card-body pt-0 widget-body">
+    <div *ngFor="let txn of (cart | async).txns">
+      <h5><small class="text-muted">Seller</small> {{txn.sellerName || 'No seller'}}</h5>
+      <div *ngFor="let order of txn.orders">
+        {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}})
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
