@@ -10,6 +10,7 @@ export class Page {
 export class Bundle {
     id: number;
     owner: string;
+    ownerName?: string;
     binder?: Binder;
     card: Card;
     qty: number;

@@ -28,4 +28,10 @@ export class ShoppingCartComponent implements OnInit {
     this.cart = this.cartService.cart;
   }
 
+  removeOrder(order) {
+      this.cartService.removeOrderFromCart(order);
+  }
+  removeTxn(txn) {
+      this.cartService.removeTxnFromCart(txn);
+  }
 }

@@ -6,7 +6,7 @@ export class ShoppingCart {
 }
 
 export class Transaction {
-  buyer: UserProfile;
+  buyer: string;
   seller: string;
   sellerName: string;
   orders: Order[];

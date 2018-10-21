@@ -27,19 +27,41 @@ export class ShoppingCartService implements OnInit {
   }
 
   public removeTxnFromCart(txn: Transaction) {
+      let cart: ShoppingCart = this._cart.value;
+      cart.txns = cart.txns.filter(t => t.seller != txn.seller);
   }
   public removeOrderFromCart(order: Order) {
+      let cart: ShoppingCart = this._cart.value;
+      cart.txns.forEach(txn => {
+          txn.orders = txn.orders.filter(order => order.bundle.id != order.bundle.id);
+      });
+      cart.txns = cart.txns.filter(txn => txn.orders.length);
   }
-  public addToCart(order: Order, buyer: UserProfile, seller: UserProfile) {
+  public addToCart(order: Order) {
     console.log('Adding to cart');
     let cart: ShoppingCart = this._cart.value;
-    let txn: Transaction = new Transaction();
-    txn.orders = [order];
-    txn.buyer = buyer;
-    txn.seller = order.bundle.owner;
-    txn.sellerName = order.bundle.ownerName;
-    cart.txns.push(txn);
+    let txn: Transaction = this.getTransaction(order.bundle.owner);
+    
+    if (!txn) {
+      txn = new Transaction();
+      txn.orders = [order];
+      txn.seller = order.bundle.owner;
+      txn.sellerName = order.bundle.ownerName;
+      cart.txns.push(txn);
+    } else {
+      this.addOrReplaceOrder(txn, order);
+    }
+
     this._cart.next(cart);
+  }
+
+  private getTransaction(ownerName: string) {
+    let cart = this._cart.value;
+    return cart.txns.find(txn => txn.seller === ownerName);
+  }
+  private addOrReplaceOrder(txn: Transaction, order: Order) {
+      txn.orders = txn.orders.filter(o => o.bundle.id != order.bundle.id);
+      txn.orders.push(order);
   }
   public get(): Observable<ShoppingCart> {
     return this.cart;

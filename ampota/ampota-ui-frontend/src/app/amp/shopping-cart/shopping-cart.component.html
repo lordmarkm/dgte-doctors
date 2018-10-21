@@ -5,9 +5,9 @@
   </div>
   <div *ngIf="(cart | async).txns?.length" class="card-body pt-0 widget-body">
     <div *ngFor="let txn of (cart | async).txns">
-      <h5><small class="text-muted">Seller</small> {{txn.sellerName || 'No seller'}}</h5>
+      <h5><small class="text-muted">Seller</small> {{txn.sellerName || 'No seller'}} <small (click)="removeTxn(txn)" class="text-muted pointer">Remove transaction</small></h5>
       <div *ngFor="let order of txn.orders">
-        {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}})
+        {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}}) <small (click)="removeOrder(order)" class="text-muted pointer">Remove item</small>
       </div>
       <hr>
     </div>
