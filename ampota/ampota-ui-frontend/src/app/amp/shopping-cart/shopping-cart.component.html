@@ -1,15 +1,16 @@
 <div *ngIf="cart" widget class="card border-0 box-shadow mt-lg-0 mt-md-0 mt-3 mb-2">
-  <div class="card-header transparent border-0">Shopping Cart</div>
+  <div class="card-header transparent border-0"><i class="fa fa-shopping-cart"></i> Shopping Cart</div>
   <div *ngIf="!(cart | async).txns?.length" class="card-body pt-0 widget-body">
     <span>🙌</span> Shopping cart is empty
   </div>
   <div *ngIf="(cart | async).txns?.length" class="card-body pt-0 widget-body">
     <div *ngFor="let txn of (cart | async).txns">
-      <h5><small class="text-muted">Seller</small> {{txn.sellerName || 'No seller'}} <small (click)="removeTxn(txn)" class="text-muted pointer">Remove transaction</small></h5>
+      <h5><small class="text-muted">Deal with</small> {{txn.sellerName || 'No seller'}} <small (click)="removeTxn(txn)" class="text-muted pointer">Remove</small></h5>
       <div *ngFor="let order of txn.orders">
-        {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}}) <small (click)="removeOrder(order)" class="text-muted pointer">Remove item</small>
+        {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}}) <small (click)="removeOrder(order)" class="text-muted pointer">Remove</small>
       </div>
       <hr>
     </div>
+    <button (click)="checkout()" class="btn btn-primary btn-sm" title="Finalize deals"><i class="fa fa-check-circle"></i> Checkout</button>
   </div>
 </div>
