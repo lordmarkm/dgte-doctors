@@ -7,6 +7,7 @@ import { Order } from './shopping-cart.model';
 import { ShoppingCartService } from './shopping-cart.service';
 import { Observable } from 'rxjs';
 import { Modal, bootstrap4Mode } from 'ngx-modialog/plugins/bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'shopping-cart',
@@ -19,7 +20,8 @@ export class ShoppingCartComponent implements OnInit {
 
   owner: UserProfile;  cart: Observable<ShoppingCart>;
 
-  constructor(private modal: Modal, private userProfileService: UserProfileService,private cartService: ShoppingCartService, private afAuth: AngularFireAuth) { }
+  constructor(private modal: Modal, private userProfileService: UserProfileService,private cartService: ShoppingCartService, private afAuth: AngularFireAuth,
+          private router:Router) { }
 
   ngOnInit() {
       bootstrap4Mode();
@@ -50,4 +52,7 @@ export class ShoppingCartComponent implements OnInit {
           .join('<br>');
   }
 
+  checkout() {
+      this.router.navigate(['/amp/market/checkout']);
+  }
 }

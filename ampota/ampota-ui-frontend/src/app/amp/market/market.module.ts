@@ -12,6 +12,7 @@ import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { AddToCartModalComponent } from './add-to-cart.modal.component';
 import { SharedModule } from '@app/amp/shared/shared.module';
 import { ShoppingCartComponent } from '@app/amp/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from '@app/amp/market/checkout.component';
 
 //multiselect dropdown
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
@@ -26,10 +27,13 @@ import {NumberPickerModule} from 'ng-number-picker';
 import { UiSwitchModule } from 'ngx-toggle-switch';
 //ngx-crystal-gallery
 import { CrystalGalleryModule } from 'ngx-crystal-gallery';
+//ngx-store
+import { WebStorageModule } from 'ngx-store';
 
 export const routes = [
   { path: '', component: SearchComponent, pathMatch: 'full', data: { breadcrumb: 'Search' }  },
   { path: 'bundle/:id', component: BundleDetailsComponent, data: { breadcrumb: 'Card Details' } },
+  { path: 'checkout', component: CheckoutComponent, data: { breadcrumb: 'Checkout'} }
 ];
 
 @NgModule({
@@ -54,13 +58,16 @@ export const routes = [
     CrystalGalleryModule,
     //multiselect dropdown
     MultiselectDropdownModule,
+    //ngx-store
+    WebStorageModule,
   ],
   declarations: [
     SearchComponent,
     BundleDetailsComponent,
     BundleOwnerDetailsComponent,
     ShoppingCartComponent,
-    AddToCartModalComponent
+    AddToCartModalComponent,
+    CheckoutComponent
   ],
   providers:[],
   entryComponents: [
