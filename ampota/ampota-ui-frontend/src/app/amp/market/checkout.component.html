@@ -6,15 +6,46 @@
 
     <!-- Each transaction -->
     <div *ngFor="let txn of (cart | async).txns">
-      <h5><small class="text-muted">Deal with</small> {{txn.sellerName || 'No seller'}} <small (click)="removeTxn(txn)" class="text-muted pointer">Remove</small></h5>
-      <div *ngFor="let order of txn.orders">
-        {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}}) <small (click)="removeOrder(order)" class="text-muted pointer">Remove</small>
+      <div class="row">
+        <div class="col-12">
+          <h5><small class="text-muted">Deal with</small> {{txn.sellerName || 'No seller'}} <small (click)="removeTxn(txn)" class="text-muted pointer">Remove</small></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div widget class="card border-0 box-shadow mt-lg-0 mt-md-0 mt-3">
+            <div class="card-header transparent border-0">Card details</div>
+            <div class="card-body pt-0 widget-body">
+              <div *ngFor="let order of txn.orders">
+                {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}}) <small (click)="remove(order)" class="text-muted ponter">Remove</small>
+              </div>
+              <div>
+                Total: {{txn.total | currency: 'Php '}}<br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <div widget class="card border-0 box-shadow mt-lg-0 mt-md-0 mt-3">
+            <div class="card-header transparent border-0">Transaction details</div>
+            <div class="card-body pt-0 widget-body">
+              <form class="form">
+                <div class="form-group">
+                  <label>Delivery method</label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <bundle-owner-details [ownerUsername]="txn.seller"></bundle-owner-details>
+        </div>
       </div>
       <hr>
     </div>
 
 
-    <button class="btn btn-primary">Verify & Checkout all</button>
+    <button class="btn btn-primary">Verify & Checkout</button>
   </div>
 
   <div *ngIf="!(cart | async).txns.length" class="card-body pt-0 widget-body">

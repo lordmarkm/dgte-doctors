@@ -51,6 +51,7 @@ export class ShoppingCartService {
       txn.orders = [order];
       txn.seller = order.bundle.owner;
       txn.sellerName = order.bundle.ownerName;
+      this.computeTotal(txn);
       cart.txns.push(txn);
     } else {
       this.addOrReplaceOrder(txn, order);
@@ -67,5 +68,15 @@ export class ShoppingCartService {
   private addOrReplaceOrder(txn: Transaction, order: Order) {
       txn.orders = txn.orders.filter(o => o.bundle.id != order.bundle.id);
       txn.orders.push(order);
+      this.computeTotal(txn);
   }
+  private computeTotal(txn: Transaction) {
+      if (typeof txn.computeTotal !== 'function') {
+          txn.computeTotal = function () {
+              this.total = this.orders.reduce((total, order) => total + order.price, 0);
+          }
+      }
+      txn.computeTotal();
+  }
+
 }

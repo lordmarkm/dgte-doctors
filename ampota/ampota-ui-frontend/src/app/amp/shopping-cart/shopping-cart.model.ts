@@ -6,10 +6,14 @@ export class ShoppingCart {
 }
 
 export class Transaction {
-  buyer: string;
-  seller: string;
-  sellerName: string;
-  orders: Order[];
+    buyer: string;
+    seller: string;
+    sellerName: string;
+    orders: Order[];
+    total: number;
+    public computeTotal() {
+        this.total = this.orders.reduce((total, order) => total + order.price, 0);
+    }
 }
 
 export class Order {
