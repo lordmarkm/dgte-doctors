@@ -9,6 +9,7 @@ export class Transaction {
     buyer: string;
     seller: string;
     sellerName: string;
+    sellerProfile: UserProfile;
     orders: Order[];
     total: number;
     public computeTotal() {

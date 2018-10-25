@@ -5,7 +5,8 @@
 
 
     <!-- Each transaction -->
-    <div *ngFor="let txn of (cart | async).txns">
+    <form (submit)="verifyAndCheckout()" class="form" ngNativeValidate>
+    <div *ngFor="let txn of (cart | async).txns; let index = index">
       <div class="row">
         <div class="col-12">
           <h5><small class="text-muted">Deal with</small> {{txn.sellerName || 'No seller'}} <small (click)="removeTxn(txn)" class="text-muted pointer">Remove</small></h5>
@@ -29,11 +30,24 @@
           <div widget class="card border-0 box-shadow mt-lg-0 mt-md-0 mt-3">
             <div class="card-header transparent border-0">Transaction details</div>
             <div class="card-body pt-0 widget-body">
-              <form class="form">
+                <!-- Delivery method & delivery address -->
                 <div class="form-group">
                   <label>Delivery method</label>
+                  <select [(ngModel)]="txn.deliveryMethod" name="delivery-method-{{$index}}" class="form-control" required>
+                    <option [disabled]="!txn.sellerProfile?.meetup" value="MEETUP">Meetup <span *ngIf="!txn.sellerProfile?.meetup" class="txt-muted">(Seller doesn't accept meetups)</span></option>
+                    <option [disabled]="!txn.sellerProfile?.shipping" value="SHIPPING">Shipping <span *ngIf="!txn.sellerProfile?.shipping" class="txt-muted">(Seller doesn't accept shipping)</span></option>
+                  </select>
                 </div>
-              </form>
+
+                <!-- Payment method -->
+                <div class="form-group">
+                  <label>Payment method</label>
+                  <select [(ngModel)]="txn.paymentMethod" name="payment-method-{{$index}}" class="form-control" required>
+                    <option [disabled]="!txn.sellerProfile?.ampotaCoin" value="AMPOTA_COIN">Ampota coin <span *ngIf="!txn.sellerProfile?.ampotaCoin" class="txt-muted">(Seller doesn't accept Ampota coin)</span></option>
+                    <option [disabled]="!txn.sellerProfile?.cod" value="COD">Cash on delivery <span *ngIf="!txn.sellerProfile?.cod" class="txt-muted">(Seller doesn't accept COD)</span></option>
+                    <option [disabled]="!txn.sellerProfile?.bankDeposit" value="BANK_DEPOSIT">Bank deposit <span *ngIf="!txn.sellerProfile?.bankDeposit" class="txt-muted">(Seller doesn't accept Bank deposit)</span></option>
+                  </select>
+                </div>
             </div>
           </div>
         </div>
@@ -43,9 +57,11 @@
       </div>
       <hr>
     </div>
+    <!-- End transaction loop -->
 
 
-    <button class="btn btn-primary">Verify & Checkout</button>
+    <button type="submit" class="btn btn-primary">Verify & Checkout</button>
+    </form>
   </div>
 
   <div *ngIf="!(cart | async).txns.length" class="card-body pt-0 widget-body">

@@ -4,6 +4,7 @@ import { UserProfileService } from '@app/amp/user-profile/user-profile.service';
 import { ShoppingCart } from '@app/amp/shopping-cart/shopping-cart.model';
 import { ShoppingCartService } from '@app/amp/shopping-cart/shopping-cart.service';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'checkout-component',
@@ -16,10 +17,13 @@ export class CheckoutComponent implements OnInit{
 
     cart: Observable<ShoppingCart>;
 
-    constructor(private userProfileService: UserProfileService, private cartService: ShoppingCartService) { }
+    constructor(private userProfileService: UserProfileService, private cartService: ShoppingCartService, private afAuth: AngularFireAuth) { }
 
     ngOnInit() {
         this.cart = this.cartService.cart;
     }
 
+    verifyAndCheckout() {
+      console.log('verifyAndCheckout()');
+    }
 }

@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { environment } from '../../../environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { CustomDataSource } from '@app/shared/smart.table.custom.datasource';
+import { Bundle } from '@app/amp/bundle/bundle.model';
 import { BundleService } from '@app/amp/bundle/bundle.service';
 import { CardService } from '@app/amp/card/card.service';
 import { distinctUntilChanged, debounceTime, switchMap, tap, catchError, map } from 'rxjs/operators'
@@ -21,6 +22,9 @@ import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'ang
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit{
+
+  //selected bundle
+  bundle: Bundle;
 
   //filters
   filters:any = {
@@ -181,6 +185,10 @@ export class SearchComponent implements OnInit{
       default:
         console.error('Unhandled event: ' + event.name);
     }
+  }
+
+  onUserRowSelect(event) {
+    this.bundle = event.data;
   }
 
 }

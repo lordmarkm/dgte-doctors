@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { ShoppingCart } from './shopping-cart.model';
 import { Transaction, Order } from './shopping-cart.model';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { UserProfile } from '@app/amp/user-profile/user-profile.model';
 
 const CART_STORAGE_KEY = 'ampota-shopping-cart';
 
@@ -11,10 +14,11 @@ const CART_STORAGE_KEY = 'ampota-shopping-cart';
 })
 export class ShoppingCartService {
 
+  private userProfileUrl = environment.ampUrl + "/api/user-profile";
   private _cart: BehaviorSubject<ShoppingCart> = new BehaviorSubject<ShoppingCart>(new ShoppingCart());
   public cart: Observable<ShoppingCart> = this._cart.asObservable();
 
-  constructor() {
+  constructor(private http: HttpClient) {
       let memcartStr = sessionStorage.getItem(CART_STORAGE_KEY);
       if (memcartStr) {
           console.log('Retrieved cart from local storage. cart=' + memcartStr);
@@ -51,14 +55,20 @@ export class ShoppingCartService {
       txn.orders = [order];
       txn.seller = order.bundle.owner;
       txn.sellerName = order.bundle.ownerName;
-      this.computeTotal(txn);
-      cart.txns.push(txn);
+
+      //TODO this is the same as UserProfileService.findByUsername but how do you inject a non-singleton service into a singleton service?
+      this.http.get<UserProfile>(this.userProfileUrl + '/find-by-username', { params: { username: order.bundle.owner } }).subscribe(profile => {
+        txn.sellerProfile = profile;
+        this.computeTotal(txn);
+        cart.txns.push(txn);
+        this.persist(cart);
+        this._cart.next(cart);
+      });
     } else {
       this.addOrReplaceOrder(txn, order);
+      this.persist(cart);
+      this._cart.next(cart);
     }
-
-    this.persist(cart);
-    this._cart.next(cart);
   }
 
   private getTransaction(ownerName: string) {

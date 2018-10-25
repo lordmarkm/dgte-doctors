@@ -15,7 +15,7 @@ export class BundleOwnerDetailsComponent implements OnInit{
   @Input() ownerUsername: string;
   owner: UserProfile;
 
-  constructor(private userProfileService: UserProfileService, public afAuth: AngularFireAuth) { }
+  constructor(private userProfileService: UserProfileService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(auth => {

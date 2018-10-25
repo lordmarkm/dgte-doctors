@@ -1,6 +1,7 @@
 package com.ampota.card;
 
 import static org.dozer.loader.api.FieldsMappingOptions.copyByReference;
+import static org.dozer.loader.api.FieldsMappingOptions.oneWay;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -14,6 +15,10 @@ import org.joda.time.format.ISODateTimeFormat;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.ampota.card.model.transaction.Order;
+import com.ampota.card.model.transaction.Transaction;
+import com.ampota.shared.dto.transaction.OrderInfo;
+import com.ampota.shared.dto.transaction.TransactionInfo;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
@@ -41,6 +46,13 @@ public class MappingConfig {
                 mapping(BaseEntity.class, BaseInfo.class)
                         .fields("createdDate", "createdDate", copyByReference())
                         .fields("updatedDate", "updatedDate", copyByReference());
+
+                mapping(TransactionInfo.class, Transaction.class)
+                        .fields("buyer.id", "buyerId", oneWay())
+                        .fields("seller.id", "sellerId", oneWay());
+
+                mapping(OrderInfo.class, Order.class)
+                        .fields("bundle.id", "bundleId", oneWay());
             }
         });
 
