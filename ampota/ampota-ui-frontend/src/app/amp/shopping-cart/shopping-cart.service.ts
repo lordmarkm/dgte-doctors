@@ -41,7 +41,7 @@ export class ShoppingCartService {
   public removeOrderFromCart(order: Order) {
       let cart: ShoppingCart = this._cart.value;
       cart.txns.forEach(txn => {
-          txn.orders = txn.orders.filter(order => order.bundle.id != order.bundle.id);
+          txn.orders = txn.orders.filter(o => o.bundle.id != order.bundle.id);
       });
       cart.txns = cart.txns.filter(txn => txn.orders.length);
       this.persist(cart);

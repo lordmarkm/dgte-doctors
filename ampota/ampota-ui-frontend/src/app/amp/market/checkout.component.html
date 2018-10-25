@@ -1,5 +1,9 @@
 <div widget class="card border-0 box-shadow mt-lg-0 mt-md-0 mt-3">
-  <div class="card-header transparent border-0">Checkout</div>
+  <div class="card-header transparent border-0 text-muted">
+      <h5 class="mb-0">Checkout<br>
+        <small class="text-muted">Pending deals with {{txnCount}} {{txnCount === 1 ? 'person' : 'people'}}</small>
+      </h5>
+  </div>
   <div *ngIf="(cart | async).txns.length" class="card-body pt-0 widget-body">
 
 
@@ -18,7 +22,7 @@
             <div class="card-header transparent border-0">Card details</div>
             <div class="card-body pt-0 widget-body">
               <div *ngFor="let order of txn.orders">
-                {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}}) <small (click)="remove(order)" class="text-muted ponter">Remove</small>
+                {{order.qty}}x {{order.bundle.card.name}} ({{order.price | currency: 'Php'}}) <small (click)="remove(order)" class="text-muted pointer">Remove</small>
               </div>
               <div>
                 Total: {{txn.total | currency: 'Php '}}<br>
@@ -36,6 +40,14 @@
                   <select [(ngModel)]="txn.deliveryMethod" name="delivery-method-{{$index}}" class="form-control" required>
                     <option [disabled]="!txn.sellerProfile?.meetup" value="MEETUP">Meetup <span *ngIf="!txn.sellerProfile?.meetup" class="txt-muted">(Seller doesn't accept meetups)</span></option>
                     <option [disabled]="!txn.sellerProfile?.shipping" value="SHIPPING">Shipping <span *ngIf="!txn.sellerProfile?.shipping" class="txt-muted">(Seller doesn't accept shipping)</span></option>
+                  </select>
+                </div>
+
+                <!-- Select meetup if delivery method=meetup -->
+                <div *ngIf="txn.deliveryMethod == 'MEETUP'" class="form-group">
+                  <label>Meetup location</label>
+                  <select [(ngModel)]="txn.meetup" name="meetup-location-{{$index}}" class="form-control" required>
+                    <option *ngFor="let meetup of txn.sellerProfile?.meetups" [ngValue]="meetup">{{meetup.name}}</option>
                   </select>
                 </div>
 

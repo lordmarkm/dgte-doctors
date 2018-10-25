@@ -48,8 +48,8 @@ public class MappingConfig {
                         .fields("updatedDate", "updatedDate", copyByReference());
 
                 mapping(TransactionInfo.class, Transaction.class)
-                        .fields("buyer.id", "buyerId", oneWay())
-                        .fields("seller.id", "sellerId", oneWay());
+                        .fields("buyerProfile.id", "buyerId", oneWay())
+                        .fields("sellerProfile.id", "sellerId", oneWay());
 
                 mapping(OrderInfo.class, Order.class)
                         .fields("bundle.id", "bundleId", oneWay());

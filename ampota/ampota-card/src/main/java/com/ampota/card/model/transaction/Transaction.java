@@ -6,14 +6,24 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+import org.hibernate.annotations.Type;
+
+import com.ampota.shared.dto.AddressInfo;
+import com.ampota.shared.dto.BankAccountInfo;
+import com.ampota.shared.dto.MeetupInfo;
+import com.ampota.shared.dto.transaction.DeliveryMethod;
+import com.ampota.shared.dto.transaction.PaymentMethod;
 import com.ampota.shared.dto.transaction.TransactionStatus;
 
+import xyz.xpay.shared.jpa.model.Address;
 import xyz.xpay.shared.jpa.model.BaseEntity;
 
+@SuppressWarnings("unused")
 @Entity(name = "txn")
 public class Transaction extends BaseEntity {
 
@@ -30,11 +40,32 @@ public class Transaction extends BaseEntity {
     private List<Order> orders;
 
     @Column(name = "total_price")
-    private BigDecimal totalPrice;
+    private BigDecimal total;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private TransactionStatus status = TransactionStatus.NEW;
+
+    @Column(name = "meetup_id")
+    private long meetupId;
+
+    @Embedded
+    private Address shippingAddress;
+
+    @Column(name = "delivery_method")
+    @Enumerated(EnumType.STRING)
+    private DeliveryMethod deliveryMethod;
+
+    @Column(name = "payment_method")
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
+
+    @Embedded
+    private BankAccount depositInfo;
+
+    @Column(name = "remarks")
+    @Type(type = "text")
+    private String remarks;
 
     public long getBuyerId() {
         return buyerId;
@@ -60,20 +91,20 @@ public class Transaction extends BaseEntity {
         this.orders = orders;
     }
 
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public TransactionStatus getStatus() {
         return status;
     }
 
     public void setStatus(TransactionStatus status) {
         this.status = status;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
 }

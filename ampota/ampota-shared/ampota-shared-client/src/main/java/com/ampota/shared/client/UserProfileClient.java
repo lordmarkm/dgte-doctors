@@ -13,7 +13,7 @@ import com.ampota.shared.dto.UserProfileInfo;
 public interface UserProfileClient {
 
     @GetMapping("/api/user-profile")
-    ResponseEntity<UserProfileInfo> getUserProfile();
+    ResponseEntity<UserProfileInfo> getCurrentUser();
 
     @GetMapping(value = "/api/user-profile", params = "fbLink")
     ResponseEntity<UserProfileInfo> getUserProfile(@RequestParam String fbLink);

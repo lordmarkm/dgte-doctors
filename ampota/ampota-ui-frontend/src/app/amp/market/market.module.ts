@@ -14,6 +14,8 @@ import { SharedModule } from '@app/amp/shared/shared.module';
 import { ShoppingCartComponent } from '@app/amp/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from '@app/amp/market/checkout.component';
 
+import { TransactionService } from '@app/amp/transaction/transaction.service';
+
 //multiselect dropdown
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 //ngx-modialog
@@ -69,7 +71,9 @@ export const routes = [
     AddToCartModalComponent,
     CheckoutComponent
   ],
-  providers:[],
+  providers:[
+    TransactionService,
+  ],
   entryComponents: [
     AddToCartModalComponent
   ]

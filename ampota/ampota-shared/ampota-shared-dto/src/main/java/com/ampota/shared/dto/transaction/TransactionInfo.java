@@ -12,9 +12,9 @@ import xyz.quadx.shared.dto.BaseInfo;
 
 public class TransactionInfo extends BaseInfo {
 
-    private UserProfileInfo buyer;
-    private UserProfileInfo seller;
-    private BigDecimal totalPrice;
+    private UserProfileInfo buyerProfile;
+    private UserProfileInfo sellerProfile;
+    private BigDecimal total;
     private TransactionStatus status = TransactionStatus.NEW;
     private DeliveryMethod deliveryMethod;
     private MeetupInfo meetup;
@@ -24,24 +24,6 @@ public class TransactionInfo extends BaseInfo {
     private String remarks;
     private List<OrderInfo> orders;
 
-    public UserProfileInfo getBuyer() {
-        return buyer;
-    }
-    public void setBuyer(UserProfileInfo buyer) {
-        this.buyer = buyer;
-    }
-    public UserProfileInfo getSeller() {
-        return seller;
-    }
-    public void setSeller(UserProfileInfo seller) {
-        this.seller = seller;
-    }
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
     public TransactionStatus getStatus() {
         return status;
     }
@@ -89,6 +71,24 @@ public class TransactionInfo extends BaseInfo {
     }
     public void setOrders(List<OrderInfo> orders) {
         this.orders = orders;
+    }
+    public UserProfileInfo getBuyerProfile() {
+        return buyerProfile;
+    }
+    public void setBuyerProfile(UserProfileInfo buyerProfile) {
+        this.buyerProfile = buyerProfile;
+    }
+    public UserProfileInfo getSellerProfile() {
+        return sellerProfile;
+    }
+    public void setSellerProfile(UserProfileInfo sellerProfile) {
+        this.sellerProfile = sellerProfile;
+    }
+    public BigDecimal getTotal() {
+        return total;
+    }
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
 }

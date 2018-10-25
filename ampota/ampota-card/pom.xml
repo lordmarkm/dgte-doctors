@@ -14,6 +14,10 @@
       <groupId>ampota</groupId>
       <artifactId>ampota-shared-dto</artifactId>
     </dependency>
+    <dependency>
+      <groupId>ampota</groupId>
+      <artifactId>ampota-shared-client</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>xpay</groupId>
