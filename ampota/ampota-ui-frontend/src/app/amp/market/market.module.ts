@@ -13,8 +13,9 @@ import { AddToCartModalComponent } from './add-to-cart.modal.component';
 import { SharedModule } from '@app/amp/shared/shared.module';
 import { ShoppingCartComponent } from '@app/amp/shopping-cart/shopping-cart.component';
 import { CheckoutComponent } from '@app/amp/market/checkout.component';
-
 import { TransactionService } from '@app/amp/transaction/transaction.service';
+import { TxnListComponent } from '@app/amp/transaction/txn-list.component';
+import { TxnSummaryComponent } from '@app/amp/transaction/txn-summary.component';
 
 //multiselect dropdown
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
@@ -35,7 +36,8 @@ import { WebStorageModule } from 'ngx-store';
 export const routes = [
   { path: '', component: SearchComponent, pathMatch: 'full', data: { breadcrumb: 'Search' }  },
   { path: 'bundle/:id', component: BundleDetailsComponent, data: { breadcrumb: 'Card Details' } },
-  { path: 'checkout', component: CheckoutComponent, data: { breadcrumb: 'Checkout'} }
+  { path: 'checkout', component: CheckoutComponent, data: { breadcrumb: 'Checkout' } },
+  { path: 'txns', component: TxnListComponent, data: { breadcrumb: 'Transactions' } },
 ];
 
 @NgModule({
@@ -69,13 +71,16 @@ export const routes = [
     BundleOwnerDetailsComponent,
     ShoppingCartComponent,
     AddToCartModalComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    TxnListComponent,
+    TxnSummaryComponent
   ],
   providers:[
     TransactionService,
   ],
   entryComponents: [
-    AddToCartModalComponent
+    AddToCartModalComponent,
+    TxnSummaryComponent
   ]
 })
 

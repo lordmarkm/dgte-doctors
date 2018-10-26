@@ -25,6 +25,12 @@ public class Transaction extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Catch double submit
+     */
+    @Column(name = "fe_txn_no", unique = true)
+    private String frontendGeneratedTransactionNo;
+
     @Column(name = "buyer_id", nullable = false)
     private long buyerId;
 
@@ -43,7 +49,7 @@ public class Transaction extends BaseEntity {
     private TransactionStatus status = TransactionStatus.NEW;
 
     @Column(name = "meetup_id")
-    private long meetupId;
+    private Long meetupId;
 
     @Embedded
     private Address shippingAddress;
@@ -103,11 +109,11 @@ public class Transaction extends BaseEntity {
         this.total = total;
     }
 
-    public long getMeetupId() {
+    public Long getMeetupId() {
         return meetupId;
     }
 
-    public void setMeetupId(long meetupId) {
+    public void setMeetupId(Long meetupId) {
         this.meetupId = meetupId;
     }
 
@@ -149,6 +155,14 @@ public class Transaction extends BaseEntity {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getFrontendGeneratedTransactionNo() {
+        return frontendGeneratedTransactionNo;
+    }
+
+    public void setFrontendGeneratedTransactionNo(String frontendGeneratedTransactionNo) {
+        this.frontendGeneratedTransactionNo = frontendGeneratedTransactionNo;
     }
 
 }

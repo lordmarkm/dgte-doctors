@@ -16,6 +16,7 @@ export class UserProfile {
   bankDeposit: boolean;
   bankAccounts: BankAccount[];
   permissions: string[];
+  fbLink: string;
   constructor(json?: any) {
     if (json) {
       this.username = json.username;

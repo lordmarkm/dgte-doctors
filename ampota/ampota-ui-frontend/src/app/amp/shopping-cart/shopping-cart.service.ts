@@ -5,6 +5,7 @@ import { Transaction, Order } from './shopping-cart.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { UserProfile } from '@app/amp/user-profile/user-profile.model';
+import { v4 as uuid } from 'uuid';
 
 const CART_STORAGE_KEY = 'ampota-shopping-cart';
 
@@ -55,6 +56,7 @@ export class ShoppingCartService {
       txn.orders = [order];
       txn.seller = order.bundle.owner;
       txn.sellerName = order.bundle.ownerName;
+      txn.frontendGeneratedTransactionNo = uuid();
 
       //TODO this is the same as UserProfileService.findByUsername but how do you inject a non-singleton service into a singleton service?
       this.http.get<UserProfile>(this.userProfileUrl + '/find-by-username', { params: { username: order.bundle.owner } }).subscribe(profile => {

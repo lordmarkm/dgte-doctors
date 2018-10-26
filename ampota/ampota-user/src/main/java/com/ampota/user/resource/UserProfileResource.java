@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,11 @@ public class UserProfileResource {
         return service.findByUsernameInfo(username)
                 .map(u -> ResponseEntity.status(OK).body(u))
                 .orElse(ResponseEntity.status(NOT_FOUND).body(null));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserProfileInfo> findOneInfo(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findOneInfo(id));
     }
 
     @PostMapping("/register")

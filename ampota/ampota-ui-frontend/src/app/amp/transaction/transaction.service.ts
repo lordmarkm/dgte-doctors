@@ -19,6 +19,10 @@ export class TransactionService {
         return this.http.get<Page>(this.url, { params: params });
     }
 
+    public findOne(id: number): Observable<Transaction> {
+      return this.http.get<Transaction>(this.url + '/' + id);
+    }
+
     public save(txn: Transaction) {
         console.debug('Save request!');
         return this.http.post(this.url, txn);

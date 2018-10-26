@@ -12,17 +12,21 @@ import xyz.quadx.shared.dto.BaseInfo;
 
 public class TransactionInfo extends BaseInfo {
 
+    private long buyerId;
     private UserProfileInfo buyerProfile;
+    private long sellerId;
     private UserProfileInfo sellerProfile;
     private BigDecimal total;
     private TransactionStatus status = TransactionStatus.NEW;
     private DeliveryMethod deliveryMethod;
+    private Long meetupId;
     private MeetupInfo meetup;
     private AddressInfo shippingAddress;
     private PaymentMethod paymentMethod;
     private BankAccountInfo depositInfo;
     private String remarks;
     private List<OrderInfo> orders;
+    private String frontendGeneratedTransactionNo;
 
     public TransactionStatus getStatus() {
         return status;
@@ -89,6 +93,30 @@ public class TransactionInfo extends BaseInfo {
     }
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+    public String getFrontendGeneratedTransactionNo() {
+        return frontendGeneratedTransactionNo;
+    }
+    public void setFrontendGeneratedTransactionNo(String frontendGeneratedTransactionNo) {
+        this.frontendGeneratedTransactionNo = frontendGeneratedTransactionNo;
+    }
+    public long getBuyerId() {
+        return buyerId;
+    }
+    public void setBuyerId(long buyerId) {
+        this.buyerId = buyerId;
+    }
+    public long getSellerId() {
+        return sellerId;
+    }
+    public void setSellerId(long sellerId) {
+        this.sellerId = sellerId;
+    }
+    public Long getMeetupId() {
+        return meetupId;
+    }
+    public void setMeetupId(Long meetupId) {
+        this.meetupId = meetupId;
     }
 
 }

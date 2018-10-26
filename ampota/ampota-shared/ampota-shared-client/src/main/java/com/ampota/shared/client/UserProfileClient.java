@@ -3,6 +3,7 @@ package com.ampota.shared.client;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,5 +24,8 @@ public interface UserProfileClient {
 
     @GetMapping("/api/user-profile/find-by-username")
     ResponseEntity<UserProfileInfo> findByUsername(@RequestParam String username);
+
+    @GetMapping("/api/user-profile/{id}")
+    ResponseEntity<UserProfileInfo> findOneInfo(@PathVariable Long id);
 
 }

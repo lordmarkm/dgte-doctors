@@ -27,6 +27,17 @@ public class UserProfileServiceCustomImpl extends XpayJpaServiceCustomImpl<UserP
     }
 
     @Override
+    public UserProfileInfo findOneInfo(Long id) {
+        UserProfileInfo upi = toDto(repo.findById(id).orElse(null));
+        //Set FB link to dto if it already exists
+        Optional<FacebookLink> link = fbLinkService.findByUsername(upi.getUsername());
+        if (link.isPresent()) {
+            upi.setFbLink(link.get().getFbLink());
+        }
+        return upi;
+    }
+
+    @Override
     public Optional<UserProfileInfo> findByUsernameInfo(String username, String fbLink) {
 
         UserProfileInfo upi = toDto(repo.findByUsername(username).orElse(null));
