@@ -13,9 +13,6 @@ import javax.persistence.Enumerated;
 
 import org.hibernate.annotations.Type;
 
-import com.ampota.shared.dto.AddressInfo;
-import com.ampota.shared.dto.BankAccountInfo;
-import com.ampota.shared.dto.MeetupInfo;
 import com.ampota.shared.dto.transaction.DeliveryMethod;
 import com.ampota.shared.dto.transaction.PaymentMethod;
 import com.ampota.shared.dto.transaction.TransactionStatus;
@@ -23,7 +20,6 @@ import com.ampota.shared.dto.transaction.TransactionStatus;
 import xyz.xpay.shared.jpa.model.Address;
 import xyz.xpay.shared.jpa.model.BaseEntity;
 
-@SuppressWarnings("unused")
 @Entity(name = "txn")
 public class Transaction extends BaseEntity {
 
@@ -105,6 +101,54 @@ public class Transaction extends BaseEntity {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public long getMeetupId() {
+        return meetupId;
+    }
+
+    public void setMeetupId(long meetupId) {
+        this.meetupId = meetupId;
+    }
+
+    public Address getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public DeliveryMethod getDeliveryMethod() {
+        return deliveryMethod;
+    }
+
+    public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
+        this.deliveryMethod = deliveryMethod;
+    }
+
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public BankAccount getDepositInfo() {
+        return depositInfo;
+    }
+
+    public void setDepositInfo(BankAccount depositInfo) {
+        this.depositInfo = depositInfo;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
 
 }

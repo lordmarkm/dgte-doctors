@@ -12,7 +12,15 @@ import { distinctUntilChanged, debounceTime, switchMap, tap, catchError, map } f
 import { Subject, Observable, of, concat } from 'rxjs';
 import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
 import { OwnerRenderComponent } from '@app/amp/bundle/owner-name.renderer.component';
+import { PriceRenderComponent } from '@app/amp/bundle/price.renderer.component';
 import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
+
+//ngx-modialog deps
+import { Modal, bootstrap4Mode, BSModalContext } from 'ngx-modialog/plugins/bootstrap';
+import { overlayConfigFactory } from "ngx-modialog";
+
+//add-to-cart
+import { AddToCartModalComponent } from './add-to-cart.modal.component';
 
 @Component({
   selector: 'app-search',
@@ -22,6 +30,9 @@ import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'ang
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit{
+
+  //global loading var
+  loading: boolean;
 
   //selected bundle
   bundle: Bundle;
@@ -66,15 +77,13 @@ export class SearchComponent implements OnInit{
       add: false,
       edit: false,
       delete: false,
-      custom: [{ name: 'view-bundle-details', title: '<i class="fa fa-search text-success"></i>' }],
+      custom: [
+        { name: 'view-bundle-details', title: '<i class="fa fa-search fa-fw text-success" title="View details"></i>' },
+        { name: 'add-to-cart', title: '<i class="fa fa-shopping-cart fa-fw text-primary" title="Add to cart"></i>' }
+      ],
       position: 'right'
     },
     columns: {
-      id: {
-        title: 'Id',
-        width: '55px',
-        filter: false
-      },
       cardDetails: {
         title: 'Card',
         type: 'custom',
@@ -107,18 +116,11 @@ export class SearchComponent implements OnInit{
       },
       sellPrice: {
         title: 'Price',
-        type: 'text',
-        filter: false,
-        width: '65px'
-      },
-      sellPriceSet: {
-        title: 'Price/set',
-        type: 'text',
-        filter: false,
-        width: '100px'
+        type: 'custom',
+        renderComponent: PriceRenderComponent
       },
       createdDate: {
-        title: 'Date Created',
+        title: 'Date Added',
         editable: false,
         filter: false,
         valuePrepareFunction: (value) => {return moment(value).format("MMM-DD-YYYY hh:mm a");},
@@ -131,7 +133,7 @@ export class SearchComponent implements OnInit{
   };
 
   constructor(private http: HttpClient, private cardService: CardService, private bundleService: BundleService, private afAuth: AngularFireAuth,
-    private router: Router) { }
+    private router: Router, private modal: Modal) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(auth => {
@@ -182,8 +184,16 @@ export class SearchComponent implements OnInit{
       case 'view-bundle-details':
         this.router.navigate(['/amp/market/bundle/' + event.data.id]);
         break;
+      case 'add-to-cart':
+        this.loading = true;
+        const dialogRef = this.modal.open(AddToCartModalComponent, overlayConfigFactory({ bundle: event.data }, BSModalContext));
+        //add the dialog's created bundle to the table
+        dialogRef.result.then(savedBundle => {
+          this.loading = false;
+        });
+        break;
       default:
-        console.error('Unhandled event: ' + event.name);
+        console.error('Unhandled event: ' + event.action);
     }
   }
 

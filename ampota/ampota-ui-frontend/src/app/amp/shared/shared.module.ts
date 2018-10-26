@@ -5,6 +5,7 @@ import { AddFirebaseTokenInterceptor } from '@app/shared/firebase.request.interc
 import { GlobalHttpErrorHandler } from '@app/shared/global.http.error.handler';
 import { CardDetailsRenderComponent } from '@app/amp/bundle/card.renderer.component';
 import { OwnerRenderComponent } from '@app/amp/bundle/owner-name.renderer.component';
+import { PriceRenderComponent } from '@app/amp/bundle/price.renderer.component';
 import { BundleDetailsComponent } from '@app/amp/bundle/bundle-details.component';
 import { MultipleImageUploaderComponent } from '@app/amp/bundle/multiple-image-uploader.component';
 import { CrystalGalleryModule } from 'ngx-crystal-gallery';
@@ -23,6 +24,7 @@ import { RouterModule } from '@angular/router';
     BundleDetailsComponent,
     CardDetailsRenderComponent,
     OwnerRenderComponent,
+    PriceRenderComponent,
     MultipleImageUploaderComponent
   ],
   providers:[
@@ -40,6 +42,7 @@ import { RouterModule } from '@angular/router';
   entryComponents: [
     CardDetailsRenderComponent,
     OwnerRenderComponent,
+    PriceRenderComponent,
     MultipleImageUploaderComponent
   ]
 })

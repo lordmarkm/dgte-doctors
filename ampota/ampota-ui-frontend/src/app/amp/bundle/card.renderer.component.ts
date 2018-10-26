@@ -4,7 +4,7 @@ import { ViewCell } from 'ng2-smart-table';
 
 @Component({
   template: `
-    <h4>{{name}}</h4>
+    <h5>{{name}}</h5>
     <small class="text-muted">{{(set | uppercase) || 'No set'}} | {{lang}}</small>
   `,
 })

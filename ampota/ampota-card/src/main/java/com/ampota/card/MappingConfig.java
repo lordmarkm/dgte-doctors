@@ -49,7 +49,8 @@ public class MappingConfig {
 
                 mapping(TransactionInfo.class, Transaction.class)
                         .fields("buyerProfile.id", "buyerId", oneWay())
-                        .fields("sellerProfile.id", "sellerId", oneWay());
+                        .fields("sellerProfile.id", "sellerId", oneWay())
+                        .fields("meetup.id", "meetupId", oneWay());
 
                 mapping(OrderInfo.class, Order.class)
                         .fields("bundle.id", "bundleId", oneWay());
