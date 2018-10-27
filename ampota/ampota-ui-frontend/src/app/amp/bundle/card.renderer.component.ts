@@ -4,9 +4,11 @@ import { ViewCell } from 'ng2-smart-table';
 
 @Component({
   template: `
-    <h5>{{name}}</h5>
-    <small class="text-muted">{{(set | uppercase) || 'No set'}} | {{lang}}</small>
+    <div><strong>{{name}}</strong></div>
+    <img [src]="imgUrl" />
+    <div><small class="text-muted">{{(set | uppercase) || 'No set'}} | {{lang}}</small></div>
   `,
+  styles: ['img { width: 75%; height: 750%; }']
 })
 export class CardDetailsRenderComponent implements ViewCell, OnInit {
 
@@ -14,6 +16,7 @@ export class CardDetailsRenderComponent implements ViewCell, OnInit {
   set: string;
   lang: string;
   name: string;
+  imgUrl: string;
 
   @Input() value: string | number | any;
   @Input() rowData: any;
@@ -23,6 +26,7 @@ export class CardDetailsRenderComponent implements ViewCell, OnInit {
     this.name = card.name;
     this.set = card.setCode;
     this.lang = card.lang;
+    this.imgUrl = card.imageUris.small;
   }
 
 }
