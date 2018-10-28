@@ -30,9 +30,13 @@ public class InsertFbLinkListener implements ApplicationListener<AuthenticationS
         FirebaseUserDetails userDetails = (FirebaseUserDetails) event.getAuthentication().getPrincipal();
         LOG.info("Trying to retrieve and set FB link for user. user={}", userDetails.getUsername());
 
-        String fbLink = client.getFbLink().getBody().getData();
-        userDetails.setFbLink(fbLink);
-        LOG.info("Successfully set fb link. link={}", fbLink);
+        try {
+            String fbLink = client.getFbLink().getBody().getData();
+            userDetails.setFbLink(fbLink);
+            LOG.info("Successfully set fb link. link={}", fbLink);
+        } catch (Exception e) {
+            LOG.warn("Unable to set fb link");
+        }
     }
 
 }
