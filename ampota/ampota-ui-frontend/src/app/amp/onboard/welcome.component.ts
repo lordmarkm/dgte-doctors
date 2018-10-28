@@ -25,6 +25,7 @@ export class WelcomeComponent  {
         this.onboardService.setUserProfile(new UserProfile());
         console.debug(this.onboardService.getUserProfile() + ', id=' + this.onboardService.id);
       }
+
   }
 
   next() {
