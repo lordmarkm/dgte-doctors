@@ -35,11 +35,11 @@ export class TxnListComponent implements OnInit {
       position: 'right' // left|right
     },
     columns: {
-      seller: {
+      sellerName: {
         title: 'Seller',
         width: '20%'
       },
-      buyer: {
+      buyerName: {
         title: 'Buyer',
         width: '20%'
       },

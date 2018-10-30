@@ -27,6 +27,10 @@ public class TransactionInfo extends BaseInfo {
     private String remarks;
     private List<OrderInfo> orders;
     private String frontendGeneratedTransactionNo;
+    private String buyerName;
+    private String buyerLink;
+    private String sellerName;
+    private String sellerLink;
 
     public TransactionStatus getStatus() {
         return status;
@@ -117,6 +121,30 @@ public class TransactionInfo extends BaseInfo {
     }
     public void setMeetupId(Long meetupId) {
         this.meetupId = meetupId;
+    }
+    public String getBuyerName() {
+        return buyerName;
+    }
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
+    }
+    public String getBuyerLink() {
+        return buyerLink;
+    }
+    public void setBuyerLink(String buyerLink) {
+        this.buyerLink = buyerLink;
+    }
+    public String getSellerName() {
+        return sellerName;
+    }
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+    public String getSellerLink() {
+        return sellerLink;
+    }
+    public void setSellerLink(String sellerLink) {
+        this.sellerLink = sellerLink;
     }
 
 }

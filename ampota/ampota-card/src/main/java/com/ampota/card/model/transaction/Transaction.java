@@ -37,6 +37,20 @@ public class Transaction extends BaseEntity {
     @Column(name = "seller_id", nullable = false)
     private long sellerId;
 
+    @Column(name = "buyer_name")
+    private String buyerName;
+
+    @Column(name = "buyer_link")
+    @Type(type = "text")
+    private String buyerLink;
+
+    @Column(name = "seller_name")
+    private String sellerName;
+
+    @Column(name = "seller_link")
+    @Type(type = "text")
+    private String sellerLink;
+
     @ElementCollection
     @CollectionTable(name = "txn_order")
     private List<Order> orders;
@@ -163,6 +177,38 @@ public class Transaction extends BaseEntity {
 
     public void setFrontendGeneratedTransactionNo(String frontendGeneratedTransactionNo) {
         this.frontendGeneratedTransactionNo = frontendGeneratedTransactionNo;
+    }
+
+    public String getBuyerName() {
+        return buyerName;
+    }
+
+    public void setBuyerName(String buyerName) {
+        this.buyerName = buyerName;
+    }
+
+    public String getBuyerLink() {
+        return buyerLink;
+    }
+
+    public void setBuyerLink(String buyerLink) {
+        this.buyerLink = buyerLink;
+    }
+
+    public String getSellerName() {
+        return sellerName;
+    }
+
+    public void setSellerName(String sellerName) {
+        this.sellerName = sellerName;
+    }
+
+    public String getSellerLink() {
+        return sellerLink;
+    }
+
+    public void setSellerLink(String sellerLink) {
+        this.sellerLink = sellerLink;
     }
 
 }

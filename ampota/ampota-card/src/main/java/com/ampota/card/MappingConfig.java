@@ -1,7 +1,6 @@
 package com.ampota.card;
 
 import static org.dozer.loader.api.FieldsMappingOptions.copyByReference;
-import static org.dozer.loader.api.FieldsMappingOptions.oneWay;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
@@ -51,9 +50,13 @@ public class MappingConfig {
                 //Transaction -> TransactionInfo & VV
                 mapping(Transaction.class, TransactionInfo.class, TypeMappingOptions.oneWay());
                 mapping(TransactionInfo.class, Transaction.class, TypeMappingOptions.oneWay())
-                        .fields("buyerProfile.id", "buyerId", oneWay())
-                        .fields("sellerProfile.id", "sellerId", oneWay())
-                        .fields("meetup.id", "meetupId", oneWay());
+                        .fields("buyerProfile.id", "buyerId")
+                        .fields("buyerProfile.displayName", "buyerName")
+                        .fields("buyerProfile.fbLink", "buyerLink")
+                        .fields("sellerProfile.id", "sellerId")
+                        .fields("sellerProfile.displayName", "sellerName")
+                        .fields("sellerProfile.fbLink", "sellerLink")
+                        .fields("meetup.id", "meetupId");
 
                 mapping(Order.class, OrderInfo.class, TypeMappingOptions.oneWay());
                 mapping(OrderInfo.class, Order.class, TypeMappingOptions.oneWay())
