@@ -55,8 +55,9 @@ public class MappingConfig {
                         .fields("sellerProfile.id", "sellerId", oneWay())
                         .fields("meetup.id", "meetupId", oneWay());
 
-                mapping(OrderInfo.class, Order.class)
-                        .fields("bundle.id", "bundleId", oneWay());
+                mapping(Order.class, OrderInfo.class, TypeMappingOptions.oneWay());
+                mapping(OrderInfo.class, Order.class, TypeMappingOptions.oneWay())
+                        .fields("bundle.id", "bundleId");
             }
         });
 

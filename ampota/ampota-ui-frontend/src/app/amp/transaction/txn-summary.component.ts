@@ -2,7 +2,7 @@ import { Component, ViewEncapsulation, Input, OnInit, OnChanges, SimpleChanges, 
 import { UserProfile } from '@app/amp/user-profile/user-profile.model';
 import { UserProfileService } from '@app/amp/user-profile/user-profile.service';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Transaction } from '@app/amp/shopping-cart/shopping-cart.model';
+import { Transaction, Order } from '@app/amp/shopping-cart/shopping-cart.model';
 import { TransactionService } from './transaction.service';
 
 @Component({
@@ -17,13 +17,17 @@ export class TxnSummaryComponent implements OnInit, OnChanges {
   @Input() txn: Transaction;
   completeTxn: Transaction;
   error: any;
+  ordersPreview: Order[];
 
   constructor(private userProfileService: UserProfileService, private txnService: TransactionService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(auth => {
       this.txnService.findOne(this.txn.id).subscribe(
-      txn => this.completeTxn = txn,
+      txn => {
+        this.completeTxn = txn;
+        this.ordersPreview = txn.orders.slice(0,3);
+      },
       err => this.error = 'Unable to retrieve transaction details! Please contact support. Transaction ID: ' + this.txn.id,
       ()  => delete this.error
     );
@@ -35,7 +39,10 @@ export class TxnSummaryComponent implements OnInit, OnChanges {
     let txn = txnChange.currentValue;
     delete this.completeTxn;
     this.txnService.findOne(txn.id).subscribe(
-      txn => this.completeTxn = txn,
+      txn => {
+        this.completeTxn = txn;
+        this.ordersPreview = txn.orders.slice(0,3);
+      },
       err => this.error = 'Unable to retrieve transaction details! Please contact support. Transaction ID: ' + this.txn.id,
       ()  => delete this.error
     );

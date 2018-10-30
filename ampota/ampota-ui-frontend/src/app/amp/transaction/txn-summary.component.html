@@ -29,12 +29,26 @@
       </div>
     </div>
 
+    <!-- Amounts -->
+    <hr>
+    TOTAL<br>
+    {{completeTxn.total | currency: '₱ '}}
+
+    <!-- Cards -->
+    <hr>
+    ITEMS
+    <div>
+      <div *ngFor="let order of ordersPreview">
+        {{order.qty}}x {{order.bundle.card.name}}
+      </div>
+      <div *ngIf="completeTxn.orders.length > 3">... {{completeTxn.orders.length}} total</div>
+    </div>
+
     <!-- Delivery method -->
     <hr>
     {{completeTxn.deliveryMethod}}
     <div *ngIf="completeTxn.deliveryMethod === 'MEETUP'">
       {{completeTxn.meetup.name}}<br>
-      {{completeTxn.meetup.address}}<br>
       Time - TBD
     </div>
 
@@ -44,6 +58,9 @@
     <div *ngIf="completeTxn.paymentMethod === 'AMPOTA_COIN'">
       Payment status - Pending
     </div>
+
+    <hr>
+    <button routerLink="/amp/market/txn/{{completeTxn.id}}" class="btn btn-primary btn-sm mt-2"><i class="fa fa-search"></i> View details</button>
   </div>
 
 

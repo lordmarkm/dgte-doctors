@@ -6,6 +6,7 @@ import com.ampota.shared.dto.card.collection.BundleInfo;
 
 public class OrderInfo {
 
+    private long bundleId;
     private BundleInfo bundle;
     private int qty;
     private BigDecimal price;
@@ -27,6 +28,12 @@ public class OrderInfo {
     }
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+    public long getBundleId() {
+        return bundleId;
+    }
+    public void setBundleId(long bundleId) {
+        this.bundleId = bundleId;
     }
 
 }
