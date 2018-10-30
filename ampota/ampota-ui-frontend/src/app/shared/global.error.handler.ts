@@ -7,7 +7,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   handleError(error) {
      console.log('Error!')
      // IMPORTANT: Rethrow the error otherwise it gets swallowed
-     throw error;
+     //throw error;
   }
   
 }

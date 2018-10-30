@@ -16,12 +16,17 @@ export class TxnSummaryComponent implements OnInit, OnChanges {
 
   @Input() txn: Transaction;
   completeTxn: Transaction;
+  error: any;
 
   constructor(private userProfileService: UserProfileService, private txnService: TransactionService, private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(auth => {
-      this.txnService.findOne(this.txn.id).subscribe(t => this.completeTxn = t);
+      this.txnService.findOne(this.txn.id).subscribe(
+      txn => this.completeTxn = txn,
+      err => this.error = 'Unable to retrieve transaction details! Please contact support. Transaction ID: ' + this.txn.id,
+      ()  => delete this.error
+    );
     });
   }
 
@@ -29,7 +34,11 @@ export class TxnSummaryComponent implements OnInit, OnChanges {
     const txnChange: SimpleChange = changes.txn;
     let txn = txnChange.currentValue;
     delete this.completeTxn;
-    this.txnService.findOne(txn.id).subscribe(t => this.completeTxn = t);
+    this.txnService.findOne(txn.id).subscribe(
+      txn => this.completeTxn = txn,
+      err => this.error = 'Unable to retrieve transaction details! Please contact support. Transaction ID: ' + this.txn.id,
+      ()  => delete this.error
+    );
   }
 
 }

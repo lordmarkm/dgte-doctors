@@ -6,7 +6,7 @@
       <div class="col-lg-3"><img [src]="completeTxn.sellerProfile.photoUrl" /></div>
       <div class="col-lg-9">
         <div>{{completeTxn.sellerProfile.displayName}}</div>
-        <div>{{completeTxn.sellerProfile.contactNumber}} <a [href]="completeTxn.sellerProfile.fbLink" title="Message in Facebook"><i class="fa fa-facebook"></i></a></div>
+        <div>{{completeTxn.sellerProfile.contactNumber}} <a [href]="completeTxn.sellerProfile.fbLink" target="_blank" title="Message in Facebook"><i class="fa fa-facebook"></i></a></div>
         <div>
           <i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i>
           <a href="javascript:;" class="ml-1"><small class="text-muted">View reviews</small></a>
@@ -20,7 +20,7 @@
       <div class="col-lg-3"><img [src]="completeTxn.buyerProfile.photoUrl" /></div>
       <div class="col-lg-9">
         <div>{{completeTxn.buyerProfile.displayName}}</div>
-        <div>{{completeTxn.buyerProfile.contactNumber}}</div>
+        <div>{{completeTxn.buyerProfile.contactNumber}} <a [href]="completeTxn.sellerProfile.fbLink" target="_blank" title="Message in Facebook"><i class="fa fa-facebook"></i></a></div>
         <div>
           <i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i><i class="fa fa-star text-success"></i>
           <a href="javascript:;" class="ml-1"><small class="text-muted">View reviews</small></a>
@@ -32,10 +32,18 @@
     <!-- Delivery method -->
     <hr>
     {{completeTxn.deliveryMethod}}
+    <div *ngIf="completeTxn.deliveryMethod === 'MEETUP'">
+      {{completeTxn.meetup.name}}<br>
+      {{completeTxn.meetup.address}}<br>
+      Time - TBD
+    </div>
 
     <!-- Payment method -->
     <hr>
     {{completeTxn.paymentMethod}}
+    <div *ngIf="completeTxn.paymentMethod === 'AMPOTA_COIN'">
+      Payment status - Pending
+    </div>
   </div>
 
 
@@ -46,7 +54,10 @@
 
 
 
-  <div *ngIf="!completeTxn" class="card-body pt-0 widget-body">
+  <div *ngIf="!completeTxn && !error" class="card-body pt-0 widget-body">
     <h5 class="mb-0"><i class="fa fa-gear fa-spin"></i> Loading...</h5>
+  </div>
+  <div *ngIf="error" class="card-body pt-0 widget-body">
+    <h5 class="text-danger mb-0">{{error}}</h5>
   </div>
 </div>

@@ -19,11 +19,14 @@ export class GlobalHttpErrorHandler implements HttpInterceptor {
               case 401:
                 console.error('401! Redirecting to login page');
                 this.router.navigate(['/login']);
+                return;
               default:
                 console.error('Unhandled error response: ' + err.status);
-                throw err;
+                //throw err;
+                return;
           }
         }
-      });
+      },
+      () => { /* nothing in finally */ });
   }
 }
