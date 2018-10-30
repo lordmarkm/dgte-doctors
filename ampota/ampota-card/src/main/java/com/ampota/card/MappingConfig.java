@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.TypeMappingOptions;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.ISODateTimeFormat;
@@ -47,13 +48,12 @@ public class MappingConfig {
                         .fields("createdDate", "createdDate", copyByReference())
                         .fields("updatedDate", "updatedDate", copyByReference());
 
-                mapping(TransactionInfo.class, Transaction.class)
+                //Transaction -> TransactionInfo & VV
+                mapping(Transaction.class, TransactionInfo.class, TypeMappingOptions.oneWay());
+                mapping(TransactionInfo.class, Transaction.class, TypeMappingOptions.oneWay())
                         .fields("buyerProfile.id", "buyerId", oneWay())
                         .fields("sellerProfile.id", "sellerId", oneWay())
-                        .fields("meetup.id", "meetupId", oneWay())
-                        .fields("buyerId", "buyerId")
-                        .fields("sellerId", "sellerId")
-                        .fields("meetupId", "meetupId");
+                        .fields("meetup.id", "meetupId", oneWay());
 
                 mapping(OrderInfo.class, Order.class)
                         .fields("bundle.id", "bundleId", oneWay());

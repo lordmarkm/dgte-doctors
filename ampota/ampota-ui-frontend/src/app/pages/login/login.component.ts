@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
       if (auth) {
         this.ampAuthorize();
       } else {
-        this.error = 'Please sign in with Firebase';
+        this.error = 'Please sign in with Facebook';
         this.loading = false;
       }
     },
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
 
   private ampAuthorize() {
     this.loading = true;
-    this.userProfileService.get(this.fbLink).subscribe(user => {
+    this.userProfileService.getCurrentUser().subscribe(user => {
       let userProfile: UserProfile = new UserProfile(user);
       if (userProfile.hasRole('ROLE_ADMIN')) {
         //admin user authenticated
@@ -84,7 +84,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/amp/onboard']);
         break;
       default:
-        this.error = 'Authentication error. err=' + err.message;
+        this.error = 'Authentication error. Please try again later';
+        console.error('Authentication error. err=' + err.message);
       }
       this.loading = false;
     });
