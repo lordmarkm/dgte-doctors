@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <label for="contactNumber">Cellphone</label>
-                        <input type="text" name="contactNumber" [(ngModel)]="contactNumber" class="form-control" required placeholder="09772459356" />
+                        <input type="text" name="contactNumber" [(ngModel)]="contactNumber" numberInput class="form-control" required placeholder="09772459356" />
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success btn-block" type="submit">Proceed</button>
@@ -24,4 +24,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+    AA{{ contactNumber }}
 </div>

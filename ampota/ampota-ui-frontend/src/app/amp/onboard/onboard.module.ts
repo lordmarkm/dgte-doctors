@@ -6,9 +6,11 @@ import { TransactionTypesComponent } from './transactiontypes.component';
 import { AcceptedCurrencyComponent } from './accepted-currency.component';
 import { PrimaryShippingAddressComponent } from './primary-shipping-address.component';
 import { ThankYouComponent } from './thank-you.component';
-import { ContactComponent } from './contact.component';
+import { ContactComponent} from './contact.component';
 import { TagInputModule } from 'ngx-chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { utils } from 'protractor';
+import { UtilsModule } from '../utils/utils.module';
 
 export const routes = [
   { path: '', component: WelcomeComponent, pathMatch: 'full' },
@@ -26,6 +28,7 @@ export const routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
+    UtilsModule
   ],
   declarations: [
     WelcomeComponent,
@@ -33,7 +36,7 @@ export const routes = [
     TransactionTypesComponent,
     AcceptedCurrencyComponent,
     PrimaryShippingAddressComponent,
-    ThankYouComponent
+    ThankYouComponent,
   ]
 })
 

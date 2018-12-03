@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { OnboardService } from './onboard.service';
 import { UserProfile } from '@app/amp/user-profile/user-profile.model';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UtilsModule } from '../utils/utils.module';
 
 @Component({
   selector: 'app-contact',
