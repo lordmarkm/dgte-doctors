@@ -7,22 +7,6 @@
     <div class="col-lg-6 mb-4">
         <div widget class="card border-0 box-shadow">
             <div class="card-header transparent border-0 text-muted">
-                <h5 class="mb-0">Ampota Coin</h5>
-            </div>
-            <div class="card-body widget-body">
-              <div class="form-group d-flex justify-content-between">
-                  <div class="custom-control custom-checkbox">
-                      <input [(ngModel)]="userProfile.ampotaCoin" type="checkbox" class="custom-control-input checkbox-success" id="ampota-coin" name="ampota-coin">
-                      <label class="custom-control-label" for="ampota-coin">I am willing to receive payment in the form of Ampota Coin</label>
-                      <p class="help-text"><a [href]="'javascript:;'">Learn about Ampota Coin here</a></p>
-                  </div>
-              </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 mb-4">
-        <div widget class="card border-0 box-shadow">
-            <div class="card-header transparent border-0 text-muted">
                 <h5 class="mb-0">Bank Deposit</h5>
             </div>
             <div class="card-body widget-body">
@@ -49,6 +33,22 @@
               <div class="form-group">
                   <label for="accountNumber">Account number</label>
                   <input [(ngModel)]="bankAccount.accountNumber" [disabled]="!userProfile.bankDeposit" type="text" name="accountNumber" class="form-control" [required]="userProfile.bankDeposit" />
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+        <div widget class="card border-0 box-shadow">
+            <div class="card-header transparent border-0 text-muted">
+                <h5 class="mb-0">Ampota Coin</h5>
+            </div>
+            <div class="card-body widget-body">
+              <div class="form-group d-flex justify-content-between">
+                  <div class="custom-control custom-checkbox">
+                      <input [(ngModel)]="userProfile.ampotaCoin" type="checkbox" class="custom-control-input checkbox-success" id="ampota-coin" name="ampota-coin">
+                      <label class="custom-control-label" for="ampota-coin">I am willing to receive payment in the form of Ampota Coin</label>
+                      <p class="help-text"><a [href]="'javascript:;'">Learn about Ampota Coin here</a></p>
+                  </div>
               </div>
             </div>
         </div>

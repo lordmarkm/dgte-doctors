@@ -10,12 +10,12 @@ export class AppSettings {
             menu: 'vertical', //horizontal , vertical
             menuType: 'default', //default, compact, mini
             showMenu: false,
-            navbarIsFixed: false,
+            navbarIsFixed: true,
             footerIsFixed: false,
             sidebarIsFixed: false,
             showSideChat: false,
             sideChatIsHoverable: false,
-            skin:'grey'  //light , dark, blue, green, combined, purple, orange, brown, grey, pink          
+            skin:'dark'  //light , dark, blue, green, combined, purple, orange, brown, grey, pink          
         }
     )
 }
