@@ -38,7 +38,7 @@ You must have at least one shipping address. You can change your primary shippin
                     </div>
                     <div class="form-group">
                         <label for="postal-code">Postal code</label>
-                        <input [(ngModel)]="address.postalCode" id="postal-code" name="postal-code" class="form-control" maxlength="10">
+                        <input [(ngModel)]="address.postalCode" id="postal-code" name="postal-code" class="form-control" maxlength="10" numberInput maxlength="4">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-success btn-block" type="submit">Proceed</button>
